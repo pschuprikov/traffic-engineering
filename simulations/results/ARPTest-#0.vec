@@ -1,0 +1,268 @@
+version 2
+run ARPTest-0-20211128-16:45:03-36120
+attr configname ARPTest
+attr datetime 20211128-16:45:03
+attr experiment ARPTest
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsf ""
+attr measurement ""
+attr network first.simulations.Network
+attr processid 36120
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+param **.client.numApps 1
+param **.client.app[*].typename "\"TcpSessionApp\""
+param **.client.app[0].active true
+param **.client.app[0].localAddress "\"\""
+param **.client.app[0].localPort -1
+param **.client.app[0].connectAddress "\"server\""
+param **.client.app[0].connectPort 1000
+param **.client.app[0].tOpen 0.5s
+param **.client.app[0].tSend 1.1s
+param **.client.app[0].sendBytes 1KiB
+param **.client.app[0].sendScript "\"\""
+param **.client.app[0].tClose 0s
+param **.server.numApps 1
+param **.server.app[*].typename "\"TcpEchoApp\""
+param **.server.app[0].localAddress "\"\""
+param **.server.app[0].localPort 1000
+param **.server.app[0].echoFactor 2.0
+param **.server.app[0].echoDelay 0s
+param **.eth[*].mac.queue.typename "\"EtherQosQueue\""
+param **.eth[*].mac.queue.dataQueue.typename "\"DropTailQueue\""
+param **.eth[*].mac.queue.dataQueue.packetCapacity 10
+param **.eth[*].mac.duplexMode true
+
+vector 0 Network.client.tcp.conn-2 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+vector 1 Network.client.tcp.conn-2 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+vector 2 Network.client.tcp.conn-2 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+vector 3 Network.client.tcp.conn-2 sndAck:vector ETV
+attr interpolationmode sample-hold
+vector 4 Network.client.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+vector 5 Network.client.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 6 Network.client.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 7 Network.client.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr source localSignal(packetPushed)
+attr title "packets pushed, vector(packetBytes)"
+vector 8 Network.client.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(localSignal(packetPushed)) - count(localSignal(packetPopped)) - count(localSignal(packetRemoved)) - count(packetDropped)"
+attr title "queue length, vector"
+vector 9 Network.client.eth[0].mac.queue.classifier packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packets pushed, vector(packetBytes)"
+vector 10 Network.client.eth[0].mac.queue.dataQueue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 11 Network.client.eth[0].mac.queue.dataQueue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 12 Network.client.eth[0].mac.queue.dataQueue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 13 Network.client.eth[0].mac.queue.dataQueue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 14 Network.client.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 15 Network.client.eth[0].mac.queue.scheduler packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packets popped, vector(packetBytes)"
+vector 16 Network.client.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr source localSignal(packetPopped)
+attr title "packets popped, vector(packetBytes)"
+vector 17 Network.client.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 18 Network.first.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 19 Network.first.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 20 Network.first.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 21 Network.first.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr source arpReplySent
+attr title "ARP replies sent, vector(packetBytes)"
+vector 22 Network.first.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 23 Network.first.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 24 Network.first.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr source localSignal(packetPushed)
+attr title "packets pushed, vector(packetBytes)"
+vector 25 Network.first.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(localSignal(packetPushed)) - count(localSignal(packetPopped)) - count(localSignal(packetRemoved)) - count(packetDropped)"
+attr title "queue length, vector"
+vector 26 Network.first.eth[0].mac.queue.classifier packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packets pushed, vector(packetBytes)"
+vector 27 Network.first.eth[0].mac.queue.dataQueue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 28 Network.first.eth[0].mac.queue.dataQueue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 29 Network.first.eth[0].mac.queue.dataQueue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 30 Network.first.eth[0].mac.queue.dataQueue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 31 Network.first.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 32 Network.first.eth[0].mac.queue.scheduler packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packets popped, vector(packetBytes)"
+vector 33 Network.first.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr source localSignal(packetPopped)
+attr title "packets popped, vector(packetBytes)"
+vector 34 Network.first.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 35 Network.client.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 36 Network.client.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 37 Network.client.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 38 Network.first.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+0	8	0.5	0
+1	8	0.5	7504
+2	8	0.5	7504
+3	8	0.5	0
+4	9	0.5	28
+5	10	0.5	28
+5	23	0.5001162	44
+6	11	0.5	46
+6	24	0.5001162	62
+7	11	0.5	64
+7	24	0.5001162	64
+8	11	0.5	1
+8	11	0.5	0
+8	24	0.5001162	1
+8	24	0.5001162	0
+9	11	0.5	64
+9	24	0.5001162	64
+10	11	0.5	64
+10	24	0.5001162	64
+11	11	0.5	1
+11	11	0.5	0
+11	24	0.5001162	1
+11	24	0.5001162	0
+12	11	0.5	64
+12	24	0.5001162	64
+13	11	0.5	0
+13	24	0.5001162	0
+14	11	0.5	0
+14	11	0.5	0
+14	11	0.5	0
+14	24	0.5001162	0
+14	24	0.5001162	0
+14	24	0.5001162	0
+15	11	0.5	64
+15	24	0.5001162	64
+16	11	0.5	64
+16	24	0.5001162	64
+17	12	0.5000576	64
+17	26	0.5001738	64
+18	13	0.5000581	64
+18	27	0.5001743	64
+19	13	0.5000581	64
+19	27	0.5001743	64
+20	14	0.5000581	46
+20	28	0.5001743	46
+21	15	0.5000581	28
+22	16	0.5000581	28
+22	30	0.5001743	28
+23	17	0.5000581	46
+23	31	0.5001743	46
+24	17	0.5000581	64
+24	31	0.5001743	64
+25	17	0.5000581	1
+25	17	0.5000581	0
+25	31	0.5001743	1
+25	31	0.5001743	0
+26	17	0.5000581	64
+26	31	0.5001743	64
+27	17	0.5000581	64
+27	31	0.5001743	64
+28	17	0.5000581	1
+28	17	0.5000581	0
+28	31	0.5001743	1
+28	31	0.5001743	0
+29	17	0.5000581	64
+29	31	0.5001743	64
+30	17	0.5000581	0
+30	31	0.5001743	0
+31	17	0.5000581	0
+31	17	0.5000581	0
+31	17	0.5000581	0
+31	31	0.5001743	0
+31	31	0.5001743	0
+31	31	0.5001743	0
+32	17	0.5000581	64
+32	31	0.5001743	64
+33	17	0.5000581	64
+33	31	0.5001743	64
+34	19	0.5001157	64
+34	33	0.5002319	64
+35	20	0.5001162	64
+35	34	0.5002324	64
+36	20	0.5001162	64
+36	34	0.5002324	64
+37	21	0.5001162	46
+37	35	0.5002324	46
+38	29	0.5001743	28
+

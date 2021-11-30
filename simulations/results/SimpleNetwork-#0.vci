@@ -1,0 +1,432 @@
+file 18101 1638229369                                           
+version 2
+run SimpleNetwork-0-20211130-02:42:37-50025
+attr configname SimpleNetwork
+attr datetime 20211130-02:42:37
+attr experiment SimpleNetwork
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsf ""
+attr measurement ""
+attr network SimpleNetwork
+attr processid 50025
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+param **.configurator.config "xmldoc(\"SimpleNetworkConfig.xml\")"
+param **.configurator.assignDisjunctSubnetAddresses false
+param **.configurator.addStaticRoutes false
+param **.configurator.addSubnetRoutes false
+param **.configurator.addDefaultRoutes false
+param **.configurator.optimizeRoutes false
+param **.configurator.dumpAddresses true
+param **.configurator.dumpRoutes true
+param **.server.numApps 1
+param **.server.app[*].typename "\"UdpBasicApp\""
+param **.server.app[0].localPort 100
+param **.server.app[0].destPort 100
+param **.server.app[0].messageLength "500 bytes"
+param **.server.app[0].sendInterval 0.9s
+param **.server.app[0].destAddresses "\"225.0.0.1\""
+param **.server.app[0].joinLocalMulticastGroups true
+
+vector 0 SimpleNetwork.server.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 1 SimpleNetwork.client1.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 2 SimpleNetwork.client2.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 3 SimpleNetwork.client3.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 4 SimpleNetwork.router.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 5 SimpleNetwork.router.eth[1].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 6 SimpleNetwork.router.eth[2].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 7 SimpleNetwork.router.eth[3].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 8 SimpleNetwork.server.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 9 SimpleNetwork.server.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 10 SimpleNetwork.server.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 11 SimpleNetwork.server.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 12 SimpleNetwork.server.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 13 SimpleNetwork.client1.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 14 SimpleNetwork.client1.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 15 SimpleNetwork.client1.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 16 SimpleNetwork.client1.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 17 SimpleNetwork.client1.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 18 SimpleNetwork.client2.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 19 SimpleNetwork.client2.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 20 SimpleNetwork.client2.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 21 SimpleNetwork.client2.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 22 SimpleNetwork.client2.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 23 SimpleNetwork.client3.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 24 SimpleNetwork.client3.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 25 SimpleNetwork.client3.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 26 SimpleNetwork.client3.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 27 SimpleNetwork.client3.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 28 SimpleNetwork.router.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 29 SimpleNetwork.router.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 30 SimpleNetwork.router.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 31 SimpleNetwork.router.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 32 SimpleNetwork.router.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 33 SimpleNetwork.router.eth[1].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 34 SimpleNetwork.router.eth[1].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 35 SimpleNetwork.router.eth[1].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 36 SimpleNetwork.router.eth[1].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 37 SimpleNetwork.router.eth[1].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 38 SimpleNetwork.router.eth[2].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 39 SimpleNetwork.router.eth[2].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 40 SimpleNetwork.router.eth[2].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 41 SimpleNetwork.router.eth[2].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 42 SimpleNetwork.router.eth[2].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 43 SimpleNetwork.router.eth[3].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 44 SimpleNetwork.router.eth[3].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 45 SimpleNetwork.router.eth[3].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 46 SimpleNetwork.router.eth[3].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 47 SimpleNetwork.router.eth[3].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 48 SimpleNetwork.server.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 49 SimpleNetwork.client1.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 50 SimpleNetwork.client2.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 51 SimpleNetwork.client3.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 52 SimpleNetwork.router.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 53 SimpleNetwork.router.eth[1].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 54 SimpleNetwork.router.eth[2].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 55 SimpleNetwork.router.eth[3].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 56 SimpleNetwork.router.eth[2].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 57 SimpleNetwork.router.eth[2].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 58 SimpleNetwork.router.eth[2].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 59 SimpleNetwork.router.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 60 SimpleNetwork.router.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 61 SimpleNetwork.router.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 62 SimpleNetwork.client2.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 63 SimpleNetwork.client2.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 64 SimpleNetwork.client2.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 65 SimpleNetwork.client3.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 66 SimpleNetwork.client3.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 67 SimpleNetwork.client3.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 68 SimpleNetwork.router.eth[1].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 69 SimpleNetwork.router.eth[1].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 70 SimpleNetwork.router.eth[1].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 71 SimpleNetwork.client1.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 72 SimpleNetwork.client1.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 73 SimpleNetwork.client1.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 74 SimpleNetwork.server.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 75 SimpleNetwork.server.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 76 SimpleNetwork.server.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 77 SimpleNetwork.router.eth[3].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 78 SimpleNetwork.router.eth[3].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 79 SimpleNetwork.router.eth[3].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+0	16203 10 11 11 0 0 1 28 28 28 784
+1	16213 20 12 13 0 0 2 28 32 60 1808
+2	16233 10 14 14 0 0 1 28 28 28 784
+3	16243 20 15 16 0 0 2 28 32 60 1808
+4	16263 10 17 17 0 0 1 28 28 28 784
+5	16273 10 18 18 0 0 1 28 28 28 784
+6	16283 10 19 19 0 0 1 28 28 28 784
+7	16293 10 20 20 0 0 1 28 28 28 784
+8	16303 10 21 21 0 0 1 46 46 46 2116
+9	16313 10 21 21 0 0 1 64 64 64 4096
+10	16323 20 21 21 0 0 2 0 1 1 1
+11	16343 11 21 21 0 0 1 64 64 64 4096
+12	16354 10 21 21 0 0 1 0 0 0 0
+13	16364 22 22 23 0 0 2 46 50 96 4616
+14	16386 22 22 23 0 0 2 64 64 128 8192
+15	16408 48 22 40 0 0.0000672 4 0 1 2 2
+16	16456 30 22 40 0 0.0000672 2 64 64 128 8192
+17	16486 35 22 40 0 0.0000672 2 0 6.72e-05 6.72e-05 4.51584e-09
+18	16521 11 24 24 0 0 1 46 46 46 2116
+19	16532 11 24 24 0 0 1 64 64 64 4096
+20	16543 20 24 24 0 0 2 0 1 1 1
+21	16563 11 24 24 0 0 1 64 64 64 4096
+22	16574 10 24 24 0 0 1 0 0 0 0
+23	16584 22 25 26 0 0 2 46 50 96 4616
+24	16606 22 25 26 0 0 2 64 64 128 8192
+25	16628 48 25 42 0 0.0000672 4 0 1 2 2
+26	16676 30 25 42 0 0.0000672 2 64 64 128 8192
+27	16706 35 25 42 0 0.0000672 2 0 6.72e-05 6.72e-05 4.51584e-09
+28	16741 11 27 27 0 0 1 46 46 46 2116
+29	16752 11 27 27 0 0 1 64 64 64 4096
+30	16763 20 27 27 0 0 2 0 1 1 1
+31	16783 11 27 27 0 0 1 64 64 64 4096
+32	16794 10 27 27 0 0 1 0 0 0 0
+33	16804 11 28 28 0 0 1 46 46 46 2116
+34	16815 11 28 28 0 0 1 64 64 64 4096
+35	16826 20 28 28 0 0 2 0 1 1 1
+36	16846 11 28 28 0 0 1 64 64 64 4096
+37	16857 10 28 28 0 0 1 0 0 0 0
+38	16867 11 29 29 0 0 1 46 46 46 2116
+39	16878 11 29 29 0 0 1 64 64 64 4096
+40	16889 20 29 29 0 0 2 0 1 1 1
+41	16909 11 29 29 0 0 1 64 64 64 4096
+42	16920 10 29 29 0 0 1 0 0 0 0
+43	16930 11 30 30 0 0 1 46 46 46 2116
+44	16941 11 30 30 0 0 1 64 64 64 4096
+45	16952 20 30 30 0 0 2 0 1 1 1
+46	16972 11 30 30 0 0 1 64 64 64 4096
+47	16983 10 30 30 0 0 1 0 0 0 0
+48	16993 19 31 31 0.0000576 0.0000576 1 64 64 64 4096
+49	17012 38 32 47 0.0000576 0.0001248 2 64 64 128 8192
+50	17050 19 33 33 0.0000576 0.0000576 1 64 64 64 4096
+51	17069 38 34 48 0.0000576 0.0001248 2 64 64 128 8192
+52	17107 19 35 35 0.0000576 0.0000576 1 64 64 64 4096
+53	17126 19 36 36 0.0000576 0.0000576 1 64 64 64 4096
+54	17145 19 37 37 0.0000576 0.0000576 1 64 64 64 4096
+55	17164 19 38 38 0.0000576 0.0000576 1 64 64 64 4096
+56	17183 24 51 51 0.000153742114 0.000153742114 1 64 64 64 4096
+57	17207 24 51 51 0.000153742114 0.000153742114 1 64 64 64 4096
+58	17231 24 52 52 0.000153742114 0.000153742114 1 46 46 46 2116
+59	17255 24 55 55 0.000154950491 0.000154950491 1 64 64 64 4096
+60	17279 24 55 55 0.000154950491 0.000154950491 1 64 64 64 4096
+61	17303 24 56 56 0.000154950491 0.000154950491 1 46 46 46 2116
+62	17327 24 59 59 0.000170150237 0.000170150237 1 64 64 64 4096
+63	17351 24 59 59 0.000170150237 0.000170150237 1 64 64 64 4096
+64	17375 24 60 60 0.000170150237 0.000170150237 1 46 46 46 2116
+65	17399 23 63 63 0.00019181558 0.00019181558 1 64 64 64 4096
+66	17422 23 63 63 0.00019181558 0.00019181558 1 64 64 64 4096
+67	17445 23 64 64 0.00019181558 0.00019181558 1 46 46 46 2116
+68	17468 48 67 83 0.000243594335 0.000310794335 2 64 64 128 8192
+69	17516 48 67 83 0.000243594335 0.000310794335 2 64 64 128 8192
+70	17564 48 68 84 0.000243594335 0.000310794335 2 46 46 92 4232
+71	17612 24 71 71 0.000250228534 0.000250228534 1 64 64 64 4096
+72	17636 24 71 71 0.000250228534 0.000250228534 1 64 64 64 4096
+73	17660 24 72 72 0.000250228534 0.000250228534 1 46 46 46 2116
+74	17684 24 75 75 0.000251839039 0.000251839039 1 64 64 64 4096
+75	17708 24 75 75 0.000251839039 0.000251839039 1 64 64 64 4096
+76	17732 24 76 76 0.000251839039 0.000251839039 1 46 46 46 2116
+77	17756 48 79 87 0.000306416441 0.000373616441 2 64 64 128 8192
+78	17804 48 79 87 0.000306416441 0.000373616441 2 64 64 128 8192
+79	17852 48 80 88 0.000306416441 0.000373616441 2 46 46 92 4232
+vector 80 SimpleNetwork.server.app[0] throughput:vector ETV
+attr source throughput(packetReceived)
+attr title "throughput, vector"
+attr unit bps
+80	18045 55 93 93 0.1 0.30522465 4 0 0 0 0
+

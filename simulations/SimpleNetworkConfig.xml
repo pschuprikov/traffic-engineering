@@ -1,0 +1,18 @@
+<config>
+
+  <interface hosts="server" towards="router" address="172.0.0.1" netmask="255.255.255.0"/>
+  
+  <interface hosts="router" towards="server" address="172.0.0.2" netmask="255.255.255.0" mtu="1500"/>
+  <interface hosts="router" towards="client1" address="172.0.0.3" netmask="255.255.255.0" mtu="1500"/>
+  <interface hosts="router" towards="client2" address="172.0.0.4" netmask="255.255.255.0" mtu="1500"/>
+  <interface hosts="router" towards="client3" address="172.0.0.5" netmask="255.255.255.0" mtu="1500"/>
+
+  <interface hosts="client1" towards="router" address="172.0.0.6" netmask="255.255.255.0" mtu="1500"/>
+  <interface hosts="client2" towards="router" address="172.0.0.7" netmask="255.255.255.0" mtu="1500"/>
+  <interface hosts="client3" towards="router" address="172.0.0.8" netmask="255.255.255.0" mtu="1500"/>
+
+  <multicast-group hosts="client1 client3" towards="router" address="225.0.0.1"/>
+  
+  <multicast-route hosts="router" groups="225.0.0.1" children=">client1 >client3"/>
+
+</config>
