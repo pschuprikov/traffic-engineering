@@ -13,6 +13,7 @@
 
   <multicast-group hosts="client1 client3" towards="router" address="225.0.0.1"/>
   
+  <multicast-route hosts="server" groups="225.0.0.1" children=">router"/>
   <multicast-route hosts="router" groups="225.0.0.1" children=">client1 >client3"/>
 
 </config>

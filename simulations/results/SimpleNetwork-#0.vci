@@ -1,15 +1,15 @@
-file 18101 1638229369                                           
+file 18070 1638393154                                           
 version 2
-run SimpleNetwork-0-20211130-02:42:37-50025
+run SimpleNetwork-0-20211202-00:12:18-65514
 attr configname SimpleNetwork
-attr datetime 20211130-02:42:37
+attr datetime 20211202-00:12:18
 attr experiment SimpleNetwork
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvarsf ""
 attr measurement ""
 attr network SimpleNetwork
-attr processid 50025
+attr processid 65514
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -29,7 +29,7 @@ param **.server.app[0].localPort 100
 param **.server.app[0].destPort 100
 param **.server.app[0].messageLength "500 bytes"
 param **.server.app[0].sendInterval 0.9s
-param **.server.app[0].destAddresses "\"225.0.0.1\""
+param **.server.app[0].destAddresses "\"225.0.0.2\""
 param **.server.app[0].joinLocalMulticastGroups true
 
 vector 0 SimpleNetwork.server.eth[0].encap encapPk:vector(packetBytes) ETV
@@ -428,5 +428,5 @@ vector 80 SimpleNetwork.server.app[0] throughput:vector ETV
 attr source throughput(packetReceived)
 attr title "throughput, vector"
 attr unit bps
-80	18045 55 93 93 0.1 0.30522465 4 0 0 0 0
+80	18045 24 92 92 0.1 0.2 2 0 0 0 0
 

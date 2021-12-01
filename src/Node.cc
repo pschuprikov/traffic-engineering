@@ -21,4 +21,8 @@ int Node::getInterfaceNumber() const {
     return _interfaces.size();
 }
 
+const Link &Node::getLink(const std::string &interfaceName) const {
+    return _interfaces.at(interfaceName);
+}
+
 } // namespace TrafficEngineering

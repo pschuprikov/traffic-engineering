@@ -18,6 +18,7 @@ public:
     const std::string &getName() const { return _name; }
     std::vector<std::string> getInterfaces() const;
     int getInterfaceNumber() const;
+    const Link &getLink(const std::string &interfaceName) const;
 private:
     std::string _name;
     std::map<std::string, Link> _interfaces;

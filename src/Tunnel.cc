@@ -21,7 +21,26 @@ bool Tunnel::addLink(const Link &link) {
     return true;
 }
 
-bool Tunnel::containsNode(const std::string &name) {
+const std::string &Tunnel::getRootName() const {
+    return _root.getName();
+}
+
+std::vector<const Node *> Tunnel::getDFSOrder() const {
+    std::vector<const Node *> result;
+    dfs(_root, result);
+    return result;
+}
+
+void Tunnel::dfs(const Node &node, std::vector<const Node *> &result) const {
+    result.push_back(&node);
+    for (const auto &interface : node.getInterfaces()) {
+        const Link &link = node.getLink(interface);
+        Node *nextNode = link.getRemoteNode();
+        dfs(*nextNode, result);
+    }
+}
+
+bool Tunnel::containsNode(const std::string &name) const {
     return name == _root.getName() || _nodes.count(name) != 0;
 }
 

@@ -15,6 +15,14 @@ const Node &Topology::getNodeByName(const std::string &name) const {
     return _nodes.at(name);
 }
 
+std::vector<std::string> Topology::getAllNodeNames() const {
+    std::vector<std::string> result;
+    for (const auto &entry : _nodes) {
+        result.emplace_back(entry.first);
+    }
+    return result;
+}
+
 void Topology::createNode(const std::string &name) {
     _nodes.insert({name, Node(name)});
 }

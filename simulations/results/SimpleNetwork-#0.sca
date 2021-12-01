@@ -1,14 +1,14 @@
 version 2
-run SimpleNetwork-0-20211130-02:42:37-50025
+run SimpleNetwork-0-20211202-00:12:18-65514
 attr configname SimpleNetwork
-attr datetime 20211130-02:42:37
+attr datetime 20211202-00:12:18
 attr experiment SimpleNetwork
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvarsf ""
 attr measurement ""
 attr network SimpleNetwork
-attr processid 50025
+attr processid 65514
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -28,7 +28,7 @@ param **.server.app[0].localPort 100
 param **.server.app[0].destPort 100
 param **.server.app[0].messageLength "500 bytes"
 param **.server.app[0].sendInterval 0.9s
-param **.server.app[0].destAddresses "\"225.0.0.1\""
+param **.server.app[0].destAddresses "\"225.0.0.2\""
 param **.server.app[0].joinLocalMulticastGroups true
 
 scalar SimpleNetwork.server.lo[0].lo rcvdPkFromHl:count 0
@@ -145,12 +145,12 @@ attr title "packets removed, count"
 scalar SimpleNetwork.server.eth[0].mac.queue packetRemoved:sum(packetBytes) 0
 attr interpolationmode none
 attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.server.eth[0].mac "simulated time" 0.30522465
+scalar SimpleNetwork.server.eth[0].mac "simulated time" 0.2
 scalar SimpleNetwork.server.eth[0].mac full-duplex 1
-scalar SimpleNetwork.server.eth[0].mac "frames/sec sent" 3.2762753598047
-scalar SimpleNetwork.server.eth[0].mac "frames/sec rcvd" 3.2762753598047
-scalar SimpleNetwork.server.eth[0].mac "bits/sec sent" 1677.45298422
-scalar SimpleNetwork.server.eth[0].mac "bits/sec rcvd" 1677.45298422
+scalar SimpleNetwork.server.eth[0].mac "frames/sec sent" 5
+scalar SimpleNetwork.server.eth[0].mac "frames/sec rcvd" 5
+scalar SimpleNetwork.server.eth[0].mac "bits/sec sent" 2560
+scalar SimpleNetwork.server.eth[0].mac "bits/sec rcvd" 2560
 scalar SimpleNetwork.server.eth[0].mac "rx channel idle (%)" 100
 scalar SimpleNetwork.server.eth[0].mac "rx channel utilization (%)" 0
 scalar SimpleNetwork.server.eth[0].mac rxPausePkUnits:count 0
@@ -489,7 +489,7 @@ scalar SimpleNetwork.client1.eth[0].mac.queue queueLength:max 1
 attr interpolationmode sample-hold
 attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
 attr title "queue length, max"
-scalar SimpleNetwork.client1.eth[0].mac.queue queueLength:timeavg 0.00022016570417887
+scalar SimpleNetwork.client1.eth[0].mac.queue queueLength:timeavg 0.000336
 attr interpolationmode sample-hold
 attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
 attr title "queue length, timeavg"
@@ -513,12 +513,12 @@ attr title "packets removed, count"
 scalar SimpleNetwork.client1.eth[0].mac.queue packetRemoved:sum(packetBytes) 0
 attr interpolationmode none
 attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.client1.eth[0].mac "simulated time" 0.30522465
+scalar SimpleNetwork.client1.eth[0].mac "simulated time" 0.2
 scalar SimpleNetwork.client1.eth[0].mac full-duplex 1
-scalar SimpleNetwork.client1.eth[0].mac "frames/sec sent" 6.5525507196093
-scalar SimpleNetwork.client1.eth[0].mac "frames/sec rcvd" 3.2762753598047
-scalar SimpleNetwork.client1.eth[0].mac "bits/sec sent" 3354.90596844
-scalar SimpleNetwork.client1.eth[0].mac "bits/sec rcvd" 1677.45298422
+scalar SimpleNetwork.client1.eth[0].mac "frames/sec sent" 10
+scalar SimpleNetwork.client1.eth[0].mac "frames/sec rcvd" 5
+scalar SimpleNetwork.client1.eth[0].mac "bits/sec sent" 5120
+scalar SimpleNetwork.client1.eth[0].mac "bits/sec rcvd" 2560
 scalar SimpleNetwork.client1.eth[0].mac "rx channel idle (%)" 100
 scalar SimpleNetwork.client1.eth[0].mac "rx channel utilization (%)" 0
 scalar SimpleNetwork.client1.eth[0].mac rxPausePkUnits:count 0
@@ -817,12 +817,12 @@ attr title "packets removed, count"
 scalar SimpleNetwork.client2.eth[0].mac.queue packetRemoved:sum(packetBytes) 0
 attr interpolationmode none
 attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.client2.eth[0].mac "simulated time" 0.30522465
+scalar SimpleNetwork.client2.eth[0].mac "simulated time" 0.2
 scalar SimpleNetwork.client2.eth[0].mac full-duplex 1
-scalar SimpleNetwork.client2.eth[0].mac "frames/sec sent" 3.2762753598047
-scalar SimpleNetwork.client2.eth[0].mac "frames/sec rcvd" 3.2762753598047
-scalar SimpleNetwork.client2.eth[0].mac "bits/sec sent" 1677.45298422
-scalar SimpleNetwork.client2.eth[0].mac "bits/sec rcvd" 1677.45298422
+scalar SimpleNetwork.client2.eth[0].mac "frames/sec sent" 5
+scalar SimpleNetwork.client2.eth[0].mac "frames/sec rcvd" 5
+scalar SimpleNetwork.client2.eth[0].mac "bits/sec sent" 2560
+scalar SimpleNetwork.client2.eth[0].mac "bits/sec rcvd" 2560
 scalar SimpleNetwork.client2.eth[0].mac "rx channel idle (%)" 100
 scalar SimpleNetwork.client2.eth[0].mac "rx channel utilization (%)" 0
 scalar SimpleNetwork.client2.eth[0].mac rxPausePkUnits:count 0
@@ -1131,7 +1131,7 @@ scalar SimpleNetwork.client3.eth[0].mac.queue queueLength:max 1
 attr interpolationmode sample-hold
 attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
 attr title "queue length, max"
-scalar SimpleNetwork.client3.eth[0].mac.queue queueLength:timeavg 0.00022016570417887
+scalar SimpleNetwork.client3.eth[0].mac.queue queueLength:timeavg 0.000336
 attr interpolationmode sample-hold
 attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
 attr title "queue length, timeavg"
@@ -1155,12 +1155,12 @@ attr title "packets removed, count"
 scalar SimpleNetwork.client3.eth[0].mac.queue packetRemoved:sum(packetBytes) 0
 attr interpolationmode none
 attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.client3.eth[0].mac "simulated time" 0.30522465
+scalar SimpleNetwork.client3.eth[0].mac "simulated time" 0.2
 scalar SimpleNetwork.client3.eth[0].mac full-duplex 1
-scalar SimpleNetwork.client3.eth[0].mac "frames/sec sent" 6.5525507196093
-scalar SimpleNetwork.client3.eth[0].mac "frames/sec rcvd" 3.2762753598047
-scalar SimpleNetwork.client3.eth[0].mac "bits/sec sent" 3354.90596844
-scalar SimpleNetwork.client3.eth[0].mac "bits/sec rcvd" 1677.45298422
+scalar SimpleNetwork.client3.eth[0].mac "frames/sec sent" 10
+scalar SimpleNetwork.client3.eth[0].mac "frames/sec rcvd" 5
+scalar SimpleNetwork.client3.eth[0].mac "bits/sec sent" 5120
+scalar SimpleNetwork.client3.eth[0].mac "bits/sec rcvd" 2560
 scalar SimpleNetwork.client3.eth[0].mac "rx channel idle (%)" 100
 scalar SimpleNetwork.client3.eth[0].mac "rx channel utilization (%)" 0
 scalar SimpleNetwork.client3.eth[0].mac rxPausePkUnits:count 0
@@ -1459,12 +1459,12 @@ attr title "packets removed, count"
 scalar SimpleNetwork.router.eth[0].mac.queue packetRemoved:sum(packetBytes) 0
 attr interpolationmode none
 attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[0].mac "simulated time" 0.30522465
+scalar SimpleNetwork.router.eth[0].mac "simulated time" 0.2
 scalar SimpleNetwork.router.eth[0].mac full-duplex 1
-scalar SimpleNetwork.router.eth[0].mac "frames/sec sent" 3.2762753598047
-scalar SimpleNetwork.router.eth[0].mac "frames/sec rcvd" 3.2762753598047
-scalar SimpleNetwork.router.eth[0].mac "bits/sec sent" 1677.45298422
-scalar SimpleNetwork.router.eth[0].mac "bits/sec rcvd" 1677.45298422
+scalar SimpleNetwork.router.eth[0].mac "frames/sec sent" 5
+scalar SimpleNetwork.router.eth[0].mac "frames/sec rcvd" 5
+scalar SimpleNetwork.router.eth[0].mac "bits/sec sent" 2560
+scalar SimpleNetwork.router.eth[0].mac "bits/sec rcvd" 2560
 scalar SimpleNetwork.router.eth[0].mac "rx channel idle (%)" 100
 scalar SimpleNetwork.router.eth[0].mac "rx channel utilization (%)" 0
 scalar SimpleNetwork.router.eth[0].mac rxPausePkUnits:count 0
@@ -1653,12 +1653,12 @@ attr title "packets removed, count"
 scalar SimpleNetwork.router.eth[1].mac.queue packetRemoved:sum(packetBytes) 0
 attr interpolationmode none
 attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[1].mac "simulated time" 0.30522465
+scalar SimpleNetwork.router.eth[1].mac "simulated time" 0.2
 scalar SimpleNetwork.router.eth[1].mac full-duplex 1
-scalar SimpleNetwork.router.eth[1].mac "frames/sec sent" 3.2762753598047
-scalar SimpleNetwork.router.eth[1].mac "frames/sec rcvd" 6.5525507196093
-scalar SimpleNetwork.router.eth[1].mac "bits/sec sent" 1677.45298422
-scalar SimpleNetwork.router.eth[1].mac "bits/sec rcvd" 3354.90596844
+scalar SimpleNetwork.router.eth[1].mac "frames/sec sent" 5
+scalar SimpleNetwork.router.eth[1].mac "frames/sec rcvd" 10
+scalar SimpleNetwork.router.eth[1].mac "bits/sec sent" 2560
+scalar SimpleNetwork.router.eth[1].mac "bits/sec rcvd" 5120
 scalar SimpleNetwork.router.eth[1].mac "rx channel idle (%)" 100
 scalar SimpleNetwork.router.eth[1].mac "rx channel utilization (%)" 0
 scalar SimpleNetwork.router.eth[1].mac rxPausePkUnits:count 0
@@ -1847,12 +1847,12 @@ attr title "packets removed, count"
 scalar SimpleNetwork.router.eth[2].mac.queue packetRemoved:sum(packetBytes) 0
 attr interpolationmode none
 attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[2].mac "simulated time" 0.30522465
+scalar SimpleNetwork.router.eth[2].mac "simulated time" 0.2
 scalar SimpleNetwork.router.eth[2].mac full-duplex 1
-scalar SimpleNetwork.router.eth[2].mac "frames/sec sent" 3.2762753598047
-scalar SimpleNetwork.router.eth[2].mac "frames/sec rcvd" 3.2762753598047
-scalar SimpleNetwork.router.eth[2].mac "bits/sec sent" 1677.45298422
-scalar SimpleNetwork.router.eth[2].mac "bits/sec rcvd" 1677.45298422
+scalar SimpleNetwork.router.eth[2].mac "frames/sec sent" 5
+scalar SimpleNetwork.router.eth[2].mac "frames/sec rcvd" 5
+scalar SimpleNetwork.router.eth[2].mac "bits/sec sent" 2560
+scalar SimpleNetwork.router.eth[2].mac "bits/sec rcvd" 2560
 scalar SimpleNetwork.router.eth[2].mac "rx channel idle (%)" 100
 scalar SimpleNetwork.router.eth[2].mac "rx channel utilization (%)" 0
 scalar SimpleNetwork.router.eth[2].mac rxPausePkUnits:count 0
@@ -2041,12 +2041,12 @@ attr title "packets removed, count"
 scalar SimpleNetwork.router.eth[3].mac.queue packetRemoved:sum(packetBytes) 0
 attr interpolationmode none
 attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[3].mac "simulated time" 0.30522465
+scalar SimpleNetwork.router.eth[3].mac "simulated time" 0.2
 scalar SimpleNetwork.router.eth[3].mac full-duplex 1
-scalar SimpleNetwork.router.eth[3].mac "frames/sec sent" 3.2762753598047
-scalar SimpleNetwork.router.eth[3].mac "frames/sec rcvd" 6.5525507196093
-scalar SimpleNetwork.router.eth[3].mac "bits/sec sent" 1677.45298422
-scalar SimpleNetwork.router.eth[3].mac "bits/sec rcvd" 3354.90596844
+scalar SimpleNetwork.router.eth[3].mac "frames/sec sent" 5
+scalar SimpleNetwork.router.eth[3].mac "frames/sec rcvd" 10
+scalar SimpleNetwork.router.eth[3].mac "bits/sec sent" 2560
+scalar SimpleNetwork.router.eth[3].mac "bits/sec rcvd" 5120
 scalar SimpleNetwork.router.eth[3].mac "rx channel idle (%)" 100
 scalar SimpleNetwork.router.eth[3].mac "rx channel utilization (%)" 0
 scalar SimpleNetwork.router.eth[3].mac rxPausePkUnits:count 0

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <map>
+#include <vector>
 
 #include "LinkInfo.h"
 #include "Node.h"
@@ -18,6 +19,7 @@ public:
 
     int getNodeNumber() const { return _nodes.size(); }
     const Node &getNodeByName(const std::string &name) const;
+    std::vector<std::string> getAllNodeNames() const;
 private:
     void createNode(const std::string &name);
 private:
