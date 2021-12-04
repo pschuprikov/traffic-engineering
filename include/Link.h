@@ -15,11 +15,13 @@ public:
 
     Node *getLocalNode() const { return _localNode; }
     Node *getRemoteNode() const { return _remoteNode; }
-    const std::string &getInterface() const { return _interfaceName; }
+    const std::string &getLocalInterfaceName() const { return _localInterfaceName; }
+    const std::string &getRemoteInterfaceName() const { return _remoteInterfaceName; }
 private:
     Node *_localNode;
     Node *_remoteNode;
-    std::string _interfaceName;
+    std::string _localInterfaceName;
+    std::string _remoteInterfaceName;
 };
 
 } // namespace TrafficEngineering

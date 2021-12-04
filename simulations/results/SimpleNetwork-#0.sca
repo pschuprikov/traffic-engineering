@@ -1,14 +1,14 @@
 version 2
-run SimpleNetwork-0-20211202-00:12:18-65514
+run SimpleNetwork-0-20211204-20:23:45-81349
 attr configname SimpleNetwork
-attr datetime 20211202-00:12:18
+attr datetime 20211204-20:23:45
 attr experiment SimpleNetwork
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvarsf ""
 attr measurement ""
 attr network SimpleNetwork
-attr processid 65514
+attr processid 81349
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -27,36 +27,36 @@ param **.server.app[*].typename "\"UdpBasicApp\""
 param **.server.app[0].localPort 100
 param **.server.app[0].destPort 100
 param **.server.app[0].messageLength "500 bytes"
-param **.server.app[0].sendInterval 0.9s
+param **.server.app[0].sendInterval 0.1s
 param **.server.app[0].destAddresses "\"225.0.0.2\""
 param **.server.app[0].joinLocalMulticastGroups true
 
-scalar SimpleNetwork.server.lo[0].lo rcvdPkFromHl:count 0
+scalar SimpleNetwork.server.lo[0].lo rcvdPkFromHl:count 2
 attr interpolationmode none
 attr source packetReceivedFromUpper
 attr title "packets received from higher layer, count"
-scalar SimpleNetwork.server.lo[0].lo rcvdPkFromHl:sum(packetBytes) 0
+scalar SimpleNetwork.server.lo[0].lo rcvdPkFromHl:sum(packetBytes) 1056
 attr interpolationmode none
 attr source packetReceivedFromUpper
 attr title "packets received from higher layer, sum(packetBytes)"
-scalar SimpleNetwork.server.lo[0].lo passedUpPk:count 0
+scalar SimpleNetwork.server.lo[0].lo passedUpPk:count 2
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, count"
-scalar SimpleNetwork.server.lo[0].lo passedUpPk:sum(packetBytes) 0
+scalar SimpleNetwork.server.lo[0].lo passedUpPk:sum(packetBytes) 1056
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, sum(packetBytes)"
-scalar SimpleNetwork.server.eth[0].mac.queue packetPopped:count 1
+scalar SimpleNetwork.server.eth[0].mac.queue packetPopped:count 3
 attr interpolationmode none
 attr title "packet popped, count"
-scalar SimpleNetwork.server.eth[0].mac.queue packetPopped:sum(packetBytes) 64
+scalar SimpleNetwork.server.eth[0].mac.queue packetPopped:sum(packetBytes) 1156
 attr interpolationmode none
 attr title "packet popped, sum(packetBytes)"
 statistic SimpleNetwork.server.eth[0].mac.queue queueingTime:histogram
-field count 1
+field count 3
 field mean 0
-field stddev nan
+field stddev 0
 field min 0
 field max 0
 field sum 0
@@ -91,7 +91,7 @@ bin	-0.08	0
 bin	-0.06	0
 bin	-0.04	0
 bin	-0.02	0
-bin	0	1
+bin	0	3
 bin	0.02	0
 bin	0.04	0
 bin	0.06	0
@@ -125,10 +125,10 @@ scalar SimpleNetwork.server.eth[0].mac.queue queueLength:timeavg 0
 attr interpolationmode sample-hold
 attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
 attr title "queue length, timeavg"
-scalar SimpleNetwork.server.eth[0].mac.queue packetPushed:count 1
+scalar SimpleNetwork.server.eth[0].mac.queue packetPushed:count 3
 attr interpolationmode none
 attr title "packet pushed, count"
-scalar SimpleNetwork.server.eth[0].mac.queue packetPushed:sum(packetBytes) 64
+scalar SimpleNetwork.server.eth[0].mac.queue packetPushed:sum(packetBytes) 1156
 attr interpolationmode none
 attr title "packet pushed, sum(packetBytes)"
 scalar SimpleNetwork.server.eth[0].mac.queue packetDropQueueOverflow:count 0
@@ -145,12 +145,12 @@ attr title "packets removed, count"
 scalar SimpleNetwork.server.eth[0].mac.queue packetRemoved:sum(packetBytes) 0
 attr interpolationmode none
 attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.server.eth[0].mac "simulated time" 0.2
+scalar SimpleNetwork.server.eth[0].mac "simulated time" 0.3
 scalar SimpleNetwork.server.eth[0].mac full-duplex 1
-scalar SimpleNetwork.server.eth[0].mac "frames/sec sent" 5
-scalar SimpleNetwork.server.eth[0].mac "frames/sec rcvd" 5
-scalar SimpleNetwork.server.eth[0].mac "bits/sec sent" 2560
-scalar SimpleNetwork.server.eth[0].mac "bits/sec rcvd" 2560
+scalar SimpleNetwork.server.eth[0].mac "frames/sec sent" 10
+scalar SimpleNetwork.server.eth[0].mac "frames/sec rcvd" 3.3333333333333
+scalar SimpleNetwork.server.eth[0].mac "bits/sec sent" 30826.666666667
+scalar SimpleNetwork.server.eth[0].mac "bits/sec rcvd" 1706.6666666667
 scalar SimpleNetwork.server.eth[0].mac "rx channel idle (%)" 100
 scalar SimpleNetwork.server.eth[0].mac "rx channel utilization (%)" 0
 scalar SimpleNetwork.server.eth[0].mac rxPausePkUnits:count 0
@@ -173,19 +173,19 @@ scalar SimpleNetwork.server.eth[0].mac rxPkOk:sum(packetBytes) 64
 attr interpolationmode none
 attr source rxPkOk
 attr title "packets received OK, sum(packetBytes)"
-scalar SimpleNetwork.server.eth[0].mac txPk:count 1
+scalar SimpleNetwork.server.eth[0].mac txPk:count 3
 attr interpolationmode none
 attr source packetSentToLower
 attr title "packets transmitted, count"
-scalar SimpleNetwork.server.eth[0].mac txPk:sum(packetBytes) 64
+scalar SimpleNetwork.server.eth[0].mac txPk:sum(packetBytes) 1156
 attr interpolationmode none
 attr source packetSentToLower
 attr title "packets transmitted, sum(packetBytes)"
-scalar SimpleNetwork.server.eth[0].mac packetReceivedFromUpper:count 1
+scalar SimpleNetwork.server.eth[0].mac packetReceivedFromUpper:count 3
 attr interpolationmode none
 attr source packetReceivedFromUpper
 attr title "packet bytes from higher layer, count"
-scalar SimpleNetwork.server.eth[0].mac packetReceivedFromUpper:sum(packetBytes) 46
+scalar SimpleNetwork.server.eth[0].mac packetReceivedFromUpper:sum(packetBytes) 1138
 attr interpolationmode none
 attr source packetReceivedFromUpper
 attr title "packet bytes from higher layer, sum(packetBytes)"
@@ -233,11 +233,11 @@ scalar SimpleNetwork.server.eth[0].encap decapPk:sum(packetBytes) 46
 attr interpolationmode none
 attr source decapPk
 attr title "packets decapsulated, sum(packetBytes)"
-scalar SimpleNetwork.server.eth[0].encap encapPk:count 1
+scalar SimpleNetwork.server.eth[0].encap encapPk:count 3
 attr interpolationmode none
 attr source encapPk
 attr title "packets encapsulated, count"
-scalar SimpleNetwork.server.eth[0].encap encapPk:sum(packetBytes) 28
+scalar SimpleNetwork.server.eth[0].encap encapPk:sum(packetBytes) 1084
 attr interpolationmode none
 attr source encapPk
 attr title "packets encapsulated, sum(packetBytes)"
@@ -307,19 +307,19 @@ attr title "ARP request sent, count"
 scalar SimpleNetwork.server.ipv4.arp arpRequestSent:sum(packetBytes) 0
 attr source arpRequestSent
 attr title "ARP request sent, sum(packetBytes)"
-scalar SimpleNetwork.server.udp packetReceived:count 0
+scalar SimpleNetwork.server.udp packetReceived:count 2
 attr interpolationmode none
 attr source packetReceived
 attr title "packets received, count"
-scalar SimpleNetwork.server.udp packetReceived:sum(packetBytes) 0
+scalar SimpleNetwork.server.udp packetReceived:sum(packetBytes) 1016
 attr interpolationmode none
 attr source packetReceived
 attr title "packets received, sum(packetBytes)"
-scalar SimpleNetwork.server.udp packetSent:count 0
+scalar SimpleNetwork.server.udp packetSent:count 2
 attr interpolationmode none
 attr source packetSent
 attr title "packets sent, count"
-scalar SimpleNetwork.server.udp packetSent:sum(packetBytes) 0
+scalar SimpleNetwork.server.udp packetSent:sum(packetBytes) 1016
 attr interpolationmode none
 attr source packetSent
 attr title "packets sent, sum(packetBytes)"
@@ -327,7 +327,7 @@ scalar SimpleNetwork.server.udp passedUpPk:count 0
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed up, count"
-scalar SimpleNetwork.server.udp droppedPkWrongPort:count 0
+scalar SimpleNetwork.server.udp droppedPkWrongPort:count 2
 attr interpolationmode none
 attr source packetDropReasonIsNoPortFound(packetDropped)
 attr title "packets dropped (wrong port), count"
@@ -335,7 +335,7 @@ scalar SimpleNetwork.server.udp droppedPkBadChecksum:count 0
 attr interpolationmode none
 attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
 attr title "packets dropped (checksum error), count"
-scalar SimpleNetwork.server.app[0] "packets sent" 0
+scalar SimpleNetwork.server.app[0] "packets sent" 2
 scalar SimpleNetwork.server.app[0] "packets received" 0
 scalar SimpleNetwork.server.app[0] packetReceived:count 0
 attr interpolationmode none
@@ -357,11 +357,11 @@ attr interpolationmode none
 attr source dataAge(packetReceived)
 attr title "received packet lifetime, stats"
 attr unit s
-scalar SimpleNetwork.server.app[0] packetSent:count 0
+scalar SimpleNetwork.server.app[0] packetSent:count 2
 attr interpolationmode none
 attr source packetSent
 attr title "packets sent, count"
-scalar SimpleNetwork.server.app[0] packetSent:sum(packetBytes) 0
+scalar SimpleNetwork.server.app[0] packetSent:sum(packetBytes) 1000
 attr interpolationmode none
 attr source packetSent
 attr title "packets sent, sum(packetBytes)"
@@ -381,122 +381,88 @@ scalar SimpleNetwork.client1.lo[0].lo passedUpPk:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, sum(packetBytes)"
-scalar SimpleNetwork.client1.eth[0].mac.queue packetPopped:count 2
+scalar SimpleNetwork.client1.eth[0].mac.queue packetPopped:count 1
 attr interpolationmode none
 attr title "packet popped, count"
-scalar SimpleNetwork.client1.eth[0].mac.queue packetPopped:sum(packetBytes) 128
+scalar SimpleNetwork.client1.eth[0].mac.queue packetPopped:sum(packetBytes) 64
 attr interpolationmode none
 attr title "packet popped, sum(packetBytes)"
 statistic SimpleNetwork.client1.eth[0].mac.queue queueingTime:histogram
-field count 2
-field mean 3.36e-05
-field stddev 4.7517575695736e-05
+field count 1
+field mean 0
+field stddev nan
 field min 0
-field max 6.72e-05
-field sum 6.72e-05
-field sqrsum 4.51584e-09
+field max 0
+field sum 0
+field sqrsum 0
 attr interpolationmode none
 attr source queueingTime(packetPopped)
 attr title "queueing times, histogram"
 attr unit s
 bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.34	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.22	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.16	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.1	0
+bin	-0.08	0
+bin	-0.06	0
+bin	-0.04	0
+bin	-0.02	0
 bin	0	1
-bin	1e-06	0
-bin	2e-06	0
-bin	3e-06	0
-bin	4e-06	0
-bin	5e-06	0
-bin	6e-06	0
-bin	7e-06	0
-bin	8e-06	0
-bin	9e-06	0
-bin	1e-05	0
-bin	1.1e-05	0
-bin	1.2e-05	0
-bin	1.3e-05	0
-bin	1.4e-05	0
-bin	1.5e-05	0
-bin	1.6e-05	0
-bin	1.7e-05	0
-bin	1.8e-05	0
-bin	1.9e-05	0
-bin	2e-05	0
-bin	2.1e-05	0
-bin	2.2e-05	0
-bin	2.3e-05	0
-bin	2.4e-05	0
-bin	2.5e-05	0
-bin	2.6e-05	0
-bin	2.7e-05	0
-bin	2.8e-05	0
-bin	2.9e-05	0
-bin	3e-05	0
-bin	3.1e-05	0
-bin	3.2e-05	0
-bin	3.3e-05	0
-bin	3.4e-05	0
-bin	3.5e-05	0
-bin	3.6e-05	0
-bin	3.7e-05	0
-bin	3.8e-05	0
-bin	3.9e-05	0
-bin	4e-05	0
-bin	4.1e-05	0
-bin	4.2e-05	0
-bin	4.3e-05	0
-bin	4.4e-05	0
-bin	4.5e-05	0
-bin	4.6e-05	0
-bin	4.7e-05	0
-bin	4.8e-05	0
-bin	4.9e-05	0
-bin	5e-05	0
-bin	5.1e-05	0
-bin	5.2e-05	0
-bin	5.3e-05	0
-bin	5.4e-05	0
-bin	5.5e-05	0
-bin	5.6e-05	0
-bin	5.7e-05	0
-bin	5.8e-05	0
-bin	5.9e-05	0
-bin	6e-05	0
-bin	6.1e-05	0
-bin	6.2e-05	0
-bin	6.3e-05	0
-bin	6.4e-05	0
-bin	6.5e-05	0
-bin	6.6e-05	0
-bin	6.7e-05	1
-bin	6.8e-05	0
-bin	6.9e-05	0
-bin	7e-05	0
-bin	7.1e-05	0
-bin	7.2e-05	0
-bin	7.3e-05	0
-bin	7.4e-05	0
-bin	7.5e-05	0
-bin	7.6e-05	0
-bin	7.7e-05	0
-bin	7.8e-05	0
-bin	7.9e-05	0
-bin	8e-05	0
-bin	8.1e-05	0
-bin	8.2e-05	0
-bin	8.3e-05	0
-bin	8.4e-05	0
+bin	0.02	0
+bin	0.04	0
+bin	0.06	0
+bin	0.08	0
+bin	0.1	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16	0
+bin	0.18	0
+bin	0.2	0
+bin	0.22	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.3	0
+bin	0.32	0
+bin	0.34	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42	0
+bin	0.44	0
+bin	0.46	0
+bin	0.48	0
+bin	0.5	0
 scalar SimpleNetwork.client1.eth[0].mac.queue queueLength:max 1
 attr interpolationmode sample-hold
 attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
 attr title "queue length, max"
-scalar SimpleNetwork.client1.eth[0].mac.queue queueLength:timeavg 0.000336
+scalar SimpleNetwork.client1.eth[0].mac.queue queueLength:timeavg 0
 attr interpolationmode sample-hold
 attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
 attr title "queue length, timeavg"
-scalar SimpleNetwork.client1.eth[0].mac.queue packetPushed:count 2
+scalar SimpleNetwork.client1.eth[0].mac.queue packetPushed:count 1
 attr interpolationmode none
 attr title "packet pushed, count"
-scalar SimpleNetwork.client1.eth[0].mac.queue packetPushed:sum(packetBytes) 128
+scalar SimpleNetwork.client1.eth[0].mac.queue packetPushed:sum(packetBytes) 64
 attr interpolationmode none
 attr title "packet pushed, sum(packetBytes)"
 scalar SimpleNetwork.client1.eth[0].mac.queue packetDropQueueOverflow:count 0
@@ -513,12 +479,12 @@ attr title "packets removed, count"
 scalar SimpleNetwork.client1.eth[0].mac.queue packetRemoved:sum(packetBytes) 0
 attr interpolationmode none
 attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.client1.eth[0].mac "simulated time" 0.2
+scalar SimpleNetwork.client1.eth[0].mac "simulated time" 0.3
 scalar SimpleNetwork.client1.eth[0].mac full-duplex 1
-scalar SimpleNetwork.client1.eth[0].mac "frames/sec sent" 10
-scalar SimpleNetwork.client1.eth[0].mac "frames/sec rcvd" 5
-scalar SimpleNetwork.client1.eth[0].mac "bits/sec sent" 5120
-scalar SimpleNetwork.client1.eth[0].mac "bits/sec rcvd" 2560
+scalar SimpleNetwork.client1.eth[0].mac "frames/sec sent" 3.3333333333333
+scalar SimpleNetwork.client1.eth[0].mac "frames/sec rcvd" 10
+scalar SimpleNetwork.client1.eth[0].mac "bits/sec sent" 1706.6666666667
+scalar SimpleNetwork.client1.eth[0].mac "bits/sec rcvd" 30826.666666667
 scalar SimpleNetwork.client1.eth[0].mac "rx channel idle (%)" 100
 scalar SimpleNetwork.client1.eth[0].mac "rx channel utilization (%)" 0
 scalar SimpleNetwork.client1.eth[0].mac rxPausePkUnits:count 0
@@ -533,35 +499,35 @@ attr title "pause units sent, count"
 scalar SimpleNetwork.client1.eth[0].mac txPausePkUnits:sum 0
 attr interpolationmode none
 attr title "pause units sent, sum"
-scalar SimpleNetwork.client1.eth[0].mac rxPkOk:count 1
+scalar SimpleNetwork.client1.eth[0].mac rxPkOk:count 3
 attr interpolationmode none
 attr source rxPkOk
 attr title "packets received OK, count"
-scalar SimpleNetwork.client1.eth[0].mac rxPkOk:sum(packetBytes) 64
+scalar SimpleNetwork.client1.eth[0].mac rxPkOk:sum(packetBytes) 1156
 attr interpolationmode none
 attr source rxPkOk
 attr title "packets received OK, sum(packetBytes)"
-scalar SimpleNetwork.client1.eth[0].mac txPk:count 2
+scalar SimpleNetwork.client1.eth[0].mac txPk:count 1
 attr interpolationmode none
 attr source packetSentToLower
 attr title "packets transmitted, count"
-scalar SimpleNetwork.client1.eth[0].mac txPk:sum(packetBytes) 128
+scalar SimpleNetwork.client1.eth[0].mac txPk:sum(packetBytes) 64
 attr interpolationmode none
 attr source packetSentToLower
 attr title "packets transmitted, sum(packetBytes)"
-scalar SimpleNetwork.client1.eth[0].mac packetReceivedFromUpper:count 2
+scalar SimpleNetwork.client1.eth[0].mac packetReceivedFromUpper:count 1
 attr interpolationmode none
 attr source packetReceivedFromUpper
 attr title "packet bytes from higher layer, count"
-scalar SimpleNetwork.client1.eth[0].mac packetReceivedFromUpper:sum(packetBytes) 96
+scalar SimpleNetwork.client1.eth[0].mac packetReceivedFromUpper:sum(packetBytes) 46
 attr interpolationmode none
 attr source packetReceivedFromUpper
 attr title "packet bytes from higher layer, sum(packetBytes)"
-scalar SimpleNetwork.client1.eth[0].mac passedUpPk:count 1
+scalar SimpleNetwork.client1.eth[0].mac passedUpPk:count 3
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, count"
-scalar SimpleNetwork.client1.eth[0].mac passedUpPk:sum(packetBytes) 64
+scalar SimpleNetwork.client1.eth[0].mac passedUpPk:sum(packetBytes) 1156
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, sum(packetBytes)"
@@ -593,19 +559,19 @@ scalar SimpleNetwork.client1.eth[0].encap pauseSent:count 0
 attr title "pause sent, count"
 scalar SimpleNetwork.client1.eth[0].encap pauseSent:sum 0
 attr title "pause sent, sum"
-scalar SimpleNetwork.client1.eth[0].encap decapPk:count 1
+scalar SimpleNetwork.client1.eth[0].encap decapPk:count 3
 attr interpolationmode none
 attr source decapPk
 attr title "packets decapsulated, count"
-scalar SimpleNetwork.client1.eth[0].encap decapPk:sum(packetBytes) 46
+scalar SimpleNetwork.client1.eth[0].encap decapPk:sum(packetBytes) 1102
 attr interpolationmode none
 attr source decapPk
 attr title "packets decapsulated, sum(packetBytes)"
-scalar SimpleNetwork.client1.eth[0].encap encapPk:count 2
+scalar SimpleNetwork.client1.eth[0].encap encapPk:count 1
 attr interpolationmode none
 attr source encapPk
 attr title "packets encapsulated, count"
-scalar SimpleNetwork.client1.eth[0].encap encapPk:sum(packetBytes) 60
+scalar SimpleNetwork.client1.eth[0].encap encapPk:sum(packetBytes) 28
 attr interpolationmode none
 attr source encapPk
 attr title "packets encapsulated, sum(packetBytes)"
@@ -817,12 +783,12 @@ attr title "packets removed, count"
 scalar SimpleNetwork.client2.eth[0].mac.queue packetRemoved:sum(packetBytes) 0
 attr interpolationmode none
 attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.client2.eth[0].mac "simulated time" 0.2
+scalar SimpleNetwork.client2.eth[0].mac "simulated time" 0.3
 scalar SimpleNetwork.client2.eth[0].mac full-duplex 1
-scalar SimpleNetwork.client2.eth[0].mac "frames/sec sent" 5
-scalar SimpleNetwork.client2.eth[0].mac "frames/sec rcvd" 5
-scalar SimpleNetwork.client2.eth[0].mac "bits/sec sent" 2560
-scalar SimpleNetwork.client2.eth[0].mac "bits/sec rcvd" 2560
+scalar SimpleNetwork.client2.eth[0].mac "frames/sec sent" 3.3333333333333
+scalar SimpleNetwork.client2.eth[0].mac "frames/sec rcvd" 10
+scalar SimpleNetwork.client2.eth[0].mac "bits/sec sent" 1706.6666666667
+scalar SimpleNetwork.client2.eth[0].mac "bits/sec rcvd" 30826.666666667
 scalar SimpleNetwork.client2.eth[0].mac "rx channel idle (%)" 100
 scalar SimpleNetwork.client2.eth[0].mac "rx channel utilization (%)" 0
 scalar SimpleNetwork.client2.eth[0].mac rxPausePkUnits:count 0
@@ -837,11 +803,11 @@ attr title "pause units sent, count"
 scalar SimpleNetwork.client2.eth[0].mac txPausePkUnits:sum 0
 attr interpolationmode none
 attr title "pause units sent, sum"
-scalar SimpleNetwork.client2.eth[0].mac rxPkOk:count 1
+scalar SimpleNetwork.client2.eth[0].mac rxPkOk:count 3
 attr interpolationmode none
 attr source rxPkOk
 attr title "packets received OK, count"
-scalar SimpleNetwork.client2.eth[0].mac rxPkOk:sum(packetBytes) 64
+scalar SimpleNetwork.client2.eth[0].mac rxPkOk:sum(packetBytes) 1156
 attr interpolationmode none
 attr source rxPkOk
 attr title "packets received OK, sum(packetBytes)"
@@ -861,11 +827,11 @@ scalar SimpleNetwork.client2.eth[0].mac packetReceivedFromUpper:sum(packetBytes)
 attr interpolationmode none
 attr source packetReceivedFromUpper
 attr title "packet bytes from higher layer, sum(packetBytes)"
-scalar SimpleNetwork.client2.eth[0].mac passedUpPk:count 1
+scalar SimpleNetwork.client2.eth[0].mac passedUpPk:count 3
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, count"
-scalar SimpleNetwork.client2.eth[0].mac passedUpPk:sum(packetBytes) 64
+scalar SimpleNetwork.client2.eth[0].mac passedUpPk:sum(packetBytes) 1156
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, sum(packetBytes)"
@@ -897,11 +863,11 @@ scalar SimpleNetwork.client2.eth[0].encap pauseSent:count 0
 attr title "pause sent, count"
 scalar SimpleNetwork.client2.eth[0].encap pauseSent:sum 0
 attr title "pause sent, sum"
-scalar SimpleNetwork.client2.eth[0].encap decapPk:count 1
+scalar SimpleNetwork.client2.eth[0].encap decapPk:count 3
 attr interpolationmode none
 attr source decapPk
 attr title "packets decapsulated, count"
-scalar SimpleNetwork.client2.eth[0].encap decapPk:sum(packetBytes) 46
+scalar SimpleNetwork.client2.eth[0].encap decapPk:sum(packetBytes) 1102
 attr interpolationmode none
 attr source decapPk
 attr title "packets decapsulated, sum(packetBytes)"
@@ -1023,122 +989,88 @@ scalar SimpleNetwork.client3.lo[0].lo passedUpPk:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, sum(packetBytes)"
-scalar SimpleNetwork.client3.eth[0].mac.queue packetPopped:count 2
+scalar SimpleNetwork.client3.eth[0].mac.queue packetPopped:count 1
 attr interpolationmode none
 attr title "packet popped, count"
-scalar SimpleNetwork.client3.eth[0].mac.queue packetPopped:sum(packetBytes) 128
+scalar SimpleNetwork.client3.eth[0].mac.queue packetPopped:sum(packetBytes) 64
 attr interpolationmode none
 attr title "packet popped, sum(packetBytes)"
 statistic SimpleNetwork.client3.eth[0].mac.queue queueingTime:histogram
-field count 2
-field mean 3.36e-05
-field stddev 4.7517575695736e-05
+field count 1
+field mean 0
+field stddev nan
 field min 0
-field max 6.72e-05
-field sum 6.72e-05
-field sqrsum 4.51584e-09
+field max 0
+field sum 0
+field sqrsum 0
 attr interpolationmode none
 attr source queueingTime(packetPopped)
 attr title "queueing times, histogram"
 attr unit s
 bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.34	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.22	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.16	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.1	0
+bin	-0.08	0
+bin	-0.06	0
+bin	-0.04	0
+bin	-0.02	0
 bin	0	1
-bin	1e-06	0
-bin	2e-06	0
-bin	3e-06	0
-bin	4e-06	0
-bin	5e-06	0
-bin	6e-06	0
-bin	7e-06	0
-bin	8e-06	0
-bin	9e-06	0
-bin	1e-05	0
-bin	1.1e-05	0
-bin	1.2e-05	0
-bin	1.3e-05	0
-bin	1.4e-05	0
-bin	1.5e-05	0
-bin	1.6e-05	0
-bin	1.7e-05	0
-bin	1.8e-05	0
-bin	1.9e-05	0
-bin	2e-05	0
-bin	2.1e-05	0
-bin	2.2e-05	0
-bin	2.3e-05	0
-bin	2.4e-05	0
-bin	2.5e-05	0
-bin	2.6e-05	0
-bin	2.7e-05	0
-bin	2.8e-05	0
-bin	2.9e-05	0
-bin	3e-05	0
-bin	3.1e-05	0
-bin	3.2e-05	0
-bin	3.3e-05	0
-bin	3.4e-05	0
-bin	3.5e-05	0
-bin	3.6e-05	0
-bin	3.7e-05	0
-bin	3.8e-05	0
-bin	3.9e-05	0
-bin	4e-05	0
-bin	4.1e-05	0
-bin	4.2e-05	0
-bin	4.3e-05	0
-bin	4.4e-05	0
-bin	4.5e-05	0
-bin	4.6e-05	0
-bin	4.7e-05	0
-bin	4.8e-05	0
-bin	4.9e-05	0
-bin	5e-05	0
-bin	5.1e-05	0
-bin	5.2e-05	0
-bin	5.3e-05	0
-bin	5.4e-05	0
-bin	5.5e-05	0
-bin	5.6e-05	0
-bin	5.7e-05	0
-bin	5.8e-05	0
-bin	5.9e-05	0
-bin	6e-05	0
-bin	6.1e-05	0
-bin	6.2e-05	0
-bin	6.3e-05	0
-bin	6.4e-05	0
-bin	6.5e-05	0
-bin	6.6e-05	0
-bin	6.7e-05	1
-bin	6.8e-05	0
-bin	6.9e-05	0
-bin	7e-05	0
-bin	7.1e-05	0
-bin	7.2e-05	0
-bin	7.3e-05	0
-bin	7.4e-05	0
-bin	7.5e-05	0
-bin	7.6e-05	0
-bin	7.7e-05	0
-bin	7.8e-05	0
-bin	7.9e-05	0
-bin	8e-05	0
-bin	8.1e-05	0
-bin	8.2e-05	0
-bin	8.3e-05	0
-bin	8.4e-05	0
+bin	0.02	0
+bin	0.04	0
+bin	0.06	0
+bin	0.08	0
+bin	0.1	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16	0
+bin	0.18	0
+bin	0.2	0
+bin	0.22	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.3	0
+bin	0.32	0
+bin	0.34	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42	0
+bin	0.44	0
+bin	0.46	0
+bin	0.48	0
+bin	0.5	0
 scalar SimpleNetwork.client3.eth[0].mac.queue queueLength:max 1
 attr interpolationmode sample-hold
 attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
 attr title "queue length, max"
-scalar SimpleNetwork.client3.eth[0].mac.queue queueLength:timeavg 0.000336
+scalar SimpleNetwork.client3.eth[0].mac.queue queueLength:timeavg 0
 attr interpolationmode sample-hold
 attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
 attr title "queue length, timeavg"
-scalar SimpleNetwork.client3.eth[0].mac.queue packetPushed:count 2
+scalar SimpleNetwork.client3.eth[0].mac.queue packetPushed:count 1
 attr interpolationmode none
 attr title "packet pushed, count"
-scalar SimpleNetwork.client3.eth[0].mac.queue packetPushed:sum(packetBytes) 128
+scalar SimpleNetwork.client3.eth[0].mac.queue packetPushed:sum(packetBytes) 64
 attr interpolationmode none
 attr title "packet pushed, sum(packetBytes)"
 scalar SimpleNetwork.client3.eth[0].mac.queue packetDropQueueOverflow:count 0
@@ -1155,12 +1087,12 @@ attr title "packets removed, count"
 scalar SimpleNetwork.client3.eth[0].mac.queue packetRemoved:sum(packetBytes) 0
 attr interpolationmode none
 attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.client3.eth[0].mac "simulated time" 0.2
+scalar SimpleNetwork.client3.eth[0].mac "simulated time" 0.3
 scalar SimpleNetwork.client3.eth[0].mac full-duplex 1
-scalar SimpleNetwork.client3.eth[0].mac "frames/sec sent" 10
-scalar SimpleNetwork.client3.eth[0].mac "frames/sec rcvd" 5
-scalar SimpleNetwork.client3.eth[0].mac "bits/sec sent" 5120
-scalar SimpleNetwork.client3.eth[0].mac "bits/sec rcvd" 2560
+scalar SimpleNetwork.client3.eth[0].mac "frames/sec sent" 3.3333333333333
+scalar SimpleNetwork.client3.eth[0].mac "frames/sec rcvd" 10
+scalar SimpleNetwork.client3.eth[0].mac "bits/sec sent" 1706.6666666667
+scalar SimpleNetwork.client3.eth[0].mac "bits/sec rcvd" 30826.666666667
 scalar SimpleNetwork.client3.eth[0].mac "rx channel idle (%)" 100
 scalar SimpleNetwork.client3.eth[0].mac "rx channel utilization (%)" 0
 scalar SimpleNetwork.client3.eth[0].mac rxPausePkUnits:count 0
@@ -1175,35 +1107,35 @@ attr title "pause units sent, count"
 scalar SimpleNetwork.client3.eth[0].mac txPausePkUnits:sum 0
 attr interpolationmode none
 attr title "pause units sent, sum"
-scalar SimpleNetwork.client3.eth[0].mac rxPkOk:count 1
+scalar SimpleNetwork.client3.eth[0].mac rxPkOk:count 3
 attr interpolationmode none
 attr source rxPkOk
 attr title "packets received OK, count"
-scalar SimpleNetwork.client3.eth[0].mac rxPkOk:sum(packetBytes) 64
+scalar SimpleNetwork.client3.eth[0].mac rxPkOk:sum(packetBytes) 1156
 attr interpolationmode none
 attr source rxPkOk
 attr title "packets received OK, sum(packetBytes)"
-scalar SimpleNetwork.client3.eth[0].mac txPk:count 2
+scalar SimpleNetwork.client3.eth[0].mac txPk:count 1
 attr interpolationmode none
 attr source packetSentToLower
 attr title "packets transmitted, count"
-scalar SimpleNetwork.client3.eth[0].mac txPk:sum(packetBytes) 128
+scalar SimpleNetwork.client3.eth[0].mac txPk:sum(packetBytes) 64
 attr interpolationmode none
 attr source packetSentToLower
 attr title "packets transmitted, sum(packetBytes)"
-scalar SimpleNetwork.client3.eth[0].mac packetReceivedFromUpper:count 2
+scalar SimpleNetwork.client3.eth[0].mac packetReceivedFromUpper:count 1
 attr interpolationmode none
 attr source packetReceivedFromUpper
 attr title "packet bytes from higher layer, count"
-scalar SimpleNetwork.client3.eth[0].mac packetReceivedFromUpper:sum(packetBytes) 96
+scalar SimpleNetwork.client3.eth[0].mac packetReceivedFromUpper:sum(packetBytes) 46
 attr interpolationmode none
 attr source packetReceivedFromUpper
 attr title "packet bytes from higher layer, sum(packetBytes)"
-scalar SimpleNetwork.client3.eth[0].mac passedUpPk:count 1
+scalar SimpleNetwork.client3.eth[0].mac passedUpPk:count 3
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, count"
-scalar SimpleNetwork.client3.eth[0].mac passedUpPk:sum(packetBytes) 64
+scalar SimpleNetwork.client3.eth[0].mac passedUpPk:sum(packetBytes) 1156
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, sum(packetBytes)"
@@ -1235,19 +1167,19 @@ scalar SimpleNetwork.client3.eth[0].encap pauseSent:count 0
 attr title "pause sent, count"
 scalar SimpleNetwork.client3.eth[0].encap pauseSent:sum 0
 attr title "pause sent, sum"
-scalar SimpleNetwork.client3.eth[0].encap decapPk:count 1
+scalar SimpleNetwork.client3.eth[0].encap decapPk:count 3
 attr interpolationmode none
 attr source decapPk
 attr title "packets decapsulated, count"
-scalar SimpleNetwork.client3.eth[0].encap decapPk:sum(packetBytes) 46
+scalar SimpleNetwork.client3.eth[0].encap decapPk:sum(packetBytes) 1102
 attr interpolationmode none
 attr source decapPk
 attr title "packets decapsulated, sum(packetBytes)"
-scalar SimpleNetwork.client3.eth[0].encap encapPk:count 2
+scalar SimpleNetwork.client3.eth[0].encap encapPk:count 1
 attr interpolationmode none
 attr source encapPk
 attr title "packets encapsulated, count"
-scalar SimpleNetwork.client3.eth[0].encap encapPk:sum(packetBytes) 60
+scalar SimpleNetwork.client3.eth[0].encap encapPk:sum(packetBytes) 28
 attr interpolationmode none
 attr source encapPk
 attr title "packets encapsulated, sum(packetBytes)"
@@ -1345,29 +1277,29 @@ scalar SimpleNetwork.client3.udp droppedPkBadChecksum:count 0
 attr interpolationmode none
 attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
 attr title "packets dropped (checksum error), count"
-scalar SimpleNetwork.router.lo[0].lo rcvdPkFromHl:count 0
+scalar SimpleNetwork.router1.lo[0].lo rcvdPkFromHl:count 0
 attr interpolationmode none
 attr source packetReceivedFromUpper
 attr title "packets received from higher layer, count"
-scalar SimpleNetwork.router.lo[0].lo rcvdPkFromHl:sum(packetBytes) 0
+scalar SimpleNetwork.router1.lo[0].lo rcvdPkFromHl:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetReceivedFromUpper
 attr title "packets received from higher layer, sum(packetBytes)"
-scalar SimpleNetwork.router.lo[0].lo passedUpPk:count 0
+scalar SimpleNetwork.router1.lo[0].lo passedUpPk:count 0
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, count"
-scalar SimpleNetwork.router.lo[0].lo passedUpPk:sum(packetBytes) 0
+scalar SimpleNetwork.router1.lo[0].lo passedUpPk:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[0].mac.queue packetPopped:count 1
+scalar SimpleNetwork.router1.eth[0].mac.queue packetPopped:count 1
 attr interpolationmode none
 attr title "packet popped, count"
-scalar SimpleNetwork.router.eth[0].mac.queue packetPopped:sum(packetBytes) 64
+scalar SimpleNetwork.router1.eth[0].mac.queue packetPopped:sum(packetBytes) 64
 attr interpolationmode none
 attr title "packet popped, sum(packetBytes)"
-statistic SimpleNetwork.router.eth[0].mac.queue queueingTime:histogram
+statistic SimpleNetwork.router1.eth[0].mac.queue queueingTime:histogram
 field count 1
 field mean 0
 field stddev nan
@@ -1431,140 +1363,140 @@ bin	0.44	0
 bin	0.46	0
 bin	0.48	0
 bin	0.5	0
-scalar SimpleNetwork.router.eth[0].mac.queue queueLength:max 1
+scalar SimpleNetwork.router1.eth[0].mac.queue queueLength:max 1
 attr interpolationmode sample-hold
 attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
 attr title "queue length, max"
-scalar SimpleNetwork.router.eth[0].mac.queue queueLength:timeavg 0
+scalar SimpleNetwork.router1.eth[0].mac.queue queueLength:timeavg 0
 attr interpolationmode sample-hold
 attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
 attr title "queue length, timeavg"
-scalar SimpleNetwork.router.eth[0].mac.queue packetPushed:count 1
+scalar SimpleNetwork.router1.eth[0].mac.queue packetPushed:count 1
 attr interpolationmode none
 attr title "packet pushed, count"
-scalar SimpleNetwork.router.eth[0].mac.queue packetPushed:sum(packetBytes) 64
+scalar SimpleNetwork.router1.eth[0].mac.queue packetPushed:sum(packetBytes) 64
 attr interpolationmode none
 attr title "packet pushed, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[0].mac.queue packetDropQueueOverflow:count 0
+scalar SimpleNetwork.router1.eth[0].mac.queue packetDropQueueOverflow:count 0
 attr interpolationmode none
 attr source packetDropReasonIsQueueOverflow(packetDropped)
 attr title "packet drops: queue overflow, count"
-scalar SimpleNetwork.router.eth[0].mac.queue packetDropQueueOverflow:sum(packetBytes) 0
+scalar SimpleNetwork.router1.eth[0].mac.queue packetDropQueueOverflow:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetDropReasonIsQueueOverflow(packetDropped)
 attr title "packet drops: queue overflow, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[0].mac.queue packetRemoved:count 0
+scalar SimpleNetwork.router1.eth[0].mac.queue packetRemoved:count 0
 attr interpolationmode none
 attr title "packets removed, count"
-scalar SimpleNetwork.router.eth[0].mac.queue packetRemoved:sum(packetBytes) 0
+scalar SimpleNetwork.router1.eth[0].mac.queue packetRemoved:sum(packetBytes) 0
 attr interpolationmode none
 attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[0].mac "simulated time" 0.2
-scalar SimpleNetwork.router.eth[0].mac full-duplex 1
-scalar SimpleNetwork.router.eth[0].mac "frames/sec sent" 5
-scalar SimpleNetwork.router.eth[0].mac "frames/sec rcvd" 5
-scalar SimpleNetwork.router.eth[0].mac "bits/sec sent" 2560
-scalar SimpleNetwork.router.eth[0].mac "bits/sec rcvd" 2560
-scalar SimpleNetwork.router.eth[0].mac "rx channel idle (%)" 100
-scalar SimpleNetwork.router.eth[0].mac "rx channel utilization (%)" 0
-scalar SimpleNetwork.router.eth[0].mac rxPausePkUnits:count 0
+scalar SimpleNetwork.router1.eth[0].mac "simulated time" 0.3
+scalar SimpleNetwork.router1.eth[0].mac full-duplex 1
+scalar SimpleNetwork.router1.eth[0].mac "frames/sec sent" 3.3333333333333
+scalar SimpleNetwork.router1.eth[0].mac "frames/sec rcvd" 10
+scalar SimpleNetwork.router1.eth[0].mac "bits/sec sent" 1706.6666666667
+scalar SimpleNetwork.router1.eth[0].mac "bits/sec rcvd" 30826.666666667
+scalar SimpleNetwork.router1.eth[0].mac "rx channel idle (%)" 100
+scalar SimpleNetwork.router1.eth[0].mac "rx channel utilization (%)" 0
+scalar SimpleNetwork.router1.eth[0].mac rxPausePkUnits:count 0
 attr interpolationmode none
 attr title "pause units received, count"
-scalar SimpleNetwork.router.eth[0].mac rxPausePkUnits:sum 0
+scalar SimpleNetwork.router1.eth[0].mac rxPausePkUnits:sum 0
 attr interpolationmode none
 attr title "pause units received, sum"
-scalar SimpleNetwork.router.eth[0].mac txPausePkUnits:count 0
+scalar SimpleNetwork.router1.eth[0].mac txPausePkUnits:count 0
 attr interpolationmode none
 attr title "pause units sent, count"
-scalar SimpleNetwork.router.eth[0].mac txPausePkUnits:sum 0
+scalar SimpleNetwork.router1.eth[0].mac txPausePkUnits:sum 0
 attr interpolationmode none
 attr title "pause units sent, sum"
-scalar SimpleNetwork.router.eth[0].mac rxPkOk:count 1
+scalar SimpleNetwork.router1.eth[0].mac rxPkOk:count 3
 attr interpolationmode none
 attr source rxPkOk
 attr title "packets received OK, count"
-scalar SimpleNetwork.router.eth[0].mac rxPkOk:sum(packetBytes) 64
+scalar SimpleNetwork.router1.eth[0].mac rxPkOk:sum(packetBytes) 1156
 attr interpolationmode none
 attr source rxPkOk
 attr title "packets received OK, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[0].mac txPk:count 1
+scalar SimpleNetwork.router1.eth[0].mac txPk:count 1
 attr interpolationmode none
 attr source packetSentToLower
 attr title "packets transmitted, count"
-scalar SimpleNetwork.router.eth[0].mac txPk:sum(packetBytes) 64
+scalar SimpleNetwork.router1.eth[0].mac txPk:sum(packetBytes) 64
 attr interpolationmode none
 attr source packetSentToLower
 attr title "packets transmitted, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[0].mac packetReceivedFromUpper:count 1
+scalar SimpleNetwork.router1.eth[0].mac packetReceivedFromUpper:count 1
 attr interpolationmode none
 attr source packetReceivedFromUpper
 attr title "packet bytes from higher layer, count"
-scalar SimpleNetwork.router.eth[0].mac packetReceivedFromUpper:sum(packetBytes) 46
+scalar SimpleNetwork.router1.eth[0].mac packetReceivedFromUpper:sum(packetBytes) 46
 attr interpolationmode none
 attr source packetReceivedFromUpper
 attr title "packet bytes from higher layer, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[0].mac passedUpPk:count 1
+scalar SimpleNetwork.router1.eth[0].mac passedUpPk:count 3
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, count"
-scalar SimpleNetwork.router.eth[0].mac passedUpPk:sum(packetBytes) 64
+scalar SimpleNetwork.router1.eth[0].mac passedUpPk:sum(packetBytes) 1156
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[0].mac packetDropIncorrectlyReceived:count 0
+scalar SimpleNetwork.router1.eth[0].mac packetDropIncorrectlyReceived:count 0
 attr interpolationmode none
 attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
 attr title "packet drop: incorrectly received, count"
-scalar SimpleNetwork.router.eth[0].mac packetDropIncorrectlyReceived:sum(packetBytes) 0
+scalar SimpleNetwork.router1.eth[0].mac packetDropIncorrectlyReceived:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
 attr title "packet drop: incorrectly received, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[0].mac packetDropInterfaceDown:count 0
+scalar SimpleNetwork.router1.eth[0].mac packetDropInterfaceDown:count 0
 attr interpolationmode none
 attr source packetDropReasonIsInterfaceDown(packetDropped)
 attr title "packet drop: interface down, count"
-scalar SimpleNetwork.router.eth[0].mac packetDropInterfaceDown:sum(packetBytes) 0
+scalar SimpleNetwork.router1.eth[0].mac packetDropInterfaceDown:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetDropReasonIsInterfaceDown(packetDropped)
 attr title "packet drop: interface down, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[0].mac packetDropNotAddressedToUs:count 0
+scalar SimpleNetwork.router1.eth[0].mac packetDropNotAddressedToUs:count 0
 attr interpolationmode none
 attr source packetDropReasonIsNotAddressedToUs(packetDropped)
 attr title "packet drop: not addressed to us, count"
-scalar SimpleNetwork.router.eth[0].mac packetDropNotAddressedToUs:sum(packetBytes) 0
+scalar SimpleNetwork.router1.eth[0].mac packetDropNotAddressedToUs:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetDropReasonIsNotAddressedToUs(packetDropped)
 attr title "packet drop: not addressed to us, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[0].encap pauseSent:count 0
+scalar SimpleNetwork.router1.eth[0].encap pauseSent:count 0
 attr title "pause sent, count"
-scalar SimpleNetwork.router.eth[0].encap pauseSent:sum 0
+scalar SimpleNetwork.router1.eth[0].encap pauseSent:sum 0
 attr title "pause sent, sum"
-scalar SimpleNetwork.router.eth[0].encap decapPk:count 1
+scalar SimpleNetwork.router1.eth[0].encap decapPk:count 3
 attr interpolationmode none
 attr source decapPk
 attr title "packets decapsulated, count"
-scalar SimpleNetwork.router.eth[0].encap decapPk:sum(packetBytes) 46
+scalar SimpleNetwork.router1.eth[0].encap decapPk:sum(packetBytes) 1102
 attr interpolationmode none
 attr source decapPk
 attr title "packets decapsulated, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[0].encap encapPk:count 1
+scalar SimpleNetwork.router1.eth[0].encap encapPk:count 1
 attr interpolationmode none
 attr source encapPk
 attr title "packets encapsulated, count"
-scalar SimpleNetwork.router.eth[0].encap encapPk:sum(packetBytes) 28
+scalar SimpleNetwork.router1.eth[0].encap encapPk:sum(packetBytes) 28
 attr interpolationmode none
 attr source encapPk
 attr title "packets encapsulated, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[1].mac.queue packetPopped:count 1
+scalar SimpleNetwork.router1.eth[1].mac.queue packetPopped:count 3
 attr interpolationmode none
 attr title "packet popped, count"
-scalar SimpleNetwork.router.eth[1].mac.queue packetPopped:sum(packetBytes) 64
+scalar SimpleNetwork.router1.eth[1].mac.queue packetPopped:sum(packetBytes) 1156
 attr interpolationmode none
 attr title "packet popped, sum(packetBytes)"
-statistic SimpleNetwork.router.eth[1].mac.queue queueingTime:histogram
-field count 1
+statistic SimpleNetwork.router1.eth[1].mac.queue queueingTime:histogram
+field count 3
 field mean 0
-field stddev nan
+field stddev 0
 field min 0
 field max 0
 field sum 0
@@ -1599,7 +1531,7 @@ bin	-0.08	0
 bin	-0.06	0
 bin	-0.04	0
 bin	-0.02	0
-bin	0	1
+bin	0	3
 bin	0.02	0
 bin	0.04	0
 bin	0.06	0
@@ -1625,582 +1557,1052 @@ bin	0.44	0
 bin	0.46	0
 bin	0.48	0
 bin	0.5	0
-scalar SimpleNetwork.router.eth[1].mac.queue queueLength:max 1
+scalar SimpleNetwork.router1.eth[1].mac.queue queueLength:max 1
 attr interpolationmode sample-hold
 attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
 attr title "queue length, max"
-scalar SimpleNetwork.router.eth[1].mac.queue queueLength:timeavg 0
+scalar SimpleNetwork.router1.eth[1].mac.queue queueLength:timeavg 0
 attr interpolationmode sample-hold
 attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
 attr title "queue length, timeavg"
-scalar SimpleNetwork.router.eth[1].mac.queue packetPushed:count 1
+scalar SimpleNetwork.router1.eth[1].mac.queue packetPushed:count 3
 attr interpolationmode none
 attr title "packet pushed, count"
-scalar SimpleNetwork.router.eth[1].mac.queue packetPushed:sum(packetBytes) 64
+scalar SimpleNetwork.router1.eth[1].mac.queue packetPushed:sum(packetBytes) 1156
 attr interpolationmode none
 attr title "packet pushed, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[1].mac.queue packetDropQueueOverflow:count 0
+scalar SimpleNetwork.router1.eth[1].mac.queue packetDropQueueOverflow:count 0
 attr interpolationmode none
 attr source packetDropReasonIsQueueOverflow(packetDropped)
 attr title "packet drops: queue overflow, count"
-scalar SimpleNetwork.router.eth[1].mac.queue packetDropQueueOverflow:sum(packetBytes) 0
+scalar SimpleNetwork.router1.eth[1].mac.queue packetDropQueueOverflow:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetDropReasonIsQueueOverflow(packetDropped)
 attr title "packet drops: queue overflow, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[1].mac.queue packetRemoved:count 0
+scalar SimpleNetwork.router1.eth[1].mac.queue packetRemoved:count 0
 attr interpolationmode none
 attr title "packets removed, count"
-scalar SimpleNetwork.router.eth[1].mac.queue packetRemoved:sum(packetBytes) 0
+scalar SimpleNetwork.router1.eth[1].mac.queue packetRemoved:sum(packetBytes) 0
 attr interpolationmode none
 attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[1].mac "simulated time" 0.2
-scalar SimpleNetwork.router.eth[1].mac full-duplex 1
-scalar SimpleNetwork.router.eth[1].mac "frames/sec sent" 5
-scalar SimpleNetwork.router.eth[1].mac "frames/sec rcvd" 10
-scalar SimpleNetwork.router.eth[1].mac "bits/sec sent" 2560
-scalar SimpleNetwork.router.eth[1].mac "bits/sec rcvd" 5120
-scalar SimpleNetwork.router.eth[1].mac "rx channel idle (%)" 100
-scalar SimpleNetwork.router.eth[1].mac "rx channel utilization (%)" 0
-scalar SimpleNetwork.router.eth[1].mac rxPausePkUnits:count 0
+scalar SimpleNetwork.router1.eth[1].mac "simulated time" 0.3
+scalar SimpleNetwork.router1.eth[1].mac full-duplex 1
+scalar SimpleNetwork.router1.eth[1].mac "frames/sec sent" 10
+scalar SimpleNetwork.router1.eth[1].mac "frames/sec rcvd" 3.3333333333333
+scalar SimpleNetwork.router1.eth[1].mac "bits/sec sent" 30826.666666667
+scalar SimpleNetwork.router1.eth[1].mac "bits/sec rcvd" 1706.6666666667
+scalar SimpleNetwork.router1.eth[1].mac "rx channel idle (%)" 100
+scalar SimpleNetwork.router1.eth[1].mac "rx channel utilization (%)" 0
+scalar SimpleNetwork.router1.eth[1].mac rxPausePkUnits:count 0
 attr interpolationmode none
 attr title "pause units received, count"
-scalar SimpleNetwork.router.eth[1].mac rxPausePkUnits:sum 0
+scalar SimpleNetwork.router1.eth[1].mac rxPausePkUnits:sum 0
 attr interpolationmode none
 attr title "pause units received, sum"
-scalar SimpleNetwork.router.eth[1].mac txPausePkUnits:count 0
+scalar SimpleNetwork.router1.eth[1].mac txPausePkUnits:count 0
 attr interpolationmode none
 attr title "pause units sent, count"
-scalar SimpleNetwork.router.eth[1].mac txPausePkUnits:sum 0
+scalar SimpleNetwork.router1.eth[1].mac txPausePkUnits:sum 0
 attr interpolationmode none
 attr title "pause units sent, sum"
-scalar SimpleNetwork.router.eth[1].mac rxPkOk:count 2
+scalar SimpleNetwork.router1.eth[1].mac rxPkOk:count 1
 attr interpolationmode none
 attr source rxPkOk
 attr title "packets received OK, count"
-scalar SimpleNetwork.router.eth[1].mac rxPkOk:sum(packetBytes) 128
+scalar SimpleNetwork.router1.eth[1].mac rxPkOk:sum(packetBytes) 64
 attr interpolationmode none
 attr source rxPkOk
 attr title "packets received OK, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[1].mac txPk:count 1
+scalar SimpleNetwork.router1.eth[1].mac txPk:count 3
 attr interpolationmode none
 attr source packetSentToLower
 attr title "packets transmitted, count"
-scalar SimpleNetwork.router.eth[1].mac txPk:sum(packetBytes) 64
+scalar SimpleNetwork.router1.eth[1].mac txPk:sum(packetBytes) 1156
 attr interpolationmode none
 attr source packetSentToLower
 attr title "packets transmitted, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[1].mac packetReceivedFromUpper:count 1
+scalar SimpleNetwork.router1.eth[1].mac packetReceivedFromUpper:count 3
 attr interpolationmode none
 attr source packetReceivedFromUpper
 attr title "packet bytes from higher layer, count"
-scalar SimpleNetwork.router.eth[1].mac packetReceivedFromUpper:sum(packetBytes) 46
+scalar SimpleNetwork.router1.eth[1].mac packetReceivedFromUpper:sum(packetBytes) 1138
 attr interpolationmode none
 attr source packetReceivedFromUpper
 attr title "packet bytes from higher layer, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[1].mac passedUpPk:count 2
+scalar SimpleNetwork.router1.eth[1].mac passedUpPk:count 1
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, count"
-scalar SimpleNetwork.router.eth[1].mac passedUpPk:sum(packetBytes) 128
+scalar SimpleNetwork.router1.eth[1].mac passedUpPk:sum(packetBytes) 64
 attr interpolationmode none
 attr source packetSentToUpper
 attr title "packets passed to higher layer, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[1].mac packetDropIncorrectlyReceived:count 0
+scalar SimpleNetwork.router1.eth[1].mac packetDropIncorrectlyReceived:count 0
 attr interpolationmode none
 attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
 attr title "packet drop: incorrectly received, count"
-scalar SimpleNetwork.router.eth[1].mac packetDropIncorrectlyReceived:sum(packetBytes) 0
+scalar SimpleNetwork.router1.eth[1].mac packetDropIncorrectlyReceived:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
 attr title "packet drop: incorrectly received, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[1].mac packetDropInterfaceDown:count 0
+scalar SimpleNetwork.router1.eth[1].mac packetDropInterfaceDown:count 0
 attr interpolationmode none
 attr source packetDropReasonIsInterfaceDown(packetDropped)
 attr title "packet drop: interface down, count"
-scalar SimpleNetwork.router.eth[1].mac packetDropInterfaceDown:sum(packetBytes) 0
+scalar SimpleNetwork.router1.eth[1].mac packetDropInterfaceDown:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetDropReasonIsInterfaceDown(packetDropped)
 attr title "packet drop: interface down, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[1].mac packetDropNotAddressedToUs:count 0
+scalar SimpleNetwork.router1.eth[1].mac packetDropNotAddressedToUs:count 0
 attr interpolationmode none
 attr source packetDropReasonIsNotAddressedToUs(packetDropped)
 attr title "packet drop: not addressed to us, count"
-scalar SimpleNetwork.router.eth[1].mac packetDropNotAddressedToUs:sum(packetBytes) 0
+scalar SimpleNetwork.router1.eth[1].mac packetDropNotAddressedToUs:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetDropReasonIsNotAddressedToUs(packetDropped)
 attr title "packet drop: not addressed to us, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[1].encap pauseSent:count 0
+scalar SimpleNetwork.router1.eth[1].encap pauseSent:count 0
 attr title "pause sent, count"
-scalar SimpleNetwork.router.eth[1].encap pauseSent:sum 0
+scalar SimpleNetwork.router1.eth[1].encap pauseSent:sum 0
 attr title "pause sent, sum"
-scalar SimpleNetwork.router.eth[1].encap decapPk:count 2
+scalar SimpleNetwork.router1.eth[1].encap decapPk:count 1
 attr interpolationmode none
 attr source decapPk
 attr title "packets decapsulated, count"
-scalar SimpleNetwork.router.eth[1].encap decapPk:sum(packetBytes) 92
+scalar SimpleNetwork.router1.eth[1].encap decapPk:sum(packetBytes) 46
 attr interpolationmode none
 attr source decapPk
 attr title "packets decapsulated, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[1].encap encapPk:count 1
+scalar SimpleNetwork.router1.eth[1].encap encapPk:count 3
 attr interpolationmode none
 attr source encapPk
 attr title "packets encapsulated, count"
-scalar SimpleNetwork.router.eth[1].encap encapPk:sum(packetBytes) 28
+scalar SimpleNetwork.router1.eth[1].encap encapPk:sum(packetBytes) 1084
 attr interpolationmode none
 attr source encapPk
 attr title "packets encapsulated, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[2].mac.queue packetPopped:count 1
-attr interpolationmode none
-attr title "packet popped, count"
-scalar SimpleNetwork.router.eth[2].mac.queue packetPopped:sum(packetBytes) 64
-attr interpolationmode none
-attr title "packet popped, sum(packetBytes)"
-statistic SimpleNetwork.router.eth[2].mac.queue queueingTime:histogram
-field count 1
-field mean 0
-field stddev nan
-field min 0
-field max 0
-field sum 0
-field sqrsum 0
-attr interpolationmode none
-attr source queueingTime(packetPopped)
-attr title "queueing times, histogram"
-attr unit s
-bin	-inf	0
-bin	-0.5	0
-bin	-0.48	0
-bin	-0.46	0
-bin	-0.44	0
-bin	-0.42	0
-bin	-0.4	0
-bin	-0.38	0
-bin	-0.36	0
-bin	-0.34	0
-bin	-0.32	0
-bin	-0.3	0
-bin	-0.28	0
-bin	-0.26	0
-bin	-0.24	0
-bin	-0.22	0
-bin	-0.2	0
-bin	-0.18	0
-bin	-0.16	0
-bin	-0.14	0
-bin	-0.12	0
-bin	-0.1	0
-bin	-0.08	0
-bin	-0.06	0
-bin	-0.04	0
-bin	-0.02	0
-bin	0	1
-bin	0.02	0
-bin	0.04	0
-bin	0.06	0
-bin	0.08	0
-bin	0.1	0
-bin	0.12	0
-bin	0.14	0
-bin	0.16	0
-bin	0.18	0
-bin	0.2	0
-bin	0.22	0
-bin	0.24	0
-bin	0.26	0
-bin	0.28	0
-bin	0.3	0
-bin	0.32	0
-bin	0.34	0
-bin	0.36	0
-bin	0.38	0
-bin	0.4	0
-bin	0.42	0
-bin	0.44	0
-bin	0.46	0
-bin	0.48	0
-bin	0.5	0
-scalar SimpleNetwork.router.eth[2].mac.queue queueLength:max 1
-attr interpolationmode sample-hold
-attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
-attr title "queue length, max"
-scalar SimpleNetwork.router.eth[2].mac.queue queueLength:timeavg 0
-attr interpolationmode sample-hold
-attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
-attr title "queue length, timeavg"
-scalar SimpleNetwork.router.eth[2].mac.queue packetPushed:count 1
-attr interpolationmode none
-attr title "packet pushed, count"
-scalar SimpleNetwork.router.eth[2].mac.queue packetPushed:sum(packetBytes) 64
-attr interpolationmode none
-attr title "packet pushed, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[2].mac.queue packetDropQueueOverflow:count 0
-attr interpolationmode none
-attr source packetDropReasonIsQueueOverflow(packetDropped)
-attr title "packet drops: queue overflow, count"
-scalar SimpleNetwork.router.eth[2].mac.queue packetDropQueueOverflow:sum(packetBytes) 0
-attr interpolationmode none
-attr source packetDropReasonIsQueueOverflow(packetDropped)
-attr title "packet drops: queue overflow, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[2].mac.queue packetRemoved:count 0
-attr interpolationmode none
-attr title "packets removed, count"
-scalar SimpleNetwork.router.eth[2].mac.queue packetRemoved:sum(packetBytes) 0
-attr interpolationmode none
-attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[2].mac "simulated time" 0.2
-scalar SimpleNetwork.router.eth[2].mac full-duplex 1
-scalar SimpleNetwork.router.eth[2].mac "frames/sec sent" 5
-scalar SimpleNetwork.router.eth[2].mac "frames/sec rcvd" 5
-scalar SimpleNetwork.router.eth[2].mac "bits/sec sent" 2560
-scalar SimpleNetwork.router.eth[2].mac "bits/sec rcvd" 2560
-scalar SimpleNetwork.router.eth[2].mac "rx channel idle (%)" 100
-scalar SimpleNetwork.router.eth[2].mac "rx channel utilization (%)" 0
-scalar SimpleNetwork.router.eth[2].mac rxPausePkUnits:count 0
-attr interpolationmode none
-attr title "pause units received, count"
-scalar SimpleNetwork.router.eth[2].mac rxPausePkUnits:sum 0
-attr interpolationmode none
-attr title "pause units received, sum"
-scalar SimpleNetwork.router.eth[2].mac txPausePkUnits:count 0
-attr interpolationmode none
-attr title "pause units sent, count"
-scalar SimpleNetwork.router.eth[2].mac txPausePkUnits:sum 0
-attr interpolationmode none
-attr title "pause units sent, sum"
-scalar SimpleNetwork.router.eth[2].mac rxPkOk:count 1
-attr interpolationmode none
-attr source rxPkOk
-attr title "packets received OK, count"
-scalar SimpleNetwork.router.eth[2].mac rxPkOk:sum(packetBytes) 64
-attr interpolationmode none
-attr source rxPkOk
-attr title "packets received OK, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[2].mac txPk:count 1
-attr interpolationmode none
-attr source packetSentToLower
-attr title "packets transmitted, count"
-scalar SimpleNetwork.router.eth[2].mac txPk:sum(packetBytes) 64
-attr interpolationmode none
-attr source packetSentToLower
-attr title "packets transmitted, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[2].mac packetReceivedFromUpper:count 1
-attr interpolationmode none
-attr source packetReceivedFromUpper
-attr title "packet bytes from higher layer, count"
-scalar SimpleNetwork.router.eth[2].mac packetReceivedFromUpper:sum(packetBytes) 46
-attr interpolationmode none
-attr source packetReceivedFromUpper
-attr title "packet bytes from higher layer, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[2].mac passedUpPk:count 1
-attr interpolationmode none
-attr source packetSentToUpper
-attr title "packets passed to higher layer, count"
-scalar SimpleNetwork.router.eth[2].mac passedUpPk:sum(packetBytes) 64
-attr interpolationmode none
-attr source packetSentToUpper
-attr title "packets passed to higher layer, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[2].mac packetDropIncorrectlyReceived:count 0
-attr interpolationmode none
-attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
-attr title "packet drop: incorrectly received, count"
-scalar SimpleNetwork.router.eth[2].mac packetDropIncorrectlyReceived:sum(packetBytes) 0
-attr interpolationmode none
-attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
-attr title "packet drop: incorrectly received, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[2].mac packetDropInterfaceDown:count 0
-attr interpolationmode none
-attr source packetDropReasonIsInterfaceDown(packetDropped)
-attr title "packet drop: interface down, count"
-scalar SimpleNetwork.router.eth[2].mac packetDropInterfaceDown:sum(packetBytes) 0
-attr interpolationmode none
-attr source packetDropReasonIsInterfaceDown(packetDropped)
-attr title "packet drop: interface down, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[2].mac packetDropNotAddressedToUs:count 0
-attr interpolationmode none
-attr source packetDropReasonIsNotAddressedToUs(packetDropped)
-attr title "packet drop: not addressed to us, count"
-scalar SimpleNetwork.router.eth[2].mac packetDropNotAddressedToUs:sum(packetBytes) 0
-attr interpolationmode none
-attr source packetDropReasonIsNotAddressedToUs(packetDropped)
-attr title "packet drop: not addressed to us, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[2].encap pauseSent:count 0
-attr title "pause sent, count"
-scalar SimpleNetwork.router.eth[2].encap pauseSent:sum 0
-attr title "pause sent, sum"
-scalar SimpleNetwork.router.eth[2].encap decapPk:count 1
-attr interpolationmode none
-attr source decapPk
-attr title "packets decapsulated, count"
-scalar SimpleNetwork.router.eth[2].encap decapPk:sum(packetBytes) 46
-attr interpolationmode none
-attr source decapPk
-attr title "packets decapsulated, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[2].encap encapPk:count 1
-attr interpolationmode none
-attr source encapPk
-attr title "packets encapsulated, count"
-scalar SimpleNetwork.router.eth[2].encap encapPk:sum(packetBytes) 28
-attr interpolationmode none
-attr source encapPk
-attr title "packets encapsulated, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[3].mac.queue packetPopped:count 1
-attr interpolationmode none
-attr title "packet popped, count"
-scalar SimpleNetwork.router.eth[3].mac.queue packetPopped:sum(packetBytes) 64
-attr interpolationmode none
-attr title "packet popped, sum(packetBytes)"
-statistic SimpleNetwork.router.eth[3].mac.queue queueingTime:histogram
-field count 1
-field mean 0
-field stddev nan
-field min 0
-field max 0
-field sum 0
-field sqrsum 0
-attr interpolationmode none
-attr source queueingTime(packetPopped)
-attr title "queueing times, histogram"
-attr unit s
-bin	-inf	0
-bin	-0.5	0
-bin	-0.48	0
-bin	-0.46	0
-bin	-0.44	0
-bin	-0.42	0
-bin	-0.4	0
-bin	-0.38	0
-bin	-0.36	0
-bin	-0.34	0
-bin	-0.32	0
-bin	-0.3	0
-bin	-0.28	0
-bin	-0.26	0
-bin	-0.24	0
-bin	-0.22	0
-bin	-0.2	0
-bin	-0.18	0
-bin	-0.16	0
-bin	-0.14	0
-bin	-0.12	0
-bin	-0.1	0
-bin	-0.08	0
-bin	-0.06	0
-bin	-0.04	0
-bin	-0.02	0
-bin	0	1
-bin	0.02	0
-bin	0.04	0
-bin	0.06	0
-bin	0.08	0
-bin	0.1	0
-bin	0.12	0
-bin	0.14	0
-bin	0.16	0
-bin	0.18	0
-bin	0.2	0
-bin	0.22	0
-bin	0.24	0
-bin	0.26	0
-bin	0.28	0
-bin	0.3	0
-bin	0.32	0
-bin	0.34	0
-bin	0.36	0
-bin	0.38	0
-bin	0.4	0
-bin	0.42	0
-bin	0.44	0
-bin	0.46	0
-bin	0.48	0
-bin	0.5	0
-scalar SimpleNetwork.router.eth[3].mac.queue queueLength:max 1
-attr interpolationmode sample-hold
-attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
-attr title "queue length, max"
-scalar SimpleNetwork.router.eth[3].mac.queue queueLength:timeavg 0
-attr interpolationmode sample-hold
-attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
-attr title "queue length, timeavg"
-scalar SimpleNetwork.router.eth[3].mac.queue packetPushed:count 1
-attr interpolationmode none
-attr title "packet pushed, count"
-scalar SimpleNetwork.router.eth[3].mac.queue packetPushed:sum(packetBytes) 64
-attr interpolationmode none
-attr title "packet pushed, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[3].mac.queue packetDropQueueOverflow:count 0
-attr interpolationmode none
-attr source packetDropReasonIsQueueOverflow(packetDropped)
-attr title "packet drops: queue overflow, count"
-scalar SimpleNetwork.router.eth[3].mac.queue packetDropQueueOverflow:sum(packetBytes) 0
-attr interpolationmode none
-attr source packetDropReasonIsQueueOverflow(packetDropped)
-attr title "packet drops: queue overflow, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[3].mac.queue packetRemoved:count 0
-attr interpolationmode none
-attr title "packets removed, count"
-scalar SimpleNetwork.router.eth[3].mac.queue packetRemoved:sum(packetBytes) 0
-attr interpolationmode none
-attr title "packets removed, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[3].mac "simulated time" 0.2
-scalar SimpleNetwork.router.eth[3].mac full-duplex 1
-scalar SimpleNetwork.router.eth[3].mac "frames/sec sent" 5
-scalar SimpleNetwork.router.eth[3].mac "frames/sec rcvd" 10
-scalar SimpleNetwork.router.eth[3].mac "bits/sec sent" 2560
-scalar SimpleNetwork.router.eth[3].mac "bits/sec rcvd" 5120
-scalar SimpleNetwork.router.eth[3].mac "rx channel idle (%)" 100
-scalar SimpleNetwork.router.eth[3].mac "rx channel utilization (%)" 0
-scalar SimpleNetwork.router.eth[3].mac rxPausePkUnits:count 0
-attr interpolationmode none
-attr title "pause units received, count"
-scalar SimpleNetwork.router.eth[3].mac rxPausePkUnits:sum 0
-attr interpolationmode none
-attr title "pause units received, sum"
-scalar SimpleNetwork.router.eth[3].mac txPausePkUnits:count 0
-attr interpolationmode none
-attr title "pause units sent, count"
-scalar SimpleNetwork.router.eth[3].mac txPausePkUnits:sum 0
-attr interpolationmode none
-attr title "pause units sent, sum"
-scalar SimpleNetwork.router.eth[3].mac rxPkOk:count 2
-attr interpolationmode none
-attr source rxPkOk
-attr title "packets received OK, count"
-scalar SimpleNetwork.router.eth[3].mac rxPkOk:sum(packetBytes) 128
-attr interpolationmode none
-attr source rxPkOk
-attr title "packets received OK, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[3].mac txPk:count 1
-attr interpolationmode none
-attr source packetSentToLower
-attr title "packets transmitted, count"
-scalar SimpleNetwork.router.eth[3].mac txPk:sum(packetBytes) 64
-attr interpolationmode none
-attr source packetSentToLower
-attr title "packets transmitted, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[3].mac packetReceivedFromUpper:count 1
-attr interpolationmode none
-attr source packetReceivedFromUpper
-attr title "packet bytes from higher layer, count"
-scalar SimpleNetwork.router.eth[3].mac packetReceivedFromUpper:sum(packetBytes) 46
-attr interpolationmode none
-attr source packetReceivedFromUpper
-attr title "packet bytes from higher layer, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[3].mac passedUpPk:count 2
-attr interpolationmode none
-attr source packetSentToUpper
-attr title "packets passed to higher layer, count"
-scalar SimpleNetwork.router.eth[3].mac passedUpPk:sum(packetBytes) 128
-attr interpolationmode none
-attr source packetSentToUpper
-attr title "packets passed to higher layer, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[3].mac packetDropIncorrectlyReceived:count 0
-attr interpolationmode none
-attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
-attr title "packet drop: incorrectly received, count"
-scalar SimpleNetwork.router.eth[3].mac packetDropIncorrectlyReceived:sum(packetBytes) 0
-attr interpolationmode none
-attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
-attr title "packet drop: incorrectly received, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[3].mac packetDropInterfaceDown:count 0
-attr interpolationmode none
-attr source packetDropReasonIsInterfaceDown(packetDropped)
-attr title "packet drop: interface down, count"
-scalar SimpleNetwork.router.eth[3].mac packetDropInterfaceDown:sum(packetBytes) 0
-attr interpolationmode none
-attr source packetDropReasonIsInterfaceDown(packetDropped)
-attr title "packet drop: interface down, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[3].mac packetDropNotAddressedToUs:count 0
-attr interpolationmode none
-attr source packetDropReasonIsNotAddressedToUs(packetDropped)
-attr title "packet drop: not addressed to us, count"
-scalar SimpleNetwork.router.eth[3].mac packetDropNotAddressedToUs:sum(packetBytes) 0
-attr interpolationmode none
-attr source packetDropReasonIsNotAddressedToUs(packetDropped)
-attr title "packet drop: not addressed to us, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[3].encap pauseSent:count 0
-attr title "pause sent, count"
-scalar SimpleNetwork.router.eth[3].encap pauseSent:sum 0
-attr title "pause sent, sum"
-scalar SimpleNetwork.router.eth[3].encap decapPk:count 2
-attr interpolationmode none
-attr source decapPk
-attr title "packets decapsulated, count"
-scalar SimpleNetwork.router.eth[3].encap decapPk:sum(packetBytes) 92
-attr interpolationmode none
-attr source decapPk
-attr title "packets decapsulated, sum(packetBytes)"
-scalar SimpleNetwork.router.eth[3].encap encapPk:count 1
-attr interpolationmode none
-attr source encapPk
-attr title "packets encapsulated, count"
-scalar SimpleNetwork.router.eth[3].encap encapPk:sum(packetBytes) 28
-attr interpolationmode none
-attr source encapPk
-attr title "packets encapsulated, sum(packetBytes)"
-scalar SimpleNetwork.router.ipv4.ip packetDropAddressResolutionFailed:count 0
+scalar SimpleNetwork.router1.ipv4.ip packetDropAddressResolutionFailed:count 0
 attr interpolationmode none
 attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
 attr title "packet drop: address resolution failed, count"
-scalar SimpleNetwork.router.ipv4.ip packetDropAddressResolutionFailed:sum(packetBytes) 0
+scalar SimpleNetwork.router1.ipv4.ip packetDropAddressResolutionFailed:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
 attr title "packet drop: address resolution failed, sum(packetBytes)"
-scalar SimpleNetwork.router.ipv4.ip packetDropHopLimitReached:count 0
+scalar SimpleNetwork.router1.ipv4.ip packetDropHopLimitReached:count 0
 attr interpolationmode none
 attr source packetDropReasonIsHopLimitReached(packetDropped)
 attr title "packet drop: hop limit reached, count"
-scalar SimpleNetwork.router.ipv4.ip packetDropHopLimitReached:sum(packetBytes) 0
+scalar SimpleNetwork.router1.ipv4.ip packetDropHopLimitReached:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetDropReasonIsHopLimitReached(packetDropped)
 attr title "packet drop: hop limit reached, sum(packetBytes)"
-scalar SimpleNetwork.router.ipv4.ip packetDropForwardingDisabled:count 0
+scalar SimpleNetwork.router1.ipv4.ip packetDropForwardingDisabled:count 0
 attr interpolationmode none
 attr source packetDropReasonIsForwardingDisabled(packetDropped)
 attr title "packet drop: forwarding disabled, count"
-scalar SimpleNetwork.router.ipv4.ip packetDropForwardingDisabled:sum(packetBytes) 0
+scalar SimpleNetwork.router1.ipv4.ip packetDropForwardingDisabled:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetDropReasonIsForwardingDisabled(packetDropped)
 attr title "packet drop: forwarding disabled, sum(packetBytes)"
-scalar SimpleNetwork.router.ipv4.ip packetDropNoInterfaceFound:count 0
+scalar SimpleNetwork.router1.ipv4.ip packetDropNoInterfaceFound:count 0
 attr interpolationmode none
 attr source packetDropReasonIsNoInterfaceFound(packetDropped)
 attr title "packet drop: no interface found, count"
-scalar SimpleNetwork.router.ipv4.ip packetDropNoInterfaceFound:sum(packetBytes) 0
+scalar SimpleNetwork.router1.ipv4.ip packetDropNoInterfaceFound:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetDropReasonIsNoInterfaceFound(packetDropped)
 attr title "packet drop: no interface found, sum(packetBytes)"
-scalar SimpleNetwork.router.ipv4.ip packetDropNoRouteFound:count 0
+scalar SimpleNetwork.router1.ipv4.ip packetDropNoRouteFound:count 0
 attr interpolationmode none
 attr source packetDropReasonIsNoRouteFound(packetDropped)
 attr title "packet drop: no route found, count"
-scalar SimpleNetwork.router.ipv4.ip packetDropNoRouteFound:sum(packetBytes) 0
+scalar SimpleNetwork.router1.ipv4.ip packetDropNoRouteFound:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetDropReasonIsNoRouteFound(packetDropped)
 attr title "packet drop: no route found, sum(packetBytes)"
-scalar SimpleNetwork.router.ipv4.ip packetDropUndefined:count 0
+scalar SimpleNetwork.router1.ipv4.ip packetDropUndefined:count 0
 attr interpolationmode none
 attr source packetDropReasonIsUndefined(packetDropped)
 attr title "packet drop: undefined, count"
-scalar SimpleNetwork.router.ipv4.ip packetDropUndefined:sum(packetBytes) 0
+scalar SimpleNetwork.router1.ipv4.ip packetDropUndefined:sum(packetBytes) 0
 attr interpolationmode none
 attr source packetDropReasonIsUndefined(packetDropped)
 attr title "packet drop: undefined, sum(packetBytes)"
-scalar SimpleNetwork.router.ipv4.arp arpResolutionFailed:count 0
+scalar SimpleNetwork.router1.ipv4.arp arpResolutionFailed:count 0
 attr title "ARP failed resolutions, count"
-scalar SimpleNetwork.router.ipv4.arp arpResolutionCompleted:count 0
+scalar SimpleNetwork.router1.ipv4.arp arpResolutionCompleted:count 0
 attr title "ARP completed resolutions, count"
-scalar SimpleNetwork.router.ipv4.arp arpResolutionInitiated:count 0
+scalar SimpleNetwork.router1.ipv4.arp arpResolutionInitiated:count 0
 attr title "ARP initiated resolutions, count"
-scalar SimpleNetwork.router.ipv4.arp arpReplySent:count 0
+scalar SimpleNetwork.router1.ipv4.arp arpReplySent:count 0
 attr source arpReplySent
 attr title "ARP replies sent, count"
-scalar SimpleNetwork.router.ipv4.arp arpReplySent:sum(packetBytes) 0
+scalar SimpleNetwork.router1.ipv4.arp arpReplySent:sum(packetBytes) 0
 attr source arpReplySent
 attr title "ARP replies sent, sum(packetBytes)"
-scalar SimpleNetwork.router.ipv4.arp arpRequestSent:count 0
+scalar SimpleNetwork.router1.ipv4.arp arpRequestSent:count 0
 attr source arpRequestSent
 attr title "ARP request sent, count"
-scalar SimpleNetwork.router.ipv4.arp arpRequestSent:sum(packetBytes) 0
+scalar SimpleNetwork.router1.ipv4.arp arpRequestSent:sum(packetBytes) 0
+attr source arpRequestSent
+attr title "ARP request sent, sum(packetBytes)"
+scalar SimpleNetwork.router2.lo[0].lo rcvdPkFromHl:count 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, count"
+scalar SimpleNetwork.router2.lo[0].lo rcvdPkFromHl:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, sum(packetBytes)"
+scalar SimpleNetwork.router2.lo[0].lo passedUpPk:count 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar SimpleNetwork.router2.lo[0].lo passedUpPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[0].mac.queue packetPopped:count 1
+attr interpolationmode none
+attr title "packet popped, count"
+scalar SimpleNetwork.router2.eth[0].mac.queue packetPopped:sum(packetBytes) 64
+attr interpolationmode none
+attr title "packet popped, sum(packetBytes)"
+statistic SimpleNetwork.router2.eth[0].mac.queue queueingTime:histogram
+field count 1
+field mean 0
+field stddev nan
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, histogram"
+attr unit s
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.34	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.22	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.16	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.1	0
+bin	-0.08	0
+bin	-0.06	0
+bin	-0.04	0
+bin	-0.02	0
+bin	0	1
+bin	0.02	0
+bin	0.04	0
+bin	0.06	0
+bin	0.08	0
+bin	0.1	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16	0
+bin	0.18	0
+bin	0.2	0
+bin	0.22	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.3	0
+bin	0.32	0
+bin	0.34	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42	0
+bin	0.44	0
+bin	0.46	0
+bin	0.48	0
+bin	0.5	0
+scalar SimpleNetwork.router2.eth[0].mac.queue queueLength:max 1
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, max"
+scalar SimpleNetwork.router2.eth[0].mac.queue queueLength:timeavg 0
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, timeavg"
+scalar SimpleNetwork.router2.eth[0].mac.queue packetPushed:count 1
+attr interpolationmode none
+attr title "packet pushed, count"
+scalar SimpleNetwork.router2.eth[0].mac.queue packetPushed:sum(packetBytes) 64
+attr interpolationmode none
+attr title "packet pushed, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[0].mac.queue packetDropQueueOverflow:count 0
+attr interpolationmode none
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, count"
+scalar SimpleNetwork.router2.eth[0].mac.queue packetDropQueueOverflow:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[0].mac.queue packetRemoved:count 0
+attr interpolationmode none
+attr title "packets removed, count"
+scalar SimpleNetwork.router2.eth[0].mac.queue packetRemoved:sum(packetBytes) 0
+attr interpolationmode none
+attr title "packets removed, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[0].mac "simulated time" 0.3
+scalar SimpleNetwork.router2.eth[0].mac full-duplex 1
+scalar SimpleNetwork.router2.eth[0].mac "frames/sec sent" 3.3333333333333
+scalar SimpleNetwork.router2.eth[0].mac "frames/sec rcvd" 10
+scalar SimpleNetwork.router2.eth[0].mac "bits/sec sent" 1706.6666666667
+scalar SimpleNetwork.router2.eth[0].mac "bits/sec rcvd" 30826.666666667
+scalar SimpleNetwork.router2.eth[0].mac "rx channel idle (%)" 100
+scalar SimpleNetwork.router2.eth[0].mac "rx channel utilization (%)" 0
+scalar SimpleNetwork.router2.eth[0].mac rxPausePkUnits:count 0
+attr interpolationmode none
+attr title "pause units received, count"
+scalar SimpleNetwork.router2.eth[0].mac rxPausePkUnits:sum 0
+attr interpolationmode none
+attr title "pause units received, sum"
+scalar SimpleNetwork.router2.eth[0].mac txPausePkUnits:count 0
+attr interpolationmode none
+attr title "pause units sent, count"
+scalar SimpleNetwork.router2.eth[0].mac txPausePkUnits:sum 0
+attr interpolationmode none
+attr title "pause units sent, sum"
+scalar SimpleNetwork.router2.eth[0].mac rxPkOk:count 3
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, count"
+scalar SimpleNetwork.router2.eth[0].mac rxPkOk:sum(packetBytes) 1156
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[0].mac txPk:count 1
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, count"
+scalar SimpleNetwork.router2.eth[0].mac txPk:sum(packetBytes) 64
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[0].mac packetReceivedFromUpper:count 1
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, count"
+scalar SimpleNetwork.router2.eth[0].mac packetReceivedFromUpper:sum(packetBytes) 46
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[0].mac passedUpPk:count 3
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar SimpleNetwork.router2.eth[0].mac passedUpPk:sum(packetBytes) 1156
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[0].mac packetDropIncorrectlyReceived:count 0
+attr interpolationmode none
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, count"
+scalar SimpleNetwork.router2.eth[0].mac packetDropIncorrectlyReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[0].mac packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, count"
+scalar SimpleNetwork.router2.eth[0].mac packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[0].mac packetDropNotAddressedToUs:count 0
+attr interpolationmode none
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, count"
+scalar SimpleNetwork.router2.eth[0].mac packetDropNotAddressedToUs:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[0].encap pauseSent:count 0
+attr title "pause sent, count"
+scalar SimpleNetwork.router2.eth[0].encap pauseSent:sum 0
+attr title "pause sent, sum"
+scalar SimpleNetwork.router2.eth[0].encap decapPk:count 3
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, count"
+scalar SimpleNetwork.router2.eth[0].encap decapPk:sum(packetBytes) 1102
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[0].encap encapPk:count 1
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, count"
+scalar SimpleNetwork.router2.eth[0].encap encapPk:sum(packetBytes) 28
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[1].mac.queue packetPopped:count 3
+attr interpolationmode none
+attr title "packet popped, count"
+scalar SimpleNetwork.router2.eth[1].mac.queue packetPopped:sum(packetBytes) 1156
+attr interpolationmode none
+attr title "packet popped, sum(packetBytes)"
+statistic SimpleNetwork.router2.eth[1].mac.queue queueingTime:histogram
+field count 3
+field mean 0
+field stddev 0
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, histogram"
+attr unit s
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.34	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.22	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.16	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.1	0
+bin	-0.08	0
+bin	-0.06	0
+bin	-0.04	0
+bin	-0.02	0
+bin	0	3
+bin	0.02	0
+bin	0.04	0
+bin	0.06	0
+bin	0.08	0
+bin	0.1	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16	0
+bin	0.18	0
+bin	0.2	0
+bin	0.22	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.3	0
+bin	0.32	0
+bin	0.34	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42	0
+bin	0.44	0
+bin	0.46	0
+bin	0.48	0
+bin	0.5	0
+scalar SimpleNetwork.router2.eth[1].mac.queue queueLength:max 1
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, max"
+scalar SimpleNetwork.router2.eth[1].mac.queue queueLength:timeavg 0
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, timeavg"
+scalar SimpleNetwork.router2.eth[1].mac.queue packetPushed:count 3
+attr interpolationmode none
+attr title "packet pushed, count"
+scalar SimpleNetwork.router2.eth[1].mac.queue packetPushed:sum(packetBytes) 1156
+attr interpolationmode none
+attr title "packet pushed, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[1].mac.queue packetDropQueueOverflow:count 0
+attr interpolationmode none
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, count"
+scalar SimpleNetwork.router2.eth[1].mac.queue packetDropQueueOverflow:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[1].mac.queue packetRemoved:count 0
+attr interpolationmode none
+attr title "packets removed, count"
+scalar SimpleNetwork.router2.eth[1].mac.queue packetRemoved:sum(packetBytes) 0
+attr interpolationmode none
+attr title "packets removed, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[1].mac "simulated time" 0.3
+scalar SimpleNetwork.router2.eth[1].mac full-duplex 1
+scalar SimpleNetwork.router2.eth[1].mac "frames/sec sent" 10
+scalar SimpleNetwork.router2.eth[1].mac "frames/sec rcvd" 3.3333333333333
+scalar SimpleNetwork.router2.eth[1].mac "bits/sec sent" 30826.666666667
+scalar SimpleNetwork.router2.eth[1].mac "bits/sec rcvd" 1706.6666666667
+scalar SimpleNetwork.router2.eth[1].mac "rx channel idle (%)" 100
+scalar SimpleNetwork.router2.eth[1].mac "rx channel utilization (%)" 0
+scalar SimpleNetwork.router2.eth[1].mac rxPausePkUnits:count 0
+attr interpolationmode none
+attr title "pause units received, count"
+scalar SimpleNetwork.router2.eth[1].mac rxPausePkUnits:sum 0
+attr interpolationmode none
+attr title "pause units received, sum"
+scalar SimpleNetwork.router2.eth[1].mac txPausePkUnits:count 0
+attr interpolationmode none
+attr title "pause units sent, count"
+scalar SimpleNetwork.router2.eth[1].mac txPausePkUnits:sum 0
+attr interpolationmode none
+attr title "pause units sent, sum"
+scalar SimpleNetwork.router2.eth[1].mac rxPkOk:count 1
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, count"
+scalar SimpleNetwork.router2.eth[1].mac rxPkOk:sum(packetBytes) 64
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[1].mac txPk:count 3
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, count"
+scalar SimpleNetwork.router2.eth[1].mac txPk:sum(packetBytes) 1156
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[1].mac packetReceivedFromUpper:count 3
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, count"
+scalar SimpleNetwork.router2.eth[1].mac packetReceivedFromUpper:sum(packetBytes) 1138
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[1].mac passedUpPk:count 1
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar SimpleNetwork.router2.eth[1].mac passedUpPk:sum(packetBytes) 64
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[1].mac packetDropIncorrectlyReceived:count 0
+attr interpolationmode none
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, count"
+scalar SimpleNetwork.router2.eth[1].mac packetDropIncorrectlyReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[1].mac packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, count"
+scalar SimpleNetwork.router2.eth[1].mac packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[1].mac packetDropNotAddressedToUs:count 0
+attr interpolationmode none
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, count"
+scalar SimpleNetwork.router2.eth[1].mac packetDropNotAddressedToUs:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[1].encap pauseSent:count 0
+attr title "pause sent, count"
+scalar SimpleNetwork.router2.eth[1].encap pauseSent:sum 0
+attr title "pause sent, sum"
+scalar SimpleNetwork.router2.eth[1].encap decapPk:count 1
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, count"
+scalar SimpleNetwork.router2.eth[1].encap decapPk:sum(packetBytes) 46
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[1].encap encapPk:count 3
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, count"
+scalar SimpleNetwork.router2.eth[1].encap encapPk:sum(packetBytes) 1084
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[2].mac.queue packetPopped:count 3
+attr interpolationmode none
+attr title "packet popped, count"
+scalar SimpleNetwork.router2.eth[2].mac.queue packetPopped:sum(packetBytes) 1156
+attr interpolationmode none
+attr title "packet popped, sum(packetBytes)"
+statistic SimpleNetwork.router2.eth[2].mac.queue queueingTime:histogram
+field count 3
+field mean 0
+field stddev 0
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, histogram"
+attr unit s
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.34	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.22	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.16	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.1	0
+bin	-0.08	0
+bin	-0.06	0
+bin	-0.04	0
+bin	-0.02	0
+bin	0	3
+bin	0.02	0
+bin	0.04	0
+bin	0.06	0
+bin	0.08	0
+bin	0.1	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16	0
+bin	0.18	0
+bin	0.2	0
+bin	0.22	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.3	0
+bin	0.32	0
+bin	0.34	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42	0
+bin	0.44	0
+bin	0.46	0
+bin	0.48	0
+bin	0.5	0
+scalar SimpleNetwork.router2.eth[2].mac.queue queueLength:max 1
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, max"
+scalar SimpleNetwork.router2.eth[2].mac.queue queueLength:timeavg 0
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, timeavg"
+scalar SimpleNetwork.router2.eth[2].mac.queue packetPushed:count 3
+attr interpolationmode none
+attr title "packet pushed, count"
+scalar SimpleNetwork.router2.eth[2].mac.queue packetPushed:sum(packetBytes) 1156
+attr interpolationmode none
+attr title "packet pushed, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[2].mac.queue packetDropQueueOverflow:count 0
+attr interpolationmode none
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, count"
+scalar SimpleNetwork.router2.eth[2].mac.queue packetDropQueueOverflow:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[2].mac.queue packetRemoved:count 0
+attr interpolationmode none
+attr title "packets removed, count"
+scalar SimpleNetwork.router2.eth[2].mac.queue packetRemoved:sum(packetBytes) 0
+attr interpolationmode none
+attr title "packets removed, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[2].mac "simulated time" 0.3
+scalar SimpleNetwork.router2.eth[2].mac full-duplex 1
+scalar SimpleNetwork.router2.eth[2].mac "frames/sec sent" 10
+scalar SimpleNetwork.router2.eth[2].mac "frames/sec rcvd" 3.3333333333333
+scalar SimpleNetwork.router2.eth[2].mac "bits/sec sent" 30826.666666667
+scalar SimpleNetwork.router2.eth[2].mac "bits/sec rcvd" 1706.6666666667
+scalar SimpleNetwork.router2.eth[2].mac "rx channel idle (%)" 100
+scalar SimpleNetwork.router2.eth[2].mac "rx channel utilization (%)" 0
+scalar SimpleNetwork.router2.eth[2].mac rxPausePkUnits:count 0
+attr interpolationmode none
+attr title "pause units received, count"
+scalar SimpleNetwork.router2.eth[2].mac rxPausePkUnits:sum 0
+attr interpolationmode none
+attr title "pause units received, sum"
+scalar SimpleNetwork.router2.eth[2].mac txPausePkUnits:count 0
+attr interpolationmode none
+attr title "pause units sent, count"
+scalar SimpleNetwork.router2.eth[2].mac txPausePkUnits:sum 0
+attr interpolationmode none
+attr title "pause units sent, sum"
+scalar SimpleNetwork.router2.eth[2].mac rxPkOk:count 1
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, count"
+scalar SimpleNetwork.router2.eth[2].mac rxPkOk:sum(packetBytes) 64
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[2].mac txPk:count 3
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, count"
+scalar SimpleNetwork.router2.eth[2].mac txPk:sum(packetBytes) 1156
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[2].mac packetReceivedFromUpper:count 3
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, count"
+scalar SimpleNetwork.router2.eth[2].mac packetReceivedFromUpper:sum(packetBytes) 1138
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[2].mac passedUpPk:count 1
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar SimpleNetwork.router2.eth[2].mac passedUpPk:sum(packetBytes) 64
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[2].mac packetDropIncorrectlyReceived:count 0
+attr interpolationmode none
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, count"
+scalar SimpleNetwork.router2.eth[2].mac packetDropIncorrectlyReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[2].mac packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, count"
+scalar SimpleNetwork.router2.eth[2].mac packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[2].mac packetDropNotAddressedToUs:count 0
+attr interpolationmode none
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, count"
+scalar SimpleNetwork.router2.eth[2].mac packetDropNotAddressedToUs:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[2].encap pauseSent:count 0
+attr title "pause sent, count"
+scalar SimpleNetwork.router2.eth[2].encap pauseSent:sum 0
+attr title "pause sent, sum"
+scalar SimpleNetwork.router2.eth[2].encap decapPk:count 1
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, count"
+scalar SimpleNetwork.router2.eth[2].encap decapPk:sum(packetBytes) 46
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[2].encap encapPk:count 3
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, count"
+scalar SimpleNetwork.router2.eth[2].encap encapPk:sum(packetBytes) 1084
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[3].mac.queue packetPopped:count 3
+attr interpolationmode none
+attr title "packet popped, count"
+scalar SimpleNetwork.router2.eth[3].mac.queue packetPopped:sum(packetBytes) 1156
+attr interpolationmode none
+attr title "packet popped, sum(packetBytes)"
+statistic SimpleNetwork.router2.eth[3].mac.queue queueingTime:histogram
+field count 3
+field mean 0
+field stddev 0
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, histogram"
+attr unit s
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.34	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.22	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.16	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.1	0
+bin	-0.08	0
+bin	-0.06	0
+bin	-0.04	0
+bin	-0.02	0
+bin	0	3
+bin	0.02	0
+bin	0.04	0
+bin	0.06	0
+bin	0.08	0
+bin	0.1	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16	0
+bin	0.18	0
+bin	0.2	0
+bin	0.22	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.3	0
+bin	0.32	0
+bin	0.34	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42	0
+bin	0.44	0
+bin	0.46	0
+bin	0.48	0
+bin	0.5	0
+scalar SimpleNetwork.router2.eth[3].mac.queue queueLength:max 1
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, max"
+scalar SimpleNetwork.router2.eth[3].mac.queue queueLength:timeavg 0
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, timeavg"
+scalar SimpleNetwork.router2.eth[3].mac.queue packetPushed:count 3
+attr interpolationmode none
+attr title "packet pushed, count"
+scalar SimpleNetwork.router2.eth[3].mac.queue packetPushed:sum(packetBytes) 1156
+attr interpolationmode none
+attr title "packet pushed, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[3].mac.queue packetDropQueueOverflow:count 0
+attr interpolationmode none
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, count"
+scalar SimpleNetwork.router2.eth[3].mac.queue packetDropQueueOverflow:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[3].mac.queue packetRemoved:count 0
+attr interpolationmode none
+attr title "packets removed, count"
+scalar SimpleNetwork.router2.eth[3].mac.queue packetRemoved:sum(packetBytes) 0
+attr interpolationmode none
+attr title "packets removed, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[3].mac "simulated time" 0.3
+scalar SimpleNetwork.router2.eth[3].mac full-duplex 1
+scalar SimpleNetwork.router2.eth[3].mac "frames/sec sent" 10
+scalar SimpleNetwork.router2.eth[3].mac "frames/sec rcvd" 3.3333333333333
+scalar SimpleNetwork.router2.eth[3].mac "bits/sec sent" 30826.666666667
+scalar SimpleNetwork.router2.eth[3].mac "bits/sec rcvd" 1706.6666666667
+scalar SimpleNetwork.router2.eth[3].mac "rx channel idle (%)" 100
+scalar SimpleNetwork.router2.eth[3].mac "rx channel utilization (%)" 0
+scalar SimpleNetwork.router2.eth[3].mac rxPausePkUnits:count 0
+attr interpolationmode none
+attr title "pause units received, count"
+scalar SimpleNetwork.router2.eth[3].mac rxPausePkUnits:sum 0
+attr interpolationmode none
+attr title "pause units received, sum"
+scalar SimpleNetwork.router2.eth[3].mac txPausePkUnits:count 0
+attr interpolationmode none
+attr title "pause units sent, count"
+scalar SimpleNetwork.router2.eth[3].mac txPausePkUnits:sum 0
+attr interpolationmode none
+attr title "pause units sent, sum"
+scalar SimpleNetwork.router2.eth[3].mac rxPkOk:count 1
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, count"
+scalar SimpleNetwork.router2.eth[3].mac rxPkOk:sum(packetBytes) 64
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[3].mac txPk:count 3
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, count"
+scalar SimpleNetwork.router2.eth[3].mac txPk:sum(packetBytes) 1156
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[3].mac packetReceivedFromUpper:count 3
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, count"
+scalar SimpleNetwork.router2.eth[3].mac packetReceivedFromUpper:sum(packetBytes) 1138
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[3].mac passedUpPk:count 1
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar SimpleNetwork.router2.eth[3].mac passedUpPk:sum(packetBytes) 64
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[3].mac packetDropIncorrectlyReceived:count 0
+attr interpolationmode none
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, count"
+scalar SimpleNetwork.router2.eth[3].mac packetDropIncorrectlyReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[3].mac packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, count"
+scalar SimpleNetwork.router2.eth[3].mac packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[3].mac packetDropNotAddressedToUs:count 0
+attr interpolationmode none
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, count"
+scalar SimpleNetwork.router2.eth[3].mac packetDropNotAddressedToUs:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[3].encap pauseSent:count 0
+attr title "pause sent, count"
+scalar SimpleNetwork.router2.eth[3].encap pauseSent:sum 0
+attr title "pause sent, sum"
+scalar SimpleNetwork.router2.eth[3].encap decapPk:count 1
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, count"
+scalar SimpleNetwork.router2.eth[3].encap decapPk:sum(packetBytes) 46
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, sum(packetBytes)"
+scalar SimpleNetwork.router2.eth[3].encap encapPk:count 3
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, count"
+scalar SimpleNetwork.router2.eth[3].encap encapPk:sum(packetBytes) 1084
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, sum(packetBytes)"
+scalar SimpleNetwork.router2.ipv4.ip packetDropAddressResolutionFailed:count 0
+attr interpolationmode none
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, count"
+scalar SimpleNetwork.router2.ipv4.ip packetDropAddressResolutionFailed:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, sum(packetBytes)"
+scalar SimpleNetwork.router2.ipv4.ip packetDropHopLimitReached:count 0
+attr interpolationmode none
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, count"
+scalar SimpleNetwork.router2.ipv4.ip packetDropHopLimitReached:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, sum(packetBytes)"
+scalar SimpleNetwork.router2.ipv4.ip packetDropForwardingDisabled:count 0
+attr interpolationmode none
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, count"
+scalar SimpleNetwork.router2.ipv4.ip packetDropForwardingDisabled:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, sum(packetBytes)"
+scalar SimpleNetwork.router2.ipv4.ip packetDropNoInterfaceFound:count 0
+attr interpolationmode none
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, count"
+scalar SimpleNetwork.router2.ipv4.ip packetDropNoInterfaceFound:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, sum(packetBytes)"
+scalar SimpleNetwork.router2.ipv4.ip packetDropNoRouteFound:count 0
+attr interpolationmode none
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, count"
+scalar SimpleNetwork.router2.ipv4.ip packetDropNoRouteFound:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, sum(packetBytes)"
+scalar SimpleNetwork.router2.ipv4.ip packetDropUndefined:count 0
+attr interpolationmode none
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, count"
+scalar SimpleNetwork.router2.ipv4.ip packetDropUndefined:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, sum(packetBytes)"
+scalar SimpleNetwork.router2.ipv4.arp arpResolutionFailed:count 0
+attr title "ARP failed resolutions, count"
+scalar SimpleNetwork.router2.ipv4.arp arpResolutionCompleted:count 0
+attr title "ARP completed resolutions, count"
+scalar SimpleNetwork.router2.ipv4.arp arpResolutionInitiated:count 0
+attr title "ARP initiated resolutions, count"
+scalar SimpleNetwork.router2.ipv4.arp arpReplySent:count 0
+attr source arpReplySent
+attr title "ARP replies sent, count"
+scalar SimpleNetwork.router2.ipv4.arp arpReplySent:sum(packetBytes) 0
+attr source arpReplySent
+attr title "ARP replies sent, sum(packetBytes)"
+scalar SimpleNetwork.router2.ipv4.arp arpRequestSent:count 0
+attr source arpRequestSent
+attr title "ARP request sent, count"
+scalar SimpleNetwork.router2.ipv4.arp arpRequestSent:sum(packetBytes) 0
 attr source arpRequestSent
 attr title "ARP request sent, sum(packetBytes)"
 

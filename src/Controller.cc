@@ -32,7 +32,7 @@ void Controller::handleMessage(cMessage *msg) {
     Topology topology = makeTopologyFromCurrentNetwork();
     std::cout << "Number of nodes is " << topology.getNodeNumber() << '\n';
 
-    Tunnel tunnel = getSpanningTree(topology, "server");
+    Tunnel tunnel = getSpanningTree(topology, "server5");
 
     addMulticastTunnel(this, tunnel, inet::Ipv4Address("225.0.0.2"));
 

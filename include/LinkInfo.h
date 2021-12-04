@@ -9,7 +9,8 @@ namespace TrafficEngineering  {
 struct LinkInfo {
     std::string localNodeName;
     std::string remoteNodeName;
-    std::string interfaceName;
+    std::string localInterfaceName;
+    std::string remoteInterfaceName;
 };
 
 } // namespace TrafficEngineering

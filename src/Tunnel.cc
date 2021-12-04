@@ -12,11 +12,12 @@ bool Tunnel::addLink(const Link &link) {
     }
 
     _nodes.insert({remoteNodeName, Node(remoteNodeName)});
+    _inInterface.insert({remoteNodeName, link.getRemoteInterfaceName()});
 
     Node &localNode = getNodeByName(localNodeName);
     Node &remoteNode = getNodeByName(remoteNodeName);
 
-    localNode.addInterface(&remoteNode, {localNodeName, remoteNodeName, link.getInterface()});
+    localNode.addInterface(&remoteNode, {localNodeName, remoteNodeName, link.getLocalInterfaceName(), link.getRemoteInterfaceName()});
 
     return true;
 }
@@ -29,6 +30,10 @@ std::vector<const Node *> Tunnel::getDFSOrder() const {
     std::vector<const Node *> result;
     dfs(_root, result);
     return result;
+}
+
+const std::string &Tunnel::getInInterface(const std::string &nodeName) const {
+    return _inInterface.at(nodeName);
 }
 
 void Tunnel::dfs(const Node &node, std::vector<const Node *> &result) const {

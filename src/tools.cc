@@ -18,6 +18,13 @@ void buildSpanningTree(const Node &node, std::map<std::string, bool> &visited, T
     }
 }
 
+std::string getGateName(omnetpp::cGate *gate) {
+    std::string result = std::string(gate->getBaseName());
+    result.pop_back();
+    result += std::to_string(gate->getIndex());
+    return result;
+}
+
 } // namespace
 
 Topology makeTopology(omnetpp::cTopology &topology) {
@@ -29,12 +36,11 @@ Topology makeTopology(omnetpp::cTopology &topology) {
             if (gate->getType() == omnetpp::cGate::INPUT) {
                 continue;
             }
-            std::string begin = module->getName();
-            std::string end = gate->getNextGate()->getOwnerModule()->getFullName();
-            std::string interface = std::string(gate->getBaseName());
-            interface.pop_back();
-            interface += std::to_string(gate->getIndex());
-            result.addLink({begin, end, interface});
+            std::string localNodeName = module->getName();
+            std::string remoteNodeName = gate->getNextGate()->getOwnerModule()->getFullName();
+            std::string localinterfaceName = getGateName(gate);
+            std::string remoteInterfaceName = getGateName(gate->getNextGate());
+            result.addLink({localNodeName, remoteNodeName, localinterfaceName, remoteInterfaceName});
         }
     }
     return result;
