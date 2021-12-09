@@ -9,7 +9,7 @@ void createUdpBasicApp(omnetpp::cModule *controller,
                        const AppDescription &appDescription) {
 
     auto *messageSource = controller->getModuleByPath(appOwnerName.c_str());
-    auto *dispatcher = server->getSubmodule("at");
+    auto *dispatcher = messageSource->getSubmodule("at");
 
     auto *applicationFactory = omnetpp::cModuleType::get("inet.applications.udpapp.UdpBasicApp");
     auto *app = applicationFactory->create(appName.c_str(), messageSource);

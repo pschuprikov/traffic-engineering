@@ -40,6 +40,7 @@ OBJS = \
     $O/Link.o \
     $O/multicast.o \
     $O/Node.o \
+    $O/SimulationState.o \
     $O/tools.o \
     $O/Topology.o \
     $O/Tunnel.o
