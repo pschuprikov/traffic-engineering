@@ -16,11 +16,12 @@ struct AppDescription {
     double stopTime;
     double sendInterval;
     bool joinLocalMulticastGroups = true;
+
+    std::string appName;
+    std::string appOwnerName;
 };
 
 void createUdpBasicApp(omnetpp::cModule *controller,
-                       const std::string &appName,
-                       const std::string &appOwnerName,
                        const AppDescription &appDescription);
 
 } // namespace TrafficEngineering

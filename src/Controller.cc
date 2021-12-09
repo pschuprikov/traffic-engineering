@@ -5,6 +5,7 @@
 #include "applications.h"
 #include "multicast.h"
 #include "tools.h"
+#include "SimulationState.h"
 
 
 using namespace TrafficEngineering;
@@ -33,6 +34,10 @@ void Controller::handleMessage(cMessage *msg) {
     Topology topology = makeTopologyFromCurrentNetwork();
     std::cout << "Number of nodes is " << topology.getNodeNumber() << '\n';
 
+    for (const auto &node : topology.getAllNodeNames()) {
+        std::cout << node << '\n';
+    }
+
     std::string multicastGroup = "225.0.0.2";
     std::string messageSource = "server5";
 
@@ -51,14 +56,9 @@ void Controller::handleMessage(cMessage *msg) {
     }
     std::cout << '\n';
 
-    AppDescription appDescription;
-    appDescription.destPort = 100;
-    appDescription.messageLength = 500;
-    appDescription.sendInterval = 0.1;
-    appDescription.startTime = 0.15;
-    appDescription.stopTime = 0.2;
-    appDescription.destAddresses = multicastGroup;
-    createUdpBasicApp(this, "app", messageSource, appDescription);
+    auto &state = SimulationState::getInstance({messageSource});
+
+    createUdpBasicApp(this, state.getNextApp());
 
     send(msg, "out");
 }

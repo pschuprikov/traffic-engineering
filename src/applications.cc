@@ -4,15 +4,13 @@
 namespace TrafficEngineering {
 
 void createUdpBasicApp(omnetpp::cModule *controller,
-                       const std::string &appName,
-                       const std::string &appOwnerName,
                        const AppDescription &appDescription) {
 
-    auto *messageSource = controller->getModuleByPath(appOwnerName.c_str());
+    auto *messageSource = controller->getModuleByPath(appDescription.appOwnerName.c_str());
     auto *dispatcher = messageSource->getSubmodule("at");
 
     auto *applicationFactory = omnetpp::cModuleType::get("inet.applications.udpapp.UdpBasicApp");
-    auto *app = applicationFactory->create(appName.c_str(), messageSource);
+    auto *app = applicationFactory->create(appDescription.appName.c_str(), messageSource);
     auto *socketIn = app->gate("socketIn");
     auto *socketOut = app->gate("socketOut");
 
