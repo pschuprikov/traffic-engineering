@@ -66,4 +66,20 @@ Tunnel getSpanningTree(const Topology &topology, const std::string &rootNodeName
     return tunnel;
 }
 
+std::vector<std::string> getSourceFromCurrentNetwork(const std::vector<std::string> &nedSourceTypes) {
+    std::vector<std::string> result;
+    omnetpp::cTopology topology;
+    topology.extractByNedTypeName(nedSourceTypes);
+    for (int i = 0; i < topology.getNumNodes(); i++) {
+        auto *module = topology.getNode(i)->getModule();
+        std::string nedType(module->getNedTypeName());
+        for (const auto &sourceType : nedSourceTypes) {
+            if (nedType == sourceType) {
+                result.push_back(std::string(module->getName()));
+            }
+        }
+    }
+    return result;
+}
+
 } // namespace TrafficEngineering

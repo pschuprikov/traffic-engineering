@@ -31,7 +31,7 @@ void Controller::initialize() {
 }
 
 void Controller::handleMessage(cMessage *msg) {
-    auto &state = SimulationState::getInstance({"server1", "server3", "server5", "server7"});
+    auto &state = SimulationState::getInstance();
 
     auto appDescription = state.getNextApp();
     addMulticastGroup(this, appDescription.appOwnerName, appDescription.destAddresses);

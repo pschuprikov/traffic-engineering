@@ -1,11 +1,17 @@
 #include "SimulationState.h"
 
+#include "tools.h"
+
 
 namespace TrafficEngineering {
 
-SimulationState &SimulationState::getInstance(const std::vector<std::string> &appOwnerNames) {
-    static SimulationState instance(appOwnerNames);
+SimulationState &SimulationState::getInstance() {
+    static SimulationState instance;
     return instance;
+}
+
+SimulationState::SimulationState() {
+    _appOwnerNames = getSourceFromCurrentNetwork();
 }
 
 AppDescription SimulationState::getNextApp() {

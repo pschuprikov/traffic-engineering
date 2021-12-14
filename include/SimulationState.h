@@ -10,7 +10,7 @@ namespace TrafficEngineering {
 
 class SimulationState {
 public:
-    static SimulationState &getInstance(const std::vector<std::string> &appOwnerNames);
+    static SimulationState &getInstance();
 
     SimulationState(SimulationState const &) = delete;
     void operator=(SimulationState const &) = delete;
@@ -22,7 +22,7 @@ private:
     std::string getNextAppName();
     const std::string &getNextAppOwnerName();
 
-    SimulationState(const std::vector<std::string> &appOwnerNames) : _appOwnerNames(appOwnerNames) {}
+    SimulationState();
 private:
     std::vector<int> _bytes = {225, 0, 0, 1};
     std::string _appNamePrefix = "app#";
