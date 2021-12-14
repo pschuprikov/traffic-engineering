@@ -31,34 +31,11 @@ void Controller::initialize() {
 }
 
 void Controller::handleMessage(cMessage *msg) {
-    Topology topology = makeTopologyFromCurrentNetwork();
-    std::cout << "Number of nodes is " << topology.getNodeNumber() << '\n';
+    auto &state = SimulationState::getInstance({"server1", "server3", "server5", "server7"});
 
-    for (const auto &node : topology.getAllNodeNames()) {
-        std::cout << node << '\n';
-    }
-
-    std::string multicastGroup = "225.0.0.2";
-    std::string messageSource = "server5";
-
-    Tunnel tunnel = getSpanningTree(topology, messageSource);
-
-    addMulticastTunnel(this, tunnel, inet::Ipv4Address(multicastGroup.c_str()));
-
-    std::vector<const Node *> nodes = tunnel.getDFSOrder();
-    for (const Node *node : nodes) {
-        std::cout << node->getName() << ' ';
-        std::cout << '(';
-        for (const auto &interface : node->getInterfaces()) {
-            std::cout << interface << ' ';
-        }
-        std::cout << ')';
-    }
-    std::cout << '\n';
-
-    auto &state = SimulationState::getInstance({messageSource});
-
-    createUdpBasicApp(this, state.getNextApp());
+    auto appDescription = state.getNextApp();
+    addMulticastGroup(this, appDescription.appOwnerName, appDescription.destAddresses);
+    createUdpBasicApp(this, appDescription);
 
     send(msg, "out");
 }

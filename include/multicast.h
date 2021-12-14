@@ -12,4 +12,6 @@ namespace TrafficEngineering {
 
 void addMulticastTunnel(omnetpp::cModule *controller, const Tunnel &tunnel, inet::Ipv4Address multicastGroup);
 
+void addMulticastGroup(omnetpp::cModule *controller, const std::string &source, const std::string &multicastGroup);
+
 } // namespace TrafficEngineering

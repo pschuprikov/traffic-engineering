@@ -1,5 +1,7 @@
 #include "multicast.h"
 
+#include "tools.h"
+
 #include "inet/common/INETUtils.h"
 #include "inet/common/ModuleAccess.h"
 #include "inet/common/XMLUtils.h"
@@ -41,6 +43,12 @@ void addMulticastTunnel(omnetpp::cModule *controller, const Tunnel &tunnel, inet
         }
         routingTable->addMulticastRoute(route);
     }
+}
+
+void addMulticastGroup(omnetpp::cModule *controller, const std::string &source, const std::string &multicastGroup) {
+    Topology topology = makeTopologyFromCurrentNetwork();
+    Tunnel tunnel = getSpanningTree(topology, source);
+    addMulticastTunnel(controller, tunnel, inet::Ipv4Address(multicastGroup.c_str()));
 }
 
 } // namespace TrafficEngineering
