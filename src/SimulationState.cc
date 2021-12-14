@@ -5,22 +5,26 @@
 
 namespace TrafficEngineering {
 
-SimulationState &SimulationState::getInstance() {
-    static SimulationState instance;
+SimulationState &SimulationState::getInstance(omnetpp::cModule *controller) {
+    static SimulationState instance(controller);
     return instance;
 }
 
-SimulationState::SimulationState() {
+SimulationState::SimulationState(omnetpp::cModule *controller) :
+    _messageLength(controller->par("messageLength")),
+    _sendInterval(controller->par("sendInterval")),
+    _duration(controller->par("duration"))
+{
     _appOwnerNames = getSourceFromCurrentNetwork();
 }
 
 AppDescription SimulationState::getNextApp() {
     AppDescription appDescription;
     appDescription.destPort = 100;
-    appDescription.messageLength = 500;
-    appDescription.sendInterval = 0.1;
+    appDescription.messageLength = static_cast<int>(_messageLength.doubleValue());
+    appDescription.sendInterval = _sendInterval.doubleValue();
     appDescription.startTime = 0.15;
-    appDescription.stopTime = 0.2;
+    appDescription.stopTime = appDescription.startTime + _duration.doubleValue();
     appDescription.destAddresses = getNextMulticastGroup();
     appDescription.appName = getNextAppName();
     appDescription.appOwnerName = getNextAppOwnerName();
