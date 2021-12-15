@@ -39,7 +39,6 @@ public:
     void addEdge(const Edge &edge);
 
     int theLongestPathWeight(const std::string &node);
-
 private:
     std::unordered_map<std::string, std::vector<Edge>> _edges;
 };

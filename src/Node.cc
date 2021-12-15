@@ -25,4 +25,13 @@ const Link &Node::getLink(const std::string &interfaceName) const {
     return _interfaces.at(interfaceName);
 }
 
+std::vector<std::string> Node::getAllNeighbours() const {
+    std::vector<std::string> result;
+    for (const auto &entry : _interfaces) {
+        auto *node = entry.second.getRemoteNode();
+        result.emplace_back(node->getName());
+    }
+    return result;
+}
+
 } // namespace TrafficEngineering

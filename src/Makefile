@@ -36,6 +36,7 @@ O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 # Object files for local .cc, .msg and .sm files
 OBJS = \
     $O/algorithmModels.o \
+    $O/algorithms.o \
     $O/applications.o \
     $O/Controller.o \
     $O/Link.o \

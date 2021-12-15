@@ -27,4 +27,15 @@ void Topology::createNode(const std::string &name) {
     _nodes.insert({name, Node(name)});
 }
 
+std::vector<std::pair<std::string, std::string>> Topology::getAllLinks() const {
+    std::vector<std::pair<std::string, std::string>> result;
+    for (const auto &entry : _nodes) {
+        const auto &node = entry.second;
+        for (const auto &neighbourName : node.getAllNeighbours()) {
+            result.emplace_back(node.getName(), neighbourName);
+        }
+    }
+    return result;
+}
+
 } // namespace TrafficEngineering
