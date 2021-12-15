@@ -36,6 +36,14 @@ const std::string &Tunnel::getInInterface(const std::string &nodeName) const {
     return _inInterface.at(nodeName);
 }
 
+void Tunnel::setLoadSize(int loadSize) {
+    _loadSize = loadSize;
+}
+
+void Tunnel::setPeriod(int period) {
+    _period = period;
+}
+
 void Tunnel::dfs(const Node &node, std::vector<const Node *> &result) const {
     result.push_back(&node);
     for (const auto &interface : node.getInterfaces()) {

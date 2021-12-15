@@ -20,6 +20,9 @@ public:
     const std::string &getRootName() const;
     std::vector<const Node *> getDFSOrder() const;
     const std::string &getInInterface(const std::string &nodeName) const;
+
+    void setLoadSize(int loadSize);
+    void setPeriod(int period);
 private:
     bool containsNode(const std::string &name) const;
 
@@ -29,6 +32,9 @@ private:
     Node _root;
     std::map<std::string, Node> _nodes;
     std::map<std::string, std::string> _inInterface;
+
+    int _loadSize;
+    int _period;
 };
 
 } // namespace TrafficEngineering
