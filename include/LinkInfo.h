@@ -11,6 +11,7 @@ struct LinkInfo {
     std::string remoteNodeName;
     std::string localInterfaceName;
     std::string remoteInterfaceName;
+    double datarate;
 };
 
 } // namespace TrafficEngineering

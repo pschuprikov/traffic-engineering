@@ -27,13 +27,11 @@ void Topology::createNode(const std::string &name) {
     _nodes.insert({name, Node(name)});
 }
 
-std::vector<std::pair<std::string, std::string>> Topology::getAllLinks() const {
-    std::vector<std::pair<std::string, std::string>> result;
+std::vector<LinkInfo> Topology::getAllLinks() const {
+    std::vector<LinkInfo> result;
     for (const auto &entry : _nodes) {
-        const auto &node = entry.second;
-        for (const auto &neighbourName : node.getAllNeighbours()) {
-            result.emplace_back(node.getName(), neighbourName);
-        }
+        auto links = entry.second.getAllLinks();
+        result.insert(result.end(), links.begin(), links.end());
     }
     return result;
 }

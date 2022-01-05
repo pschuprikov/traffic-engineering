@@ -36,11 +36,13 @@ Topology makeTopology(omnetpp::cTopology &topology) {
             if (gate->getType() == omnetpp::cGate::INPUT) {
                 continue;
             }
-            std::string localNodeName = module->getName();
-            std::string remoteNodeName = gate->getNextGate()->getOwnerModule()->getFullName();
-            std::string localinterfaceName = getGateName(gate);
-            std::string remoteInterfaceName = getGateName(gate->getNextGate());
-            result.addLink({localNodeName, remoteNodeName, localinterfaceName, remoteInterfaceName});
+            LinkInfo link;
+            link.localNodeName = module->getName();
+            link.remoteNodeName = gate->getNextGate()->getOwnerModule()->getFullName();
+            link.localInterfaceName = getGateName(gate);
+            link.remoteInterfaceName = getGateName(gate->getNextGate());
+            link.datarate = gate->getTransmissionChannel()->par("datarate").doubleValue();
+            result.addLink(link);
         }
     }
     return result;

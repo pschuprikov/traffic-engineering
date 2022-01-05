@@ -21,7 +21,7 @@ public:
     const Node &getNodeByName(const std::string &name) const;
     std::vector<std::string> getAllNodeNames() const;
 
-    std::vector<std::pair<std::string, std::string>> getAllLinks() const;
+    std::vector<LinkInfo> getAllLinks() const;
 private:
     void createNode(const std::string &name);
 private:
