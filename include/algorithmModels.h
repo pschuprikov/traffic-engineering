@@ -10,7 +10,7 @@ namespace TrafficEngineering {
 struct Edge {
     std::string from;
     std::string to;
-    int weight;
+    double weight;
 };
 
 
@@ -23,11 +23,11 @@ public:
     // returns the unweighted path
     std::vector<Edge> theShortestPath(const std::string &from, const std::string &to);
 private:
-    static constexpr int INF = 1000 * 1000 * 1000;
+    static constexpr double INF = 1.0 * 1000 * 1000 * 1000;
 private:
     std::vector<std::string> _names;
     std::unordered_map<std::string, int> _indexes;
-    std::vector<std::vector<int>> _distances;
+    std::vector<std::vector<double>> _distances;
     std::vector<std::vector<int>> _parent;
 };
 
@@ -38,7 +38,7 @@ public:
 
     void addEdge(const Edge &edge);
 
-    int theLongestPathWeight(const std::string &node);
+    double theLongestPathWeight(const std::string &node);
 private:
     std::unordered_map<std::string, std::vector<Edge>> _edges;
 };

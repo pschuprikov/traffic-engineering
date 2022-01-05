@@ -36,6 +36,15 @@ const std::string &Tunnel::getInInterface(const std::string &nodeName) const {
     return _inInterface.at(nodeName);
 }
 
+std::vector<LinkInfo> Tunnel::getAllLinks() const {
+    std::vector<LinkInfo> result;
+    for (const auto *node : getDFSOrder()) {
+        auto links = node->getAllLinks();
+        result.insert(result.end(), links.begin(), links.end());
+    }
+    return result;
+}
+
 void Tunnel::setLoadSize(int loadSize) {
     _loadSize = loadSize;
 }

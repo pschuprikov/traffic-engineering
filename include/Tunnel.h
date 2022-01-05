@@ -6,6 +6,7 @@
 
 #include "Node.h"
 #include "Link.h"
+#include "LinkInfo.h"
 
 
 namespace TrafficEngineering  {
@@ -17,9 +18,12 @@ public:
 
     bool addLink(const Link &link);
 
+    int getLoadSize() const { return _loadSize; }
     const std::string &getRootName() const;
     std::vector<const Node *> getDFSOrder() const;
     const std::string &getInInterface(const std::string &nodeName) const;
+
+    std::vector<LinkInfo> getAllLinks() const;
 
     void setLoadSize(int loadSize);
     void setPeriod(int period);

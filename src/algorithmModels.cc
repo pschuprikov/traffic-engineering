@@ -5,7 +5,7 @@ namespace TrafficEngineering {
 
 Graph::Graph(int vertex_number, const std::vector<Edge> edges) :
     _names(vertex_number),
-    _distances(vertex_number, std::vector<int>(vertex_number, INF)),
+    _distances(vertex_number, std::vector<double>(vertex_number, INF)),
     _parent(vertex_number, std::vector<int>(vertex_number))
 {
     for (const auto &edge : edges) {
@@ -66,9 +66,9 @@ void Tree::addEdge(const Edge &edge) {
     _edges[edge.from].push_back(edge);
 }
 
-int Tree::theLongestPathWeight(const std::string &node) {
+double Tree::theLongestPathWeight(const std::string &node) {
     assert(_edges.count(node) != 0);
-    int result = 0;
+    double result = 0;
     for (const auto &edge : _edges[node]) {
         result = std::max(result, edge.weight + theLongestPathWeight(edge.to));
     }
