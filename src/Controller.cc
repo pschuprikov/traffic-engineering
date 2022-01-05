@@ -2,6 +2,8 @@
 
 #include "inet/networklayer/contract/ipv4/Ipv4Address.h"
 
+#include "algorithms.h"
+
 #include "applications.h"
 #include "multicast.h"
 #include "tools.h"
@@ -36,6 +38,9 @@ void Controller::handleMessage(cMessage *msg) {
     auto appDescription = state.getNextApp();
     addMulticastGroup(this, appDescription.appOwnerName, appDescription.destAddresses);
     createUdpBasicApp(this, appDescription);
+
+    Topology topology = makeTopologyFromCurrentNetwork();
+    optimization(topology, {}, appDescription);
 
     send(msg, "out");
 }

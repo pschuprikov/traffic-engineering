@@ -28,6 +28,7 @@ AppDescription SimulationState::getNextApp() {
     appDescription.destAddresses = getNextMulticastGroup();
     appDescription.appName = getNextAppName();
     appDescription.appOwnerName = getNextAppOwnerName();
+    appDescription.appReceiverNames = getNextAppReceiverNames();
     return appDescription;
 }
 
@@ -57,6 +58,21 @@ std::string SimulationState::getNextAppName() {
 const std::string &SimulationState::getNextAppOwnerName() {
     int index = rand() % _appOwnerNames.size();
     return _appOwnerNames.at(index);
+}
+
+std::vector<std::string> SimulationState::getNextAppReceiverNames() {
+    std::vector<std::string> result;
+    std::vector<bool> used(_appOwnerNames.size());
+    int receiversNumber = rand() % _appOwnerNames.size();
+    for (int i = 0; i < receiversNumber; i++) {
+        int nodeId = rand() % _appOwnerNames.size();
+        while (used[nodeId]) {
+            nodeId = rand() % _appOwnerNames.size();
+        }
+        result.push_back(_appOwnerNames.at(nodeId));
+        used[nodeId] = true;
+    }
+    return result;
 }
 
 } // namespace TrafficEngineering

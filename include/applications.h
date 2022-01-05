@@ -2,6 +2,7 @@
 
 
 #include <iostream>
+#include <vector>
 
 #include <omnetpp.h>
 
@@ -19,6 +20,7 @@ struct AppDescription {
 
     std::string appName;
     std::string appOwnerName;
+    std::vector<std::string> appReceiverNames;
 };
 
 void createUdpBasicApp(omnetpp::cModule *controller,

@@ -37,7 +37,7 @@ Graph::Graph(int vertex_number, const std::vector<Edge> edges) :
     }
 }
 
-int Graph::theShortestPathWeight(const std::string &from, const std::string &to) {
+double Graph::theShortestPathWeight(const std::string &from, const std::string &to) {
     assert(_indexes.count(from) != 0);
     assert(_indexes.count(to) != 0);
     return _distances[_indexes[from]][_indexes[to]];
@@ -66,11 +66,25 @@ void Tree::addEdge(const Edge &edge) {
     _edges[edge.from].push_back(edge);
 }
 
-double Tree::theLongestPathWeight(const std::string &node) {
+void Tree::addBranch(const std::vector<Edge> &branch) {
+    for (const auto &edge : branch) {
+        addEdge(edge);
+    }
+}
+
+double Tree::theLongestPathWeight(const std::string &node) const {
     assert(_edges.count(node) != 0);
     double result = 0;
-    for (const auto &edge : _edges[node]) {
+    for (const auto &edge : _edges.at(node)) {
         result = std::max(result, edge.weight + theLongestPathWeight(edge.to));
+    }
+    return result;
+}
+
+std::vector<std::string> Tree::getAllNodes() const {
+    std::vector<std::string> result;
+    for (const auto &entry : _edges) {
+        result.push_back(entry.first);
     }
     return result;
 }

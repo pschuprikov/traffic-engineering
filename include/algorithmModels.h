@@ -18,7 +18,7 @@ class Graph {
 public:
     Graph(int vertex_number, const std::vector<Edge> edges);
 
-    int theShortestPathWeight(const std::string &from, const std::string &to);
+    double theShortestPathWeight(const std::string &from, const std::string &to);
 
     // returns the unweighted path
     std::vector<Edge> theShortestPath(const std::string &from, const std::string &to);
@@ -37,8 +37,11 @@ public:
     Tree(const std::string &root);
 
     void addEdge(const Edge &edge);
+    void addBranch(const std::vector<Edge> &branch);
 
-    double theLongestPathWeight(const std::string &node);
+    double theLongestPathWeight(const std::string &node) const;
+
+    std::vector<std::string> getAllNodes() const;
 private:
     std::unordered_map<std::string, std::vector<Edge>> _edges;
 };

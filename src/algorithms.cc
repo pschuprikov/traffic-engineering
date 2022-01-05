@@ -1,6 +1,9 @@
 #include "algorithms.h"
 
+#include <unordered_set>
+#include <unordered_map>
 #include <map>
+#include <limits>
 
 #include "algorithmModels.h"
 
@@ -25,6 +28,25 @@ void optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, 
     }
 
     Graph graph(topology.getNodeNumber(), edges);
+
+    Tree tree(app.appOwnerName);
+    std::unordered_set<std::string> receivers(app.appReceiverNames.begin(), app.appReceiverNames.end());
+    while (!receivers.empty()) {
+        double branchWeight = 0;
+        std::vector<Edge> branch;
+        for (const auto &receiver : receivers) {
+            for (const auto &node : tree.getAllNodes()) {
+                double theShortestPathWeight = graph.theShortestPathWeight(node, receiver);
+                double theLongestPathWeight = tree.theLongestPathWeight(node);
+                double currentWeight = theShortestPathWeight + std::max(0.0, theShortestPathWeight - theLongestPathWeight);
+                if (branchWeight < currentWeight) {
+                    branchWeight = currentWeight;
+                    branch = graph.theShortestPath(node, receiver);
+                }
+            }
+        }
+        tree.addBranch(branch);
+    }
 }
 
 } // namespace TrafficEngineering

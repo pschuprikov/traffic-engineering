@@ -20,11 +20,12 @@ public:
     AppDescription getNextApp();
 
 private:
+    SimulationState(omnetpp::cModule *controller);
+
     std::string getNextMulticastGroup();
     std::string getNextAppName();
     const std::string &getNextAppOwnerName();
-
-    SimulationState(omnetpp::cModule *controller);
+    std::vector<std::string> getNextAppReceiverNames();
 private:
     std::vector<int> _bytes = {225, 0, 0, 1};
     std::string _appNamePrefix = "app#";
