@@ -36,11 +36,11 @@ void Controller::handleMessage(cMessage *msg) {
     auto &state = SimulationState::getInstance(this);
 
     auto appDescription = state.getNextApp();
-    addMulticastGroup(this, appDescription.appOwnerName, appDescription.destAddresses);
     createUdpBasicApp(this, appDescription);
 
     Topology topology = makeTopologyFromCurrentNetwork();
-    optimization(topology, {}, appDescription);
+    Tunnel tunnel = optimization(topology, {}, appDescription);
+    addMulticastGroup(this, tunnel, appDescription.destAddresses);
 
     send(msg, "out");
 }

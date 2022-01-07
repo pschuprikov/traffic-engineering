@@ -15,12 +15,16 @@ namespace {
 Tunnel treeToTunnel(const Topology &topology, const Tree &tree) {
     auto &root = topology.getNodeByName(tree.getRoot());
     Tunnel result(root);
+    for (const auto &edge : tree.getEdgesDFSOrder()) {
+        const auto &link = topology.getLink(edge.from, edge.to);
+        result.addLink(link);
+    }
     return result;
 }
 
 } // namespace
 
-void optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, const AppDescription &app) {
+Tunnel optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, const AppDescription &app) {
     std::map<std::pair<std::string, std::string>, double> weights;
     for (const auto &link : topology.getAllLinks()) {
         weights[{link.localNodeName, link.remoteNodeName}] = 1.0 * app.messageLength / link.datarate;
@@ -65,19 +69,9 @@ void optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, 
         }
         tree.addBranch(bestBranch);
         receivers.erase(bestReceiver);
-        std::cout << bestReceiver << ' ' << bestBranch.size() << '\n';
     }
 
-    std::cout << "Sender: " << app.appOwnerName << '\n';
-    for (const auto &receiver : app.appReceiverNames) {
-        std::cout << receiver << ' ';
-    }
-    std::cout << "\n\n";
-
-    for (const auto &edge : tree.getEdgesDFSOrder()) {
-        std::cout << edge.from << ' ' << edge.to << '\n';
-    }
-    std::cout << std::endl;
+    return treeToTunnel(topology, tree);
 }
 
 } // namespace TrafficEngineering

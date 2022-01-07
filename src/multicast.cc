@@ -45,9 +45,7 @@ void addMulticastTunnel(omnetpp::cModule *controller, const Tunnel &tunnel, inet
     }
 }
 
-void addMulticastGroup(omnetpp::cModule *controller, const std::string &source, const std::string &multicastGroup) {
-    Topology topology = makeTopologyFromCurrentNetwork();
-    Tunnel tunnel = getSpanningTree(topology, source);
+void addMulticastGroup(omnetpp::cModule *controller, const Tunnel &tunnel, const std::string &multicastGroup) {
     addMulticastTunnel(controller, tunnel, inet::Ipv4Address(multicastGroup.c_str()));
 }
 
