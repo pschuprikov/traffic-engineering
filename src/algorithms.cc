@@ -29,12 +29,6 @@ void optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, 
 
     Graph graph(topology.getNodeNumber(), edges);
 
-    std::cout << "Sender: " << app.appOwnerName << '\n';
-    for (const auto &receiver : app.appReceiverNames) {
-        std::cout << receiver << ' ';
-    }
-    std::cout << '\n';
-
     Tree tree(app.appOwnerName);
     std::unordered_set<std::string> receivers(app.appReceiverNames.begin(), app.appReceiverNames.end());
     while (!receivers.empty()) {
@@ -56,6 +50,12 @@ void optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, 
         tree.addBranch(branch);
         receivers.erase(bestReceiver);
     }
+
+    std::cout << "Sender: " << app.appOwnerName << '\n';
+    for (const auto &receiver : app.appReceiverNames) {
+        std::cout << receiver << ' ';
+    }
+    std::cout << "\n\n";
 }
 
 } // namespace TrafficEngineering

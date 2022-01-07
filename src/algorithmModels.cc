@@ -57,13 +57,15 @@ std::vector<Edge> Graph::theShortestPath(const std::string &from, const std::str
 }
 
 
-Tree::Tree(const std::string &root) {
+Tree::Tree(const std::string &root) : _root(root) {
     _edges[root] = {};
 }
 
 void Tree::addEdge(const Edge &edge) {
     assert(_edges.count(edge.from) != 0);
+    assert(_edges.count(edge.to) == 0);
     _edges[edge.from].push_back(edge);
+    _edges[edge.to] = {};
 }
 
 void Tree::addBranch(const std::vector<Edge> &branch) {

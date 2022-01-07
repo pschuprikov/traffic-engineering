@@ -43,6 +43,7 @@ public:
 
     std::vector<std::string> getAllNodes() const;
 private:
+    std::string _root;
     std::unordered_map<std::string, std::vector<Edge>> _edges;
 };
 
