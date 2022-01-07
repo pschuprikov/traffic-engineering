@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include <optional>
 
 
 namespace TrafficEngineering {
@@ -41,7 +42,11 @@ public:
 
     double theLongestPathWeight(const std::string &node) const;
 
+    std::string getRoot() const { return _root; }
     std::vector<std::string> getAllNodes() const;
+    std::vector<Edge> getEdgesDFSOrder() const;
+private:
+    std::vector<Edge> dfs(const std::string &node) const;
 private:
     std::string _root;
     std::unordered_map<std::string, std::vector<Edge>> _edges;

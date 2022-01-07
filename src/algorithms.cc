@@ -10,6 +10,16 @@
 
 namespace TrafficEngineering {
 
+namespace {
+
+Tunnel treeToTunnel(const Topology &topology, const Tree &tree) {
+    auto &root = topology.getNodeByName(tree.getRoot());
+    Tunnel result(root);
+    return result;
+}
+
+} // namespace
+
 void optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, const AppDescription &app) {
     std::map<std::pair<std::string, std::string>, double> weights;
     for (const auto &link : topology.getAllLinks()) {
@@ -33,22 +43,29 @@ void optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, 
     std::unordered_set<std::string> receivers(app.appReceiverNames.begin(), app.appReceiverNames.end());
     while (!receivers.empty()) {
         std::string bestReceiver;
-        double branchWeight = 0;
-        std::vector<Edge> branch;
+        double bestBranchWeight = 0;
+        std::vector<Edge> bestBranch;
         for (const auto &receiver : receivers) {
+            double bestDistanceToTree = std::numeric_limits<double>::max();
+            std::vector<Edge> bestPathToTree;
             for (const auto &node : tree.getAllNodes()) {
                 double theShortestPathWeight = graph.theShortestPathWeight(node, receiver);
                 double theLongestPathWeight = tree.theLongestPathWeight(node);
-                double currentWeight = theShortestPathWeight + std::max(0.0, theShortestPathWeight - theLongestPathWeight);
-                if (branchWeight < currentWeight) {
-                    bestReceiver = receiver;
-                    branchWeight = currentWeight;
-                    branch = graph.theShortestPath(node, receiver);
+                double currentDistance = theShortestPathWeight + std::max(0.0, theShortestPathWeight - theLongestPathWeight);
+                if (bestDistanceToTree > currentDistance) {
+                    bestDistanceToTree = currentDistance;
+                    bestPathToTree = graph.theShortestPath(node, receiver);
                 }
             }
+            if (bestBranchWeight < bestDistanceToTree) {
+                bestReceiver = receiver;
+                bestBranchWeight = bestDistanceToTree;
+                bestBranch = bestPathToTree;
+            }
         }
-        tree.addBranch(branch);
+        tree.addBranch(bestBranch);
         receivers.erase(bestReceiver);
+        std::cout << bestReceiver << ' ' << bestBranch.size() << '\n';
     }
 
     std::cout << "Sender: " << app.appOwnerName << '\n';
@@ -56,6 +73,11 @@ void optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, 
         std::cout << receiver << ' ';
     }
     std::cout << "\n\n";
+
+    for (const auto &edge : tree.getEdgesDFSOrder()) {
+        std::cout << edge.from << ' ' << edge.to << '\n';
+    }
+    std::cout << std::endl;
 }
 
 } // namespace TrafficEngineering

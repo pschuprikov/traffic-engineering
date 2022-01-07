@@ -8,7 +8,7 @@ namespace {
 void buildSpanningTree(const Node &node, std::map<std::string, bool> &visited, Tunnel &tunnel) {
     visited[node.getName()] = true;
     for (const auto &interface : node.getInterfaces()) {
-        const Link &link = node.getLink(interface);
+        const Link &link = node.getLinkByInterfaceName(interface);
         Node *nextNode = link.getRemoteNode();
         if (visited.count(nextNode->getName()) != 0) {
             continue;

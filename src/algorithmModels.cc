@@ -91,4 +91,18 @@ std::vector<std::string> Tree::getAllNodes() const {
     return result;
 }
 
+std::vector<Edge> Tree::getEdgesDFSOrder() const {
+    return dfs(_root);
+}
+
+std::vector<Edge> Tree::dfs(const std::string &node) const {
+    std::vector<Edge> result;
+    for (const auto &edge : _edges.at(node)) {
+        result.push_back(edge);
+        auto others = dfs(edge.to);
+        result.insert(result.end(), others.begin(), others.end());
+    }
+    return result;
+}
+
 } // namespace TrafficEngineering

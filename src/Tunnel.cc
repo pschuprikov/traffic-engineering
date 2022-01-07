@@ -56,7 +56,7 @@ void Tunnel::setPeriod(int period) {
 void Tunnel::dfs(const Node &node, std::vector<const Node *> &result) const {
     result.push_back(&node);
     for (const auto &interface : node.getInterfaces()) {
-        const Link &link = node.getLink(interface);
+        const Link &link = node.getLinkByInterfaceName(interface);
         Node *nextNode = link.getRemoteNode();
         dfs(*nextNode, result);
     }

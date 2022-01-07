@@ -27,6 +27,11 @@ void Topology::createNode(const std::string &name) {
     _nodes.insert({name, Node(name)});
 }
 
+const Link &Topology::getLink(const std::string &from, const std::string &to) const {
+    auto &node = getNodeByName(from);
+    return node.getLinkByNodeName(to);
+}
+
 std::vector<LinkInfo> Topology::getAllLinks() const {
     std::vector<LinkInfo> result;
     for (const auto &entry : _nodes) {
