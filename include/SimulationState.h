@@ -18,14 +18,13 @@ public:
     void operator=(SimulationState const &) = delete;
 
     AppDescription getNextApp();
-
 private:
     SimulationState(omnetpp::cModule *controller);
 
     std::string getNextMulticastGroup();
     std::string getNextAppName();
     const std::string &getNextAppOwnerName();
-    std::vector<std::string> getNextAppReceiverNames();
+    std::vector<std::string> getNextAppReceiverNames(const std::string &appOwnerName);
 private:
     std::vector<int> _bytes = {225, 0, 0, 1};
     std::string _appNamePrefix = "app#";

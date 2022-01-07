@@ -29,9 +29,16 @@ void optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, 
 
     Graph graph(topology.getNodeNumber(), edges);
 
+    std::cout << "Sender: " << app.appOwnerName << '\n';
+    for (const auto &receiver : app.appReceiverNames) {
+        std::cout << receiver << ' ';
+    }
+    std::cout << '\n';
+
     Tree tree(app.appOwnerName);
     std::unordered_set<std::string> receivers(app.appReceiverNames.begin(), app.appReceiverNames.end());
     while (!receivers.empty()) {
+        std::string bestReceiver;
         double branchWeight = 0;
         std::vector<Edge> branch;
         for (const auto &receiver : receivers) {
@@ -40,12 +47,14 @@ void optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, 
                 double theLongestPathWeight = tree.theLongestPathWeight(node);
                 double currentWeight = theShortestPathWeight + std::max(0.0, theShortestPathWeight - theLongestPathWeight);
                 if (branchWeight < currentWeight) {
+                    bestReceiver = receiver;
                     branchWeight = currentWeight;
                     branch = graph.theShortestPath(node, receiver);
                 }
             }
         }
         tree.addBranch(branch);
+        receivers.erase(bestReceiver);
     }
 }
 

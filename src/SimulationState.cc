@@ -28,7 +28,7 @@ AppDescription SimulationState::getNextApp() {
     appDescription.destAddresses = getNextMulticastGroup();
     appDescription.appName = getNextAppName();
     appDescription.appOwnerName = getNextAppOwnerName();
-    appDescription.appReceiverNames = getNextAppReceiverNames();
+    appDescription.appReceiverNames = getNextAppReceiverNames(appDescription.appOwnerName);
     return appDescription;
 }
 
@@ -60,13 +60,13 @@ const std::string &SimulationState::getNextAppOwnerName() {
     return _appOwnerNames.at(index);
 }
 
-std::vector<std::string> SimulationState::getNextAppReceiverNames() {
+std::vector<std::string> SimulationState::getNextAppReceiverNames(const std::string &appOwnerName) {
     std::vector<std::string> result;
     std::vector<bool> used(_appOwnerNames.size());
     int receiversNumber = rand() % _appOwnerNames.size();
     for (int i = 0; i < receiversNumber; i++) {
         int nodeId = rand() % _appOwnerNames.size();
-        while (used[nodeId]) {
+        while (used[nodeId] || _appOwnerNames[nodeId] == appOwnerName) {
             nodeId = rand() % _appOwnerNames.size();
         }
         result.push_back(_appOwnerNames.at(nodeId));
