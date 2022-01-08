@@ -4,20 +4,20 @@
 namespace TrafficEngineering  {
 
 bool Tunnel::addLink(const Link &link) {
-    auto localNodeName = link.getLocalNode()->getName();
-    auto remoteNodeName = link.getRemoteNode()->getName();
+    auto localNodeName = link.localNodeName;
+    auto remoteNodeName = link.remoteNodeName;
 
     if (!containsNode(localNodeName) || containsNode(remoteNodeName)) {
         return false;
     }
 
     _nodes.insert({remoteNodeName, Node(remoteNodeName)});
-    _inInterface.insert({remoteNodeName, link.getRemoteInterfaceName()});
+    _inInterface.insert({remoteNodeName, link.remoteInterfaceName});
 
     Node &localNode = getNodeByName(localNodeName);
     Node &remoteNode = getNodeByName(remoteNodeName);
 
-    localNode.addInterface(&remoteNode, {localNodeName, remoteNodeName, link.getLocalInterfaceName(), link.getRemoteInterfaceName()});
+    localNode.addInterface(&remoteNode, {localNodeName, remoteNodeName, link.localInterfaceName, link.remoteInterfaceName});
 
     return true;
 }
@@ -26,7 +26,7 @@ const std::string &Tunnel::getRootName() const {
     return _root.getName();
 }
 
-std::vector<const Node *> Tunnel::getDFSOrder() const {
+std::vector<Node> Tunnel::getDFSOrder() const {
     return dfs(_root);
 }
 
@@ -34,8 +34,8 @@ const std::string &Tunnel::getInInterface(const std::string &nodeName) const {
     return _inInterface.at(nodeName);
 }
 
-std::vector<LinkInfo> Tunnel::getAllLinks() const {
-    std::vector<LinkInfo> result = _root.getAllLinks();
+std::vector<Link> Tunnel::getAllLinks() const {
+    std::vector<Link> result = _root.getAllLinks();
     for (const auto &entry : _nodes) {
         auto links = entry.second.getAllLinks();
         result.insert(result.end(), links.begin(), links.end());
@@ -51,12 +51,11 @@ void Tunnel::setPeriod(int period) {
     _period = period;
 }
 
-std::vector<const Node *> Tunnel::dfs(const Node &node) const {
-    std::vector<const Node *> result = {&node};
+std::vector<Node> Tunnel::dfs(const Node &node) const {
+    std::vector<Node> result = {node};
     for (const auto &interface : node.getInterfaces()) {
         const Link &link = node.getLinkByInterfaceName(interface);
-        Node *nextNode = link.getRemoteNode();
-        auto others = dfs(*nextNode);
+        auto others = dfs(_nodes.at(link.remoteNodeName));
         result.insert(result.end(), others.begin(), others.end());
     }
     return result;

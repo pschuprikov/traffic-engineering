@@ -3,12 +3,12 @@
 
 namespace TrafficEngineering  {
 
-void Topology::addLink(const LinkInfo &linkInfo) {
-    createNode(linkInfo.localNodeName);
-    createNode(linkInfo.remoteNodeName);
-    Node &localNode = _nodes.at(linkInfo.localNodeName);
-    Node &remoteNode = _nodes.at(linkInfo.remoteNodeName);
-    localNode.addInterface(&remoteNode, linkInfo);
+void Topology::addLink(const Link &link) {
+    createNode(link.localNodeName);
+    createNode(link.remoteNodeName);
+    Node &localNode = _nodes.at(link.localNodeName);
+    Node &remoteNode = _nodes.at(link.remoteNodeName);
+    localNode.addInterface(&remoteNode, link);
 }
 
 const Node &Topology::getNodeByName(const std::string &name) const {
@@ -32,8 +32,8 @@ const Link &Topology::getLink(const std::string &from, const std::string &to) co
     return node.getLinkByNodeName(to);
 }
 
-std::vector<LinkInfo> Topology::getAllLinks() const {
-    std::vector<LinkInfo> result;
+std::vector<Link> Topology::getAllLinks() const {
+    std::vector<Link> result;
     for (const auto &entry : _nodes) {
         auto links = entry.second.getAllLinks();
         result.insert(result.end(), links.begin(), links.end());

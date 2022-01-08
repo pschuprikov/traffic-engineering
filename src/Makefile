@@ -39,7 +39,6 @@ OBJS = \
     $O/algorithms.o \
     $O/applications.o \
     $O/Controller.o \
-    $O/Link.o \
     $O/multicast.o \
     $O/Node.o \
     $O/SimulationState.o \

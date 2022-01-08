@@ -9,7 +9,7 @@ void buildSpanningTree(const Node &node, std::map<std::string, bool> &visited, T
     visited[node.getName()] = true;
     for (const auto &interface : node.getInterfaces()) {
         const Link &link = node.getLinkByInterfaceName(interface);
-        Node *nextNode = link.getRemoteNode();
+        Node *nextNode = nullptr;
         if (visited.count(nextNode->getName()) != 0) {
             continue;
         }
@@ -36,7 +36,7 @@ Topology makeTopology(omnetpp::cTopology &topology) {
             if (gate->getType() == omnetpp::cGate::INPUT) {
                 continue;
             }
-            LinkInfo link;
+            Link link;
             link.localNodeName = module->getName();
             link.remoteNodeName = gate->getNextGate()->getOwnerModule()->getFullName();
             link.localInterfaceName = getGateName(gate);

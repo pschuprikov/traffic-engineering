@@ -13,7 +13,7 @@ public:
     Node() = delete;
     explicit Node(std::string name) : _name(std::move(name)) {}
 
-    void addInterface(Node *remoteNode, const LinkInfo &linkInfo);
+    void addInterface(Node *remoteNode, const Link &link);
 
     const std::string &getName() const { return _name; }
     std::vector<std::string> getInterfaces() const;
@@ -21,7 +21,7 @@ public:
     const Link &getLinkByInterfaceName(const std::string &interfaceName) const;
     const Link &getLinkByNodeName(const std::string &nodeName) const;
 
-    std::vector<LinkInfo> getAllLinks() const;
+    std::vector<Link> getAllLinks() const;
 private:
     std::string _name;
     std::unordered_map<std::string, Link> _interfaces;
