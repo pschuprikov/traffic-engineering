@@ -22,7 +22,44 @@ Tunnel treeToTunnel(const Topology &topology, const Tree &tree) {
     return result;
 }
 
+AdjustmentResult dfs(const Node &node, const Tunnel &tunnel,
+                     const std::map<std::pair<std::string, std::string>, double> &sumTime) {
+    AdjustmentResult result;
+    result.minDelay = std::numeric_limits<double>::max();
+    result.maxDelay = 0;
+    if (node.getInterfaceNumber() == 0) {
+        result.minDelay = 0;
+        result.maxDelay = 0;
+        return result;
+    }
+    for (const auto &link : node.getAllLinks()) {
+        auto neighbour = tunnel.getNode(link.remoteNodeName);
+        auto neighbourResult = dfs(neighbour, tunnel, sumTime);
+        auto transferTime = tunnel.getLoadSize() / link.datarate;
+        auto sumTransferTime = sumTime.at({link.localNodeName, link.remoteNodeName});
+        result.minDelay = std::min(result.minDelay, neighbourResult.minDelay + sumTransferTime);
+        result.maxDelay = std::max(result.maxDelay, neighbourResult.maxDelay + transferTime);
+    }
+    return result;
+}
+
 } // namespace
+
+std::vector<AdjustmentResult> adjustment(const std::vector<Tunnel> &tunnels) {
+    std::map<std::pair<std::string, std::string>, double> sumTime;
+    for (const auto &tunnel : tunnels) {
+        for (const auto &link : tunnel.getAllLinks()) {
+            std::pair<std::string, std::string> key = {link.localNodeName, link.remoteNodeName};
+            sumTime[key] += tunnel.getLoadSize() / link.datarate;
+        }
+    }
+
+    std::vector<AdjustmentResult> result;
+    for (const auto &tunnel : tunnels) {
+        result.push_back(dfs(tunnel.getRoot(), tunnel, sumTime));
+    }
+    return result;
+}
 
 Tunnel optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, const AppDescription &app) {
     std::map<std::pair<std::string, std::string>, double> weights;

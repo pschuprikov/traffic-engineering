@@ -22,6 +22,8 @@ public:
     const std::string &getRootName() const;
     std::vector<Node> getDFSOrder() const;
     const std::string &getInInterface(const std::string &nodeName) const;
+    const Node &getNode(const std::string &name) const;
+    const Node &getRoot() const { return _root; }
 
     std::vector<Link> getAllLinks() const;
 

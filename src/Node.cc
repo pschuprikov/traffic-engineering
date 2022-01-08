@@ -5,7 +5,7 @@
 
 namespace TrafficEngineering  {
 
-void Node::addInterface(Node *remoteNode, const Link &link) {
+void Node::addInterface(const Link &link) {
     _interfaces.insert({link.localInterfaceName, link});
     _next.insert({link.remoteNodeName, link});
 }
@@ -34,6 +34,14 @@ std::vector<Link> Node::getAllLinks() const {
     std::vector<Link> result;
     for (const auto &entry : _interfaces) {
         result.push_back(entry.second);
+    }
+    return result;
+}
+
+std::vector<std::string> Node::getNeighbours() const {
+    std::vector<std::string> result;
+    for (const auto &entry : _next) {
+        result.push_back(entry.first);
     }
     return result;
 }

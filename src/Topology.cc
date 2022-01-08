@@ -7,8 +7,7 @@ void Topology::addLink(const Link &link) {
     createNode(link.localNodeName);
     createNode(link.remoteNodeName);
     Node &localNode = _nodes.at(link.localNodeName);
-    Node &remoteNode = _nodes.at(link.remoteNodeName);
-    localNode.addInterface(&remoteNode, link);
+    localNode.addInterface(link);
 }
 
 const Node &Topology::getNodeByName(const std::string &name) const {
