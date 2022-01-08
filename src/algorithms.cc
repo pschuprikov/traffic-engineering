@@ -31,8 +31,7 @@ Tunnel optimization(const Topology &topology, const std::vector<Tunnel> &tunnels
     }
     for (const auto &tunnel : tunnels) {
         for (const auto &link : tunnel.getAllLinks()) {
-            std::cout << "fuck you" << std::endl;
-            weights[{link.localNodeName, link.remoteNodeName}] += 1.0 * tunnel.getLoadSize() / link.datarate;
+            weights[{link.localNodeName, link.remoteNodeName}] += tunnel.getLoadSize() / link.datarate;
         }
     }
 
@@ -72,7 +71,11 @@ Tunnel optimization(const Topology &topology, const std::vector<Tunnel> &tunnels
         receivers.erase(bestReceiver);
     }
 
-    return treeToTunnel(topology, tree);
+    Tunnel tunnel = treeToTunnel(topology, tree);
+    tunnel.setLoadSize(app.messageLength);
+    tunnel.setPeriod(app.sendInterval);
+
+    return tunnel;
 }
 
 } // namespace TrafficEngineering

@@ -18,15 +18,15 @@ public:
 
     bool addLink(const Link &link);
 
-    int getLoadSize() const { return _loadSize; }
+    double getLoadSize() const { return _loadSize; }
     const std::string &getRootName() const;
     std::vector<Node> getDFSOrder() const;
     const std::string &getInInterface(const std::string &nodeName) const;
 
     std::vector<Link> getAllLinks() const;
 
-    void setLoadSize(int loadSize);
-    void setPeriod(int period);
+    void setLoadSize(double loadSize);
+    void setPeriod(double period);
 private:
     bool containsNode(const std::string &name) const;
 
@@ -37,8 +37,8 @@ private:
     std::unordered_map<std::string, Node> _nodes;
     std::unordered_map<std::string, std::string> _inInterface;
 
-    int _loadSize;
-    int _period;
+    double _loadSize;
+    double _period;
 };
 
 } // namespace TrafficEngineering

@@ -4,20 +4,17 @@
 namespace TrafficEngineering  {
 
 bool Tunnel::addLink(const Link &link) {
-    auto localNodeName = link.localNodeName;
-    auto remoteNodeName = link.remoteNodeName;
-
-    if (!containsNode(localNodeName) || containsNode(remoteNodeName)) {
+    if (!containsNode(link.localNodeName) || containsNode(link.remoteNodeName)) {
         return false;
     }
 
-    _nodes.insert({remoteNodeName, Node(remoteNodeName)});
-    _inInterface.insert({remoteNodeName, link.remoteInterfaceName});
+    _nodes.insert({link.remoteNodeName, Node(link.remoteNodeName)});
+    _inInterface.insert({link.remoteNodeName, link.remoteInterfaceName});
 
-    Node &localNode = getNodeByName(localNodeName);
-    Node &remoteNode = getNodeByName(remoteNodeName);
+    Node &localNode = getNodeByName(link.localNodeName);
+    Node &remoteNode = getNodeByName(link.remoteNodeName);
 
-    localNode.addInterface(&remoteNode, {localNodeName, remoteNodeName, link.localInterfaceName, link.remoteInterfaceName});
+    localNode.addInterface(&remoteNode, link);
 
     return true;
 }
@@ -43,11 +40,11 @@ std::vector<Link> Tunnel::getAllLinks() const {
     return result;
 }
 
-void Tunnel::setLoadSize(int loadSize) {
+void Tunnel::setLoadSize(double loadSize) {
     _loadSize = loadSize;
 }
 
-void Tunnel::setPeriod(int period) {
+void Tunnel::setPeriod(double period) {
     _period = period;
 }
 

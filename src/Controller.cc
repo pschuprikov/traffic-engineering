@@ -39,12 +39,10 @@ void Controller::handleMessage(cMessage *msg) {
     createUdpBasicApp(this, appDescription);
 
     Topology topology = makeTopologyFromCurrentNetwork();
-    Tunnel tunnel = optimization(topology, {}, appDescription);
+    Tunnel tunnel = optimization(topology, state.getTunnels(), appDescription);
     addMulticastGroup(this, tunnel, appDescription.destAddresses);
 
     state.addTunnel(tunnel);
-
-    state.getTunnels();
 
     send(msg, "out");
 }
