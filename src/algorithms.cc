@@ -31,7 +31,7 @@ Tunnel optimization(const Topology &topology, const std::vector<Tunnel> &tunnels
     }
     for (const auto &tunnel : tunnels) {
         for (const auto &link : tunnel.getAllLinks()) {
-            weights[{link.localNodeName, link.remoteNodeName}] += 1.0 * tunnel.getLoadSize() / link.datarate;
+            // weights[{link.localNodeName, link.remoteNodeName}] += 1.0 * tunnel.getLoadSize() / link.datarate;
         }
     }
 

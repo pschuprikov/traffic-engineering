@@ -6,6 +6,7 @@
 #include <omnetpp.h>
 
 #include "applications.h"
+#include "Tunnel.h"
 
 
 namespace TrafficEngineering {
@@ -18,6 +19,9 @@ public:
     void operator=(SimulationState const &) = delete;
 
     AppDescription getNextApp();
+    const std::vector<Tunnel> &getTunnels() const;
+
+    void addTunnel(const Tunnel &tunnel);
 private:
     SimulationState(omnetpp::cModule *controller);
 
@@ -31,6 +35,7 @@ private:
     int _counter = 0;
 
     std::vector<std::string> _appOwnerNames;
+    std::vector<Tunnel> _tunnels;
 private:
     const omnetpp::cPar &_messageLength;
     const omnetpp::cPar &_sendInterval;

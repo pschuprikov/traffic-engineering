@@ -27,9 +27,7 @@ const std::string &Tunnel::getRootName() const {
 }
 
 std::vector<const Node *> Tunnel::getDFSOrder() const {
-    std::vector<const Node *> result;
-    dfs(_root, result);
-    return result;
+    return dfs(_root);
 }
 
 const std::string &Tunnel::getInInterface(const std::string &nodeName) const {
@@ -37,9 +35,9 @@ const std::string &Tunnel::getInInterface(const std::string &nodeName) const {
 }
 
 std::vector<LinkInfo> Tunnel::getAllLinks() const {
-    std::vector<LinkInfo> result;
-    for (const auto *node : getDFSOrder()) {
-        auto links = node->getAllLinks();
+    std::vector<LinkInfo> result = _root.getAllLinks();
+    for (const auto &entry : _nodes) {
+        auto links = entry.second.getAllLinks();
         result.insert(result.end(), links.begin(), links.end());
     }
     return result;
@@ -53,13 +51,15 @@ void Tunnel::setPeriod(int period) {
     _period = period;
 }
 
-void Tunnel::dfs(const Node &node, std::vector<const Node *> &result) const {
-    result.push_back(&node);
+std::vector<const Node *> Tunnel::dfs(const Node &node) const {
+    std::vector<const Node *> result = {&node};
     for (const auto &interface : node.getInterfaces()) {
         const Link &link = node.getLinkByInterfaceName(interface);
         Node *nextNode = link.getRemoteNode();
-        dfs(*nextNode, result);
+        auto others = dfs(*nextNode);
+        result.insert(result.end(), others.begin(), others.end());
     }
+    return result;
 }
 
 bool Tunnel::containsNode(const std::string &name) const {

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <map>
+#include <unordered_map>
 #include <vector>
 
 #include "Node.h"
@@ -31,11 +31,11 @@ private:
     bool containsNode(const std::string &name) const;
 
     Node &getNodeByName(const std::string &name);
-    void dfs(const Node &node, std::vector<const Node *> &result) const;
+    std::vector<const Node *> dfs(const Node &node) const;
 private:
     Node _root;
-    std::map<std::string, Node> _nodes;
-    std::map<std::string, std::string> _inInterface;
+    std::unordered_map<std::string, Node> _nodes;
+    std::unordered_map<std::string, std::string> _inInterface;
 
     int _loadSize;
     int _period;

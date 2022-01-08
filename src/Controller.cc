@@ -42,5 +42,9 @@ void Controller::handleMessage(cMessage *msg) {
     Tunnel tunnel = optimization(topology, {}, appDescription);
     addMulticastGroup(this, tunnel, appDescription.destAddresses);
 
+    state.addTunnel(tunnel);
+
+    state.getTunnels();
+
     send(msg, "out");
 }

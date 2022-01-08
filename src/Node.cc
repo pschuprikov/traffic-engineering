@@ -33,7 +33,7 @@ const Link &Node::getLinkByNodeName(const std::string &nodeName) const {
 std::vector<LinkInfo> Node::getAllLinks() const {
     std::vector<LinkInfo> result;
     for (const auto &entry : _interfaces) {
-        result.emplace_back(entry.second.toLinkInfo());
+        result.push_back(entry.second.toLinkInfo());
     }
     return result;
 }
