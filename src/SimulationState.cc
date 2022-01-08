@@ -33,19 +33,6 @@ AppDescription SimulationState::getNextApp() {
 }
 
 const std::vector<Tunnel> &SimulationState::getTunnels() const {
-    std::cout << _tunnels.size() << '\n';
-    for (const auto &tunnel : _tunnels) {
-        std::cout << tunnel.getRootName() << '\n';
-        std::cout << tunnel.getLoadSize() << '\n';
-        for (const auto &node : tunnel.getDFSOrder()) {
-            std::cout << node.getName() << ' ';
-        }
-        std::cout << std::endl;
-//        for (const auto &link : tunnel.getAllLinks()) {
-//            std::cout << link.localNodeName << ' ' << link.remoteNodeName << '\n';
-//        }
-//        std::cout << "=====" << '\n';
-    }
     return _tunnels;
 }
 

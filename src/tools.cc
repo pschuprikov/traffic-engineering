@@ -5,16 +5,16 @@ namespace TrafficEngineering  {
 
 namespace {
 
-void buildSpanningTree(const Node &node, std::map<std::string, bool> &visited, Tunnel &tunnel) {
+void buildSpanningTree(const Topology &topology, const Node &node, std::map<std::string, bool> &visited, Tunnel &tunnel) {
     visited[node.getName()] = true;
     for (const auto &interface : node.getInterfaces()) {
         const Link &link = node.getLinkByInterfaceName(interface);
-        Node *nextNode = nullptr;
-        if (visited.count(nextNode->getName()) != 0) {
+        Node nextNode = topology.getNodeByName(link.remoteNodeName);
+        if (visited.count(nextNode.getName()) != 0) {
             continue;
         }
         tunnel.addLink(link);
-        buildSpanningTree(*nextNode, visited, tunnel);
+        buildSpanningTree(topology, nextNode, visited, tunnel);
     }
 }
 
@@ -64,7 +64,7 @@ Tunnel getSpanningTree(const Topology &topology, const std::string &rootNodeName
     const Node &root = topology.getNodeByName(rootNodeName);
     Tunnel tunnel(root);
     std::map<std::string, bool> visited;
-    buildSpanningTree(root, visited, tunnel);
+    buildSpanningTree(topology, root, visited, tunnel);
     return tunnel;
 }
 
