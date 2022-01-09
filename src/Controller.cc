@@ -9,6 +9,8 @@
 #include "tools.h"
 #include "SimulationState.h"
 
+#include <fstream>
+
 
 using namespace TrafficEngineering;
 using namespace omnetpp;
@@ -38,11 +40,13 @@ void Controller::handleMessage(cMessage *msg) {
     auto appDescription = state.getNextApp();
     createUdpBasicApp(this, appDescription);
 
-//    std::cout << appDescription.appOwnerName << ' ';
-//    for (const auto &receiver : appDescription.appReceiverNames) {
-//        std::cout << receiver << ' ';
-//    }
-//    std::cout << std::endl;
+    std::ofstream out("results/tunnel_descriptions.log", std::ios::app);
+    out << appDescription.appOwnerName << ' ';
+    for (const auto &receiver : appDescription.appReceiverNames) {
+        out << receiver << ' ';
+    }
+    out << '\n';
+    out.close();
 
     Topology topology = makeTopologyFromCurrentNetwork();
     Tunnel tunnel = optimization(topology, state.getTunnels(), appDescription);
