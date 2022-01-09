@@ -12,6 +12,7 @@ struct Link {
     std::string localInterfaceName;
     std::string remoteInterfaceName;
     double datarate;
+    double delay;
 };
 
 } // namespace TrafficEngineering

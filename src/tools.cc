@@ -42,6 +42,7 @@ Topology makeTopology(omnetpp::cTopology &topology) {
             link.localInterfaceName = getGateName(gate);
             link.remoteInterfaceName = getGateName(gate->getNextGate());
             link.datarate = gate->getTransmissionChannel()->par("datarate").doubleValue();
+            link.delay = gate->getTransmissionChannel()->par("delay").doubleValue();
             result.addLink(link);
         }
     }
