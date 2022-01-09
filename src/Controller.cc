@@ -38,6 +38,12 @@ void Controller::handleMessage(cMessage *msg) {
     auto appDescription = state.getNextApp();
     createUdpBasicApp(this, appDescription);
 
+//    std::cout << appDescription.appOwnerName << ' ';
+//    for (const auto &receiver : appDescription.appReceiverNames) {
+//        std::cout << receiver << ' ';
+//    }
+//    std::cout << std::endl;
+
     Topology topology = makeTopologyFromCurrentNetwork();
     Tunnel tunnel = optimization(topology, state.getTunnels(), appDescription);
     addMulticastGroup(this, tunnel, appDescription.destAddresses);

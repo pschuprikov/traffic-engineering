@@ -6,9 +6,9 @@ class Event:
         node, packet, time = event_line.split()
         _, tunnel_index, iteration_index = packet.split('-')
         self.node = node
-        self.tunnel_index = tunnel_index
-        self.iteration_index = iteration_index
-        self.time = time
+        self.tunnel_index = int(tunnel_index)
+        self.iteration_index = int(iteration_index)
+        self.time = float(time)
 
 
 class Iteration:
@@ -33,7 +33,7 @@ class Iteration:
         return min_time - self.time_control[sender], max_time - self.time_control[sender]
 
     def __check_presence(self, node: str):
-        if node in self.time_control:
+        if not node in self.time_control:
             raise Exception(f'the node({node}) have not got '
                             f'in the tunnel#{self.tunnel_index} '
                             f'on iteration#{self.iteration_index}')
@@ -60,6 +60,21 @@ class Tunnel:
         return min_delay, max_delay
 
 
+class TunnelDescription:
+    def __init__(self, sender: str, receivers: List[str]):
+        self.sender: str = sender
+        self.receivers: List[str] = receivers
+
+
+def get_tunnel_descriptions(filename: str) -> List[TunnelDescription]:
+    result = []
+    with open(filename) as file:
+        for line in file:
+            nodes = line.split()
+            result.append(TunnelDescription(nodes[0], nodes[1:]))
+    return result
+
+
 class Experiment:
     def __init__(self):
         self.tunnels: Dict[int, Tunnel] = {}
@@ -70,14 +85,23 @@ class Experiment:
         tunnel = self.tunnels[event.tunnel_index]
         tunnel.add_event(event)
 
+    def print_statistics(self, tunnel_descriptions: List[TunnelDescription]):
+        for index, description in enumerate(tunnel_descriptions):
+            tunnel = self.tunnels[index]
+            min_delay, max_delay = tunnel.get_delays(description.sender, description.receivers)
+            print(f'Tunnel#{index}, min_delay: {min_delay}, max_delay: {max_delay}')
 
-def compute(filename: str):
-    experiment = Experiment()
+
+def get_experiment(filename: str) -> Experiment:
+    result = Experiment()
     with open(filename) as file:
         for line in file:
             event = Event(line)
-            experiment.add_event(event)
+            result.add_event(event)
+    return result
 
 
 if __name__ == '__main__':
-    compute('venv/log.txt')
+    experiment = get_experiment('venv/log.txt')
+    descriptions = get_tunnel_descriptions('venv/tunnels.txt')
+    experiment.print_statistics(descriptions)

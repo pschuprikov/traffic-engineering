@@ -60,7 +60,7 @@ std::string SimulationState::getNextMulticastGroup() {
 }
 
 std::string SimulationState::getNextAppName() {
-    return _appNamePrefix + std::to_string(++_counter);
+    return _appNamePrefix + std::to_string(_counter++);
 }
 
 const std::string &SimulationState::getNextAppOwnerName() {
