@@ -31,7 +31,7 @@ private:
     std::vector<std::string> getNextAppReceiverNames(const std::string &appOwnerName);
 private:
     std::vector<int> _bytes = {225, 0, 0, 1};
-    std::string _appNamePrefix = "app#";
+    std::string _appNamePrefix = "app-";
     int _counter = 0;
 
     std::vector<std::string> _appOwnerNames;
