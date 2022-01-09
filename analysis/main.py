@@ -12,7 +12,7 @@ class Event:
 
 
 class Iteration:
-    def __init__(self, tunnel_index: int, iteration_index: int):
+    def __init__(self, iteration_index: int, tunnel_index: int):
         self.tunnel_index: int = tunnel_index
         self.iteration_index: int = iteration_index
         self.time_control: Dict[str, float] = {}
@@ -54,9 +54,12 @@ class Tunnel:
         min_delay = float('inf')
         max_delay = 0.0
         for iteration in self.iterations.values():
-            current_min_delay, current_max_delay = iteration.get_delays(sender, receivers)
-            min_delay = min(min_delay, current_min_delay)
-            max_delay = max(max_delay, current_max_delay)
+            try:
+                current_min_delay, current_max_delay = iteration.get_delays(sender, receivers)
+                min_delay = min(min_delay, current_min_delay)
+                max_delay = max(max_delay, current_max_delay)
+            except Exception as exception:
+                pass
         return min_delay, max_delay
 
 
@@ -102,6 +105,6 @@ def get_experiment(filename: str) -> Experiment:
 
 
 if __name__ == '__main__':
-    experiment = get_experiment('venv/log.txt')
-    descriptions = get_tunnel_descriptions('venv/tunnels.txt')
+    experiment = get_experiment('../simulations/results/events.log')
+    descriptions = get_tunnel_descriptions('../simulations/results/tunnel_descriptions.log')
     experiment.print_statistics(descriptions)
