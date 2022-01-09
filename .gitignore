@@ -1,3 +1,4 @@
 out/
 simulations/results/
 .DS_Store
+.idea/
