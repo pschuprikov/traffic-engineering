@@ -9,9 +9,15 @@ import ned.DatarateChannel;
 network FatTreeNetwork
 {
     types:
-        channel ethernet extends DatarateChannel
+        channel ServerEthernet extends DatarateChannel
         {
-            delay = uniform(0.00015s, 0.00005s);
+            delay = 0.005s;
+            datarate = 10Mbps;
+        }
+        
+        channel SwitchEthernet extends DatarateChannel
+        {
+            delay = 0.002s;
             datarate = 10Mbps;
         }
 
@@ -111,22 +117,22 @@ network FatTreeNetwork
             @display("p=187,87");
         }
     connections:
-        router3.ethg++ <--> ethernet <--> server1.ethg++;
-        router3.ethg++ <--> ethernet <--> server2.ethg++;
-        router4.ethg++ <--> ethernet <--> server3.ethg++;
-        router4.ethg++ <--> ethernet <--> server4.ethg++;
-        router5.ethg++ <--> ethernet <--> server5.ethg++;
-        router5.ethg++ <--> ethernet <--> server6.ethg++;
-        router6.ethg++ <--> ethernet <--> server7.ethg++;
-        router6.ethg++ <--> ethernet <--> server8.ethg++;
-        router1.ethg++ <--> ethernet <--> router3.ethg++;
-        router1.ethg++ <--> ethernet <--> router4.ethg++;
-        router1.ethg++ <--> ethernet <--> router5.ethg++;
-        router1.ethg++ <--> ethernet <--> router6.ethg++;
-        router2.ethg++ <--> ethernet <--> router3.ethg++;
-        router2.ethg++ <--> ethernet <--> router4.ethg++;
-        router2.ethg++ <--> ethernet <--> router5.ethg++;
-        router2.ethg++ <--> ethernet <--> router6.ethg++;
+        router3.ethg++ <--> ServerEthernet <--> server1.ethg++;
+        router3.ethg++ <--> ServerEthernet <--> server2.ethg++;
+        router4.ethg++ <--> ServerEthernet <--> server3.ethg++;
+        router4.ethg++ <--> ServerEthernet <--> server4.ethg++;
+        router5.ethg++ <--> ServerEthernet <--> server5.ethg++;
+        router5.ethg++ <--> ServerEthernet <--> server6.ethg++;
+        router6.ethg++ <--> ServerEthernet <--> server7.ethg++;
+        router6.ethg++ <--> ServerEthernet <--> server8.ethg++;
+        router1.ethg++ <--> SwitchEthernet <--> router3.ethg++;
+        router1.ethg++ <--> SwitchEthernet <--> router4.ethg++;
+        router1.ethg++ <--> SwitchEthernet <--> router5.ethg++;
+        router1.ethg++ <--> SwitchEthernet <--> router6.ethg++;
+        router2.ethg++ <--> SwitchEthernet <--> router3.ethg++;
+        router2.ethg++ <--> SwitchEthernet <--> router4.ethg++;
+        router2.ethg++ <--> SwitchEthernet <--> router5.ethg++;
+        router2.ethg++ <--> SwitchEthernet <--> router6.ethg++;
 
         tic.out --> {  delay = 100ms; } --> tac.in;
         tic.in <-- {  delay = 100ms; } <-- tac.out;
