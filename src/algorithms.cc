@@ -37,8 +37,8 @@ AdjustmentResult dfs(const Node &node, const Tunnel &tunnel,
         auto neighbourResult = dfs(neighbour, tunnel, sumTime);
         auto transferTime = tunnel.getLoadSize() / link.datarate;
         auto sumTransferTime = sumTime.at({link.localNodeName, link.remoteNodeName});
-        result.minDelay = std::min(result.minDelay, neighbourResult.minDelay + link.delay + sumTransferTime);
-        result.maxDelay = std::max(result.maxDelay, neighbourResult.maxDelay + link.delay + transferTime);
+        result.minDelay = std::min(result.minDelay, neighbourResult.minDelay + link.delay + transferTime);
+        result.maxDelay = std::max(result.maxDelay, neighbourResult.maxDelay + link.delay + sumTransferTime);
     }
     return result;
 }
