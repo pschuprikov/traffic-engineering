@@ -22,7 +22,7 @@ class Iteration:
             raise Exception('the specified node already used')
         self.time_control[event.node] = event.time
 
-    def get_delays(self, sender: str, receivers: List[str]) -> (float, float):
+    def get_latencies(self, sender: str, receivers: List[str]) -> (float, float):
         min_time = float('inf')
         max_time = 0.0
         for receiver in receivers:
@@ -50,17 +50,17 @@ class Tunnel:
         iteration = self.iterations[event.iteration_index]
         iteration.add_event(event)
 
-    def get_delays(self, sender: str, receivers: List[str]) -> (float, float):
-        min_delay = float('inf')
-        max_delay = 0.0
+    def get_letancies(self, sender: str, receivers: List[str]) -> (float, float):
+        min_latency = float('inf')
+        max_latency = 0.0
         for iteration in self.iterations.values():
             try:
-                current_min_delay, current_max_delay = iteration.get_delays(sender, receivers)
-                min_delay = min(min_delay, current_min_delay)
-                max_delay = max(max_delay, current_max_delay)
+                current_min_latency, current_max_latency = iteration.get_latencies(sender, receivers)
+                min_latency = min(min_latency, current_min_latency)
+                max_latency = max(max_latency, current_max_latency)
             except Exception as exception:
                 pass
-        return min_delay, max_delay
+        return min_latency, max_latency
 
 
 class TunnelDescription:
@@ -91,8 +91,8 @@ class Experiment:
     def print_statistics(self, tunnel_descriptions: List[TunnelDescription]):
         for index, description in enumerate(tunnel_descriptions):
             tunnel = self.tunnels[index]
-            min_delay, max_delay = tunnel.get_delays(description.sender, description.receivers)
-            print(f'Tunnel#{index}, min_delay: {min_delay}, max_delay: {max_delay}')
+            min_latency, max_latency = tunnel.get_letancies(description.sender, description.receivers)
+            print(f'Tunnel#{index}, min_latency: {min_latency}, max_latency: {max_latency}')
 
 
 def get_experiment(filename: str) -> Experiment:
