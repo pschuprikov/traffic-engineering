@@ -43,6 +43,8 @@ class Tunnel:
     def __init__(self, index: int):
         self.index = index
         self.iterations: Dict[int, Iteration] = {}
+        self.min_latency: float = None
+        self.max_latency: float = None
 
     def add_event(self, event: Event):
         if not event.iteration_index in self.iterations:
@@ -61,6 +63,24 @@ class Tunnel:
             except Exception as exception:
                 pass
         return min_latency, max_latency
+
+    def set_latencies(self, min_latency: float, max_latency: float):
+        self.min_latency = min_latency
+        self.max_latency = max_latency
+
+    def get_distributions(self, sender: str, receivers: List[str]) -> (List[float], List[float]):
+        if self.min_latency is None or self.max_latency is None:
+            raise Exception("the latencies was not initialized")
+        min_distribution = list()
+        max_distribution = list()
+        for iteration in self.iterations.values():
+            try:
+                current_min_latency, current_max_latency = iteration.get_latencies(sender, receivers)
+                min_distribution.append((current_min_latency - self.min_latency) / (self.max_latency - self.min_latency))
+                max_distribution.append((current_max_latency - self.min_latency) / (self.max_latency - self.min_latency))
+            except Exception as exception:
+                pass
+        return min_distribution, max_distribution
 
 
 class TunnelDescription:
@@ -90,9 +110,34 @@ class Experiment:
 
     def print_statistics(self, tunnel_descriptions: List[TunnelDescription]):
         for index, description in enumerate(tunnel_descriptions):
+            if not index in self.tunnels:
+                continue
             tunnel = self.tunnels[index]
             min_latency, max_latency = tunnel.get_latencies(description.sender, description.receivers)
             print(f'Tunnel#{index}, min_latency: {min_latency}, max_latency: {max_latency}')
+
+    def set_adjustment_latencies(self, filename: str):
+        with open(filename) as file:
+            for index, line in enumerate(file):
+                if not index in self.tunnels:
+                    continue
+                tunnel = self.tunnels[index]
+                latencies = list(map(float, line.split()))
+                min_latency, max_latency = latencies[0], latencies[1]
+                tunnel.set_latencies(min_latency, max_latency)
+
+    def get_distributions(self, tunnel_descriptions: List[TunnelDescription]) -> (List[float], List[float]):
+        min_distribution = list()
+        max_distribution = list()
+        for index, description in enumerate(tunnel_descriptions):
+            if not index in self.tunnels:
+                continue
+            tunnel = self.tunnels[index]
+            current_min_distribution, current_max_distribution = tunnel.get_distributions(description.sender,
+                                                                                          description.receivers)
+            min_distribution += current_min_distribution
+            max_distribution += current_max_distribution
+        return min_distribution, max_distribution
 
 
 def get_experiment(filename: str) -> Experiment:
@@ -104,7 +149,15 @@ def get_experiment(filename: str) -> Experiment:
     return result
 
 
-if __name__ == '__main__':
+def main():
     experiment = get_experiment('../simulations/results/events.log')
+    experiment.set_adjustment_latencies('../simulations/results/adjustment.log')
     descriptions = get_tunnel_descriptions('../simulations/results/tunnel_descriptions.log')
+    min_distribution, max_distribution = experiment.get_distributions(descriptions)
+    print(min_distribution)
+    print(max_distribution)
     experiment.print_statistics(descriptions)
+
+
+if __name__ == '__main__':
+    main()
