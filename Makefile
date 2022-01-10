@@ -1,3 +1,8 @@
+INET_PROJ ?= $(shell pwd)/../inet
+INET_INCLUDE ?= $(INET_PROJ)/src
+INET_LDPATH ?= $(INET_PROJ)/src
+INET_LDFLAGS ?= -lINET
+
 all: checkmakefiles
 	cd src && $(MAKE)
 
@@ -10,7 +15,7 @@ cleanall: checkmakefiles
 	rm -f src/Makefile
 
 makefiles:
-	cd src && opp_makemake -f --deep
+	cd src && opp_makemake -f --deep -DINET_IMPORT -I../include --make-so -I$(INET_INCLUDE) -L$(INET_LDPATH) $(INET_LDFLAGS)
 
 checkmakefiles:
 	@if [ ! -f src/Makefile ]; then \
