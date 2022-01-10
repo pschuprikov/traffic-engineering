@@ -50,7 +50,7 @@ class Tunnel:
         iteration = self.iterations[event.iteration_index]
         iteration.add_event(event)
 
-    def get_letancies(self, sender: str, receivers: List[str]) -> (float, float):
+    def get_latencies(self, sender: str, receivers: List[str]) -> (float, float):
         min_latency = float('inf')
         max_latency = 0.0
         for iteration in self.iterations.values():
@@ -91,7 +91,7 @@ class Experiment:
     def print_statistics(self, tunnel_descriptions: List[TunnelDescription]):
         for index, description in enumerate(tunnel_descriptions):
             tunnel = self.tunnels[index]
-            min_latency, max_latency = tunnel.get_letancies(description.sender, description.receivers)
+            min_latency, max_latency = tunnel.get_latencies(description.sender, description.receivers)
             print(f'Tunnel#{index}, min_latency: {min_latency}, max_latency: {max_latency}')
 
 
