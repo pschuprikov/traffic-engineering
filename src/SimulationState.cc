@@ -2,6 +2,9 @@
 
 #include "tools.h"
 
+#include <fstream>
+#include <cstdio>
+
 
 namespace TrafficEngineering {
 
@@ -16,6 +19,26 @@ SimulationState::SimulationState(omnetpp::cModule *controller) :
     _duration(controller->par("duration"))
 {
     _appOwnerNames = getSourceFromCurrentNetwork();
+
+    std::remove(_eventsLogFilename.c_str());
+    std::remove(_tunnelDescriptionFilename.c_str());
+}
+
+void SimulationState::logTunnelDescription(const AppDescription &app) const {
+    std::ofstream out(_tunnelDescriptionFilename, std::ios::app);
+    out << app.appOwnerName << ' ';
+    for (const auto &receiver : app.appReceiverNames) {
+        out << receiver << ' ';
+    }
+    out << '\n';
+    out.close();
+}
+
+void SimulationState::logEvent(const EventDescription &event) const {
+    std::ofstream out(_tunnelDescriptionFilename, std::ios::app);
+    out << event.node << ' ';
+    out << event.packetName << ' ';
+    out << event.time << '\n';
 }
 
 AppDescription SimulationState::getNextApp() {

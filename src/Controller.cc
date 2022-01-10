@@ -40,13 +40,7 @@ void Controller::handleMessage(cMessage *msg) {
     auto appDescription = state.getNextApp();
     createUdpBasicApp(this, appDescription);
 
-    std::ofstream out("results/tunnel_descriptions.log", std::ios::app);
-    out << appDescription.appOwnerName << ' ';
-    for (const auto &receiver : appDescription.appReceiverNames) {
-        out << receiver << ' ';
-    }
-    out << '\n';
-    out.close();
+    state.logTunnelDescription(appDescription);
 
     Topology topology = makeTopologyFromCurrentNetwork();
     Tunnel tunnel = optimization(topology, state.getTunnels(), appDescription);

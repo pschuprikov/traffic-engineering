@@ -11,6 +11,12 @@
 
 namespace TrafficEngineering {
 
+struct EventDescription {
+    std::string node;
+    std::string packetName;
+    omnetpp::simtime_t time;
+};
+
 class SimulationState {
 public:
     static SimulationState &getInstance(omnetpp::cModule *controller);
@@ -18,8 +24,13 @@ public:
     SimulationState(SimulationState const &) = delete;
     void operator=(SimulationState const &) = delete;
 
+    void logTunnelDescription(const AppDescription &app) const;
+    void logEvent(const EventDescription &event) const;
+
     AppDescription getNextApp();
     const std::vector<Tunnel> &getTunnels() const;
+
+    const std::string &getEventsLogFilename() const { return _eventsLogFilename; }
 
     void addTunnel(const Tunnel &tunnel);
 private:
@@ -33,6 +44,9 @@ private:
     std::vector<int> _bytes = {225, 0, 0, 1};
     std::string _appNamePrefix = "app-";
     int _counter = 0;
+
+    const std::string _eventsLogFilename = "results/events.log";
+    const std::string _tunnelDescriptionFilename = "results/tunnel_descriptions.log";
 
     std::vector<std::string> _appOwnerNames;
     std::vector<Tunnel> _tunnels;
