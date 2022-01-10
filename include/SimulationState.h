@@ -6,6 +6,7 @@
 #include <omnetpp.h>
 
 #include "applications.h"
+#include "algorithms.h"
 #include "Tunnel.h"
 
 
@@ -26,11 +27,10 @@ public:
 
     void logTunnelDescription(const AppDescription &app) const;
     void logEvent(const EventDescription &event) const;
+    void logAdjustmentResult(const std::vector<AdjustmentResult> &result) const;
 
     AppDescription getNextApp();
     const std::vector<Tunnel> &getTunnels() const;
-
-    const std::string &getEventsLogFilename() const { return _eventsLogFilename; }
 
     void addTunnel(const Tunnel &tunnel);
 private:
@@ -47,6 +47,7 @@ private:
 
     const std::string _eventsLogFilename = "results/events.log";
     const std::string _tunnelDescriptionFilename = "results/tunnel_descriptions.log";
+    const std::string _adjustmentResultFilename = "results/adjustment.log";
 
     std::vector<std::string> _appOwnerNames;
     std::vector<Tunnel> _tunnels;

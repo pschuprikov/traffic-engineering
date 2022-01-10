@@ -41,6 +41,15 @@ void SimulationState::logEvent(const EventDescription &event) const {
     out << event.time << '\n';
 }
 
+void SimulationState::logAdjustmentResult(const std::vector<AdjustmentResult> &result) const {
+    std::ofstream out(_adjustmentResultFilename);
+    for (const auto &element : result) {
+        out << element.minDelay << ' ';
+        out << element.maxDelay << ' ';
+        out << '\n';
+    }
+}
+
 AppDescription SimulationState::getNextApp() {
     AppDescription appDescription;
     appDescription.destPort = 100;

@@ -49,12 +49,7 @@ void Controller::handleMessage(cMessage *msg) {
     state.addTunnel(tunnel);
 
     auto result = adjustment(state.getTunnels());
-    for (int i = 0; i < result.size(); i++) {
-        std::cout << "tunnel#" << i << ' ';
-        std::cout << result[i].minDelay << ' ';
-        std::cout << result[i].maxDelay << ' ';
-        std::cout << std::endl;
-    }
+    state.logAdjustmentResult(result);
 
     send(msg, "out");
 }
