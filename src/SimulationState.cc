@@ -39,6 +39,7 @@ void SimulationState::logEvent(const EventDescription &event) const {
     out << event.node << ' ';
     out << event.packetName << ' ';
     out << event.time << '\n';
+    out.close();
 }
 
 void SimulationState::logAdjustmentResult(const std::vector<AdjustmentResult> &result) const {
@@ -48,6 +49,7 @@ void SimulationState::logAdjustmentResult(const std::vector<AdjustmentResult> &r
         out << element.maxDelay << ' ';
         out << '\n';
     }
+    out.close();
 }
 
 AppDescription SimulationState::getNextApp() {
