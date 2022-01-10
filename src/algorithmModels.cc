@@ -1,5 +1,7 @@
 #include "algorithmModels.h"
 
+#include <cassert>
+
 
 namespace TrafficEngineering {
 
