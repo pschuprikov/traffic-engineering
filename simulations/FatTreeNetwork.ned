@@ -11,13 +11,13 @@ network FatTreeNetwork
     types:
         channel ServerEthernet extends DatarateChannel
         {
-            delay = 0.005s;
+            delay = 5us;
             datarate = 10Mbps;
         }
         
         channel SwitchEthernet extends DatarateChannel
         {
-            delay = 0.002s;
+            delay = 2us;
             datarate = 10Mbps;
         }
 

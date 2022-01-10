@@ -18,7 +18,7 @@ public:
 
     bool addLink(const Link &link);
 
-    double getLoadSize() const { return _loadSize; }
+    double getLoadSize() const { return _loadSize + 54; }
     const std::string &getRootName() const;
     std::vector<Node> getDFSOrder() const;
     const std::string &getInInterface(const std::string &nodeName) const;
