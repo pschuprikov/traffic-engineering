@@ -1,5 +1,14 @@
 from typing import Dict, List
 
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def show_distribution(array: List[float]):
+    count, bins, _ = plt.hist(array, 15, density=True)
+    plt.plot(bins, np.ones_like(bins))
+    plt.show()
+
 
 class Event:
     def __init__(self, event_line: str):
@@ -144,6 +153,8 @@ def get_experiment(filename: str) -> Experiment:
     result = Experiment()
     with open(filename) as file:
         for line in file:
+            if len(line.split()) != 3:
+                continue
             event = Event(line)
             result.add_event(event)
     return result
@@ -154,8 +165,10 @@ def main():
     experiment.set_adjustment_latencies('../simulations/results/adjustment.log')
     descriptions = get_tunnel_descriptions('../simulations/results/tunnel_descriptions.log')
     min_distribution, max_distribution = experiment.get_distributions(descriptions)
-    print(min_distribution)
-    print(max_distribution)
+    # print(min_distribution)
+    # print(max_distribution)
+    show_distribution(min_distribution)
+    show_distribution(max_distribution)
     experiment.print_statistics(descriptions)
 
 
