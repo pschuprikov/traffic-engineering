@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 def show_distribution(array: List[float]):
-    count, bins, _ = plt.hist(array, 15, density=True)
+    count, bins, _ = plt.hist(array, 15, density=True, range=(0, 1))
     plt.plot(bins, np.ones_like(bins))
     plt.show()
 
@@ -85,8 +85,8 @@ class Tunnel:
         for iteration in self.iterations.values():
             try:
                 current_min_latency, current_max_latency = iteration.get_latencies(sender, receivers)
-                min_distribution.append((current_min_latency - self.min_latency))
-                max_distribution.append((current_max_latency - self.min_latency))
+                min_distribution.append((current_min_latency - self.min_latency) / (self.max_latency - self.min_latency))
+                max_distribution.append((current_max_latency - self.min_latency) / (self.max_latency - self.min_latency))
             except Exception as exception:
                 print(exception)
                 pass
