@@ -39,6 +39,7 @@ void Controller::handleMessage(cMessage *msg) {
 
     for (int i = 0; i < 1; i++) {
         auto appDescription = state.getNextApp();
+        appDescription.appReceiverNames.push_back("server2");
         createUdpBasicApp(this, appDescription);
 
         state.logTunnelDescription(appDescription);
