@@ -12,13 +12,13 @@ network FatTreeNetwork
         channel ServerEthernet extends DatarateChannel
         {
             delay = 5us;
-            datarate = 1Gbps;
+            datarate = 10Mbps;
         }
         
         channel SwitchEthernet extends DatarateChannel
         {
             delay = 2us;
-            datarate = 1Gbps;
+            datarate = 10Mbps;
         }
 
     submodules:
