@@ -85,9 +85,10 @@ class Tunnel:
         for iteration in self.iterations.values():
             try:
                 current_min_latency, current_max_latency = iteration.get_latencies(sender, receivers)
-                min_distribution.append((current_min_latency - self.min_latency) / (self.max_latency - self.min_latency))
-                max_distribution.append((current_max_latency - self.min_latency) / (self.max_latency - self.min_latency))
+                min_distribution.append((current_min_latency - self.min_latency))
+                max_distribution.append((current_max_latency - self.min_latency))
             except Exception as exception:
+                print(exception)
                 pass
         return min_distribution, max_distribution
 
