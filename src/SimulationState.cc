@@ -105,7 +105,7 @@ const std::string &SimulationState::getNextAppOwnerName() {
 std::vector<std::string> SimulationState::getNextAppReceiverNames(const std::string &appOwnerName) {
     std::vector<std::string> result;
     std::vector<bool> used(_appOwnerNames.size());
-    int receiversNumber = 1 + (rand() % (_appOwnerNames.size() - 1));
+    int receiversNumber = 2 + (rand() % (_appOwnerNames.size() - 2));
     for (int i = 0; i < receiversNumber; i++) {
         int nodeId = rand() % _appOwnerNames.size();
         while (used[nodeId] || _appOwnerNames[nodeId] == appOwnerName) {

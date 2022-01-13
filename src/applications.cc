@@ -23,6 +23,7 @@ void createUdpBasicApp(omnetpp::cModule *controller,
     app->par("destPort") = appDescription.destPort;
     app->par("messageLength") = appDescription.messageLength;
     app->par("startTime") = appDescription.startTime;
+    // app->par("stopTime") = appDescription.stopTime;
     app->par("sendInterval") = appDescription.sendInterval;
     app->par("destAddresses") = appDescription.destAddresses;
     app->par("joinLocalMulticastGroups") = appDescription.joinLocalMulticastGroups;

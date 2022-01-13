@@ -12,13 +12,13 @@ network FatTreeNetwork
         channel ServerEthernet extends DatarateChannel
         {
             delay = 5us;
-            datarate = 10Mbps;
+            datarate = 1Gbps;
         }
         
         channel SwitchEthernet extends DatarateChannel
         {
             delay = 2us;
-            datarate = 10Mbps;
+            datarate = 1Gbps;
         }
 
     submodules:
@@ -134,6 +134,6 @@ network FatTreeNetwork
         router2.ethg++ <--> SwitchEthernet <--> router5.ethg++;
         router2.ethg++ <--> SwitchEthernet <--> router6.ethg++;
 
-        tic.out --> {  delay = 100ms; } --> tac.in;
-        tic.in <-- {  delay = 100ms; } <-- tac.out;
+        tic.out --> {  delay = 10ms; } --> tac.in;
+        tic.in <-- {  delay = 10ms; } <-- tac.out;
 }

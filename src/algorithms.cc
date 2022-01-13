@@ -35,10 +35,10 @@ AdjustmentResult dfs(const Node &node, const Tunnel &tunnel,
     for (const auto &link : node.getAllLinks()) {
         auto neighbour = tunnel.getNode(link.remoteNodeName);
         auto neighbourResult = dfs(neighbour, tunnel, sumTime);
-        auto transferTime = tunnel.getLoadSize() / link.datarate;
+        auto transferTime = tunnel.getLoadSize() / link.datarate + link.delay;
         auto sumTransferTime = sumTime.at({link.localNodeName, link.remoteNodeName});
-        result.minDelay = std::min(result.minDelay, neighbourResult.minDelay + link.delay + transferTime);
-        result.maxDelay = std::max(result.maxDelay, neighbourResult.maxDelay + link.delay + sumTransferTime);
+        result.minDelay = std::min(result.minDelay, neighbourResult.minDelay + transferTime);
+        result.maxDelay = std::max(result.maxDelay, neighbourResult.maxDelay + sumTransferTime);
     }
     return result;
 }
@@ -50,7 +50,7 @@ std::vector<AdjustmentResult> adjustment(const std::vector<Tunnel> &tunnels) {
     for (const auto &tunnel : tunnels) {
         for (const auto &link : tunnel.getAllLinks()) {
             std::pair<std::string, std::string> key = {link.localNodeName, link.remoteNodeName};
-            sumTime[key] += tunnel.getLoadSize() / link.datarate;
+            sumTime[key] += tunnel.getLoadSize() / link.datarate + link.delay;
         }
     }
 
@@ -64,7 +64,7 @@ std::vector<AdjustmentResult> adjustment(const std::vector<Tunnel> &tunnels) {
 Tunnel optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, const AppDescription &app) {
     std::map<std::pair<std::string, std::string>, double> weights;
     for (const auto &link : topology.getAllLinks()) {
-        weights[{link.localNodeName, link.remoteNodeName}] = 1.0 * app.messageLength / link.datarate + link.delay;
+        weights[{link.localNodeName, link.remoteNodeName}] = 1.0 * (app.messageLength + 54) / link.datarate + link.delay;
     }
     for (const auto &tunnel : tunnels) {
         for (const auto &link : tunnel.getAllLinks()) {
