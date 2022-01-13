@@ -23,7 +23,7 @@ Tunnel treeToTunnel(const Topology &topology, const Tree &tree) {
 }
 
 AdjustmentResult dfs(const Node &node, const Tunnel &tunnel,
-                     const std::map<std::pair<std::string, std::string>, double> &sumTime) {
+                     const std::map<std::pair<std::string, std::string>, double> &maxTime) {
     AdjustmentResult result;
     result.minDelay = std::numeric_limits<double>::max();
     result.maxDelay = 0;
@@ -34,11 +34,11 @@ AdjustmentResult dfs(const Node &node, const Tunnel &tunnel,
     }
     for (const auto &link : node.getAllLinks()) {
         auto neighbour = tunnel.getNode(link.remoteNodeName);
-        auto neighbourResult = dfs(neighbour, tunnel, sumTime);
-        auto transferTime = tunnel.getLoadSize() / link.datarate + link.delay;
-        auto sumTransferTime = sumTime.at({link.localNodeName, link.remoteNodeName});
-        result.minDelay = std::min(result.minDelay, neighbourResult.minDelay + transferTime);
-        result.maxDelay = std::max(result.maxDelay, neighbourResult.maxDelay + sumTransferTime);
+        auto neighbourResult = dfs(neighbour, tunnel, maxTime);
+        auto transferTime = tunnel.getLoadSize() / link.datarate;
+        auto sumTransferTime = maxTime.at({link.localNodeName, link.remoteNodeName});
+        result.minDelay = std::min(result.minDelay, neighbourResult.minDelay + transferTime + link.delay);
+        result.maxDelay = std::max(result.maxDelay, neighbourResult.maxDelay + sumTransferTime + link.delay);
     }
     return result;
 }
@@ -46,17 +46,20 @@ AdjustmentResult dfs(const Node &node, const Tunnel &tunnel,
 } // namespace
 
 std::vector<AdjustmentResult> adjustment(const std::vector<Tunnel> &tunnels) {
-    std::map<std::pair<std::string, std::string>, double> sumTime;
+    std::map<std::pair<std::string, std::string>, double> maxTime;
     for (const auto &tunnel : tunnels) {
         for (const auto &link : tunnel.getAllLinks()) {
             std::pair<std::string, std::string> key = {link.localNodeName, link.remoteNodeName};
-            sumTime[key] += tunnel.getLoadSize() / link.datarate + link.delay;
+            if (maxTime.count(key) != 0) {
+                maxTime[key] += 96 / link.datarate;  // interpacket gap
+            }
+            maxTime[key] += tunnel.getLoadSize() / link.datarate;
         }
     }
 
     std::vector<AdjustmentResult> result;
     for (const auto &tunnel : tunnels) {
-        result.push_back(dfs(tunnel.getRoot(), tunnel, sumTime));
+        result.push_back(dfs(tunnel.getRoot(), tunnel, maxTime));
     }
     return result;
 }
