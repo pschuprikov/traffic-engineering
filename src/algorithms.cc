@@ -63,7 +63,7 @@ std::vector<AdjustmentResult> adjustment(std::vector<Tunnel> &tunnels) {
     std::vector<AdjustmentResult> results;
     for (auto &tunnel : tunnels) {
         auto result = dfs(tunnel.getRoot(), tunnel, maxTime);
-        tunnel.setPeriodValue(std::max(result.maxPeriod, tunnel.getPeriod()));
+        // tunnel.setPeriodValue(std::max(result.maxPeriod, tunnel.getPeriod()));
         results.push_back(result);
     }
     return results;
