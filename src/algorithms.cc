@@ -27,9 +27,11 @@ AdjustmentResult dfs(const Node &node, const Tunnel &tunnel,
     AdjustmentResult result;
     result.minDelay = std::numeric_limits<double>::max();
     result.maxDelay = 0;
+    result.maxPeriod = 0;
     if (node.getInterfaceNumber() == 0) {
         result.minDelay = 0;
         result.maxDelay = 0;
+        result.maxPeriod = 0;
         return result;
     }
     for (const auto &link : node.getAllLinks()) {
@@ -39,13 +41,14 @@ AdjustmentResult dfs(const Node &node, const Tunnel &tunnel,
         auto sumTransferTime = maxTime.at({link.localNodeName, link.remoteNodeName});
         result.minDelay = std::min(result.minDelay, neighbourResult.minDelay + transferTime + link.delay);
         result.maxDelay = std::max(result.maxDelay, neighbourResult.maxDelay + sumTransferTime + link.delay);
+        result.maxPeriod = std::max(result.maxPeriod, sumTransferTime + std::max(transferTime, neighbourResult.maxPeriod));
     }
     return result;
 }
 
 } // namespace
 
-std::vector<AdjustmentResult> adjustment(const std::vector<Tunnel> &tunnels) {
+std::vector<AdjustmentResult> adjustment(std::vector<Tunnel> &tunnels) {
     std::map<std::pair<std::string, std::string>, double> maxTime;
     for (const auto &tunnel : tunnels) {
         for (const auto &link : tunnel.getAllLinks()) {
@@ -57,14 +60,16 @@ std::vector<AdjustmentResult> adjustment(const std::vector<Tunnel> &tunnels) {
         }
     }
 
-    std::vector<AdjustmentResult> result;
-    for (const auto &tunnel : tunnels) {
-        result.push_back(dfs(tunnel.getRoot(), tunnel, maxTime));
+    std::vector<AdjustmentResult> results;
+    for (auto &tunnel : tunnels) {
+        auto result = dfs(tunnel.getRoot(), tunnel, maxTime);
+        tunnel.setPeriodValue(std::max(result.maxPeriod, tunnel.getPeriod()));
+        results.push_back(result);
     }
-    return result;
+    return results;
 }
 
-Tunnel optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, const AppDescription &app) {
+Tunnel optimization(const Topology &topology, std::vector<Tunnel> &tunnels, const AppDescription &app) {
     std::map<std::pair<std::string, std::string>, double> weights;
     for (const auto &link : topology.getAllLinks()) {
         weights[{link.localNodeName, link.remoteNodeName}] = 1.0 * (app.messageLength + 54) / link.datarate + link.delay;
@@ -114,7 +119,6 @@ Tunnel optimization(const Topology &topology, const std::vector<Tunnel> &tunnels
 
     Tunnel tunnel = treeToTunnel(topology, tree);
     tunnel.setLoadSize(app.messageLength);
-    tunnel.setPeriod(app.sendInterval);
 
     return tunnel;
 }

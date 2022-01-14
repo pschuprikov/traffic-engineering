@@ -1,5 +1,6 @@
 #pragma once
 
+#include <omnetpp.h>
 
 #include <Link.h>
 #include <unordered_map>
@@ -24,11 +25,13 @@ public:
     const std::string &getInInterface(const std::string &nodeName) const;
     const Node &getNode(const std::string &name) const;
     const Node &getRoot() const { return _root; }
+    double getPeriod() const;
 
     std::vector<Link> getAllLinks() const;
 
     void setLoadSize(double loadSize);
-    void setPeriod(double period);
+    void setPeriod(omnetpp::cPar *period);
+    void setPeriodValue(double period);
 private:
     bool containsNode(const std::string &name) const;
 
@@ -40,7 +43,7 @@ private:
     std::unordered_map<std::string, std::string> _inInterface;
 
     double _loadSize;
-    double _period;
+    omnetpp::cPar *_period;
 };
 
 } // namespace TrafficEngineering

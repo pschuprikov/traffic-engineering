@@ -66,7 +66,7 @@ AppDescription SimulationState::getNextApp() {
     return appDescription;
 }
 
-const std::vector<Tunnel> &SimulationState::getTunnels() const {
+std::vector<Tunnel> &SimulationState::getTunnels() {
     return _tunnels;
 }
 

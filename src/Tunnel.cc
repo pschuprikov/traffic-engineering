@@ -37,6 +37,10 @@ const Node &Tunnel::getNode(const std::string &name) const {
     return _nodes.at(name);
 }
 
+double Tunnel::getPeriod() const {
+    return _period->doubleValue();
+}
+
 std::vector<Link> Tunnel::getAllLinks() const {
     std::vector<Link> result = _root.getAllLinks();
     for (const auto &entry : _nodes) {
@@ -50,8 +54,12 @@ void Tunnel::setLoadSize(double loadSize) {
     _loadSize = loadSize;
 }
 
-void Tunnel::setPeriod(double period) {
+void Tunnel::setPeriod(omnetpp::cPar *period) {
     _period = period;
+}
+
+void Tunnel::setPeriodValue(double period) {
+    *_period = period;
 }
 
 std::vector<Node> Tunnel::dfs(const Node &node) const {

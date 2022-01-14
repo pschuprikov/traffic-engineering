@@ -30,7 +30,7 @@ public:
     void logAdjustmentResult(const std::vector<AdjustmentResult> &result) const;
 
     AppDescription getNextApp();
-    const std::vector<Tunnel> &getTunnels() const;
+    std::vector<Tunnel> &getTunnels();
 
     void addTunnel(const Tunnel &tunnel);
 private:
