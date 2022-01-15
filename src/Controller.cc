@@ -37,7 +37,7 @@ void Controller::initialize() {
 void Controller::handleMessage(cMessage *msg) {
     auto &state = SimulationState::getInstance(this);
 
-    for (int i = 0; i < 50; i++) {
+    for (int i = 0; i < 100; i++) {
         auto appDescription = state.getNextApp();
         auto *app = createUdpBasicApp(this, appDescription);
 

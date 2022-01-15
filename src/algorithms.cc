@@ -39,9 +39,9 @@ AdjustmentResult dfs(const Node &node, const Tunnel &tunnel,
         auto neighbourResult = dfs(neighbour, tunnel, maxTime);
         auto transferTime = tunnel.getLoadSize() / link.datarate;
         auto sumTransferTime = maxTime.at({link.localNodeName, link.remoteNodeName});
-        result.minDelay = std::min(result.minDelay, neighbourResult.minDelay + transferTime + link.delay);
-        result.maxDelay = std::max(result.maxDelay, neighbourResult.maxDelay + sumTransferTime + link.delay);
-        result.maxPeriod = std::max(result.maxPeriod, sumTransferTime + std::max(transferTime, neighbourResult.maxPeriod));
+        result.minDelay = std::min(result.minDelay, neighbourResult.minDelay + transferTime + link.minDelay);
+        result.maxDelay = std::max(result.maxDelay, neighbourResult.maxDelay + sumTransferTime + link.minDelay + link.maxJitter);
+        result.maxPeriod = std::max(result.maxPeriod, sumTransferTime + std::max(transferTime, neighbourResult.maxPeriod + link.maxJitter));
     }
     return result;
 }
@@ -72,7 +72,7 @@ std::vector<AdjustmentResult> adjustment(std::vector<Tunnel> &tunnels) {
 Tunnel optimization(const Topology &topology, std::vector<Tunnel> &tunnels, const AppDescription &app) {
     std::map<std::pair<std::string, std::string>, double> weights;
     for (const auto &link : topology.getAllLinks()) {
-        weights[{link.localNodeName, link.remoteNodeName}] = 1.0 * (app.messageLength + 54) / link.datarate + link.delay;
+        weights[{link.localNodeName, link.remoteNodeName}] = 1.0 * (app.messageLength + 54) / link.datarate + link.minDelay + link.maxJitter;
     }
     for (const auto &tunnel : tunnels) {
         for (const auto &link : tunnel.getAllLinks()) {

@@ -41,8 +41,19 @@ Topology makeTopology(omnetpp::cTopology &topology) {
             link.remoteNodeName = gate->getNextGate()->getOwnerModule()->getFullName();
             link.localInterfaceName = getGateName(gate);
             link.remoteInterfaceName = getGateName(gate->getNextGate());
-            link.datarate = gate->getTransmissionChannel()->par("datarate").doubleValue();
-            link.delay = gate->getTransmissionChannel()->par("delay").doubleValue();
+
+            omnetpp::cChannel *channel = gate->getTransmissionChannel();
+            std::string type = channel->getNedTypeName();
+            if (type == "FatTreeNetwork.SwitchEthernet") {
+                link.minDelay = 0.000002;
+                link.maxJitter = 0.000001;
+            } else if (type == "FatTreeNetwork.ServerEthernet") {
+                link.minDelay = 0.000005;
+                link.maxJitter = 0.000005;
+            }
+            link.datarate = channel->par("datarate").doubleValue();
+            link.delay = channel->par("delay").doubleValue();
+
             result.addLink(link);
         }
     }
