@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 def show_distribution(array: List[float]):
-    count, bins, _ = plt.hist(array, 15, density=True, range=(0, 1))
+    count, bins, _ = plt.hist(array, 15, density=True)
     plt.plot(bins, np.ones_like(bins))
     plt.show()
 
@@ -149,6 +149,10 @@ class Experiment:
             max_distribution += current_max_distribution
         return min_distribution, max_distribution
 
+    def get_average(self, tunnel_descriptions: List[TunnelDescription]) -> (float, float):
+        min_distribution, max_distribution = self.get_distributions(tunnel_descriptions)
+        return sum(min_distribution) / len(min_distribution), sum(max_distribution) / len(max_distribution)
+
 
 def get_experiment(filename: str) -> Experiment:
     result = Experiment()
@@ -171,6 +175,7 @@ def main():
     show_distribution(min_distribution)
     show_distribution(max_distribution)
     experiment.print_statistics(descriptions)
+    print(experiment.get_average(descriptions))
 
 
 if __name__ == '__main__':
