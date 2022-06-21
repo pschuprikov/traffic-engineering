@@ -8,9 +8,10 @@
 #include "algorithmModels.h"
 
 
-namespace TrafficEngineering {
 
 namespace {
+
+using namespace TrafficEngineering;
 
 Tunnel treeToTunnel(const Topology &topology, const Tree &tree) {
     auto &root = topology.getNodeByName(tree.getRoot());
@@ -45,7 +46,7 @@ AdjustmentResult dfs(const Node &node, const Tunnel &tunnel,
 
 } // namespace
 
-std::vector<AdjustmentResult> adjustment(const std::vector<Tunnel> &tunnels) {
+std::vector<TrafficEngineering::AdjustmentResult> TrafficEngineering::adjustment(const std::vector<Tunnel> &tunnels) {
     std::map<std::pair<std::string, std::string>, double> sumTime;
     for (const auto &tunnel : tunnels) {
         for (const auto &link : tunnel.getAllLinks()) {
@@ -61,7 +62,7 @@ std::vector<AdjustmentResult> adjustment(const std::vector<Tunnel> &tunnels) {
     return result;
 }
 
-Tunnel optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, const AppDescription &app) {
+TrafficEngineering::Tunnel TrafficEngineering::optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, const MulticastRequest &app) {
     std::map<std::pair<std::string, std::string>, double> weights;
     for (const auto &link : topology.getAllLinks()) {
         weights[{link.localNodeName, link.remoteNodeName}] = 1.0 * app.messageLength / link.datarate + link.delay;
@@ -114,5 +115,3 @@ Tunnel optimization(const Topology &topology, const std::vector<Tunnel> &tunnels
 
     return tunnel;
 }
-
-} // namespace TrafficEngineering

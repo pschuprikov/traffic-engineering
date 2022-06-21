@@ -16,6 +16,6 @@ struct AdjustmentResult {
 
 std::vector<AdjustmentResult> adjustment(const std::vector<Tunnel> &tunnels);
 
-Tunnel optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, const AppDescription &app);
+Tunnel optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, const MulticastRequest &req);
 
 } // namespace TrafficEngineering

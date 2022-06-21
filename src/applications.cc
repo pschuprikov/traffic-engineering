@@ -6,7 +6,7 @@ namespace TrafficEngineering {
 void createUdpBasicApp(omnetpp::cModule *controller,
                        const AppDescription &appDescription) {
 
-    auto *messageSource = controller->getModuleByPath(appDescription.appOwnerName.c_str());
+    auto *messageSource = controller->getModuleByPath(appDescription.request.appOwnerName.c_str());
     auto *dispatcher = messageSource->getSubmodule("at");
 
     auto *applicationFactory = omnetpp::cModuleType::get("inet.applications.udpapp.UdpBasicApp");
@@ -21,9 +21,9 @@ void createUdpBasicApp(omnetpp::cModule *controller,
     outGate->connectTo(socketIn);
 
     app->par("destPort") = appDescription.destPort;
-    app->par("messageLength") = appDescription.messageLength;
+    app->par("messageLength") = appDescription.request.messageLength;
     app->par("startTime") = appDescription.startTime;
-    app->par("sendInterval") = appDescription.sendInterval;
+    app->par("sendInterval") = appDescription.request.sendInterval;
     app->par("destAddresses") = appDescription.destAddresses;
     app->par("joinLocalMulticastGroups") = appDescription.joinLocalMulticastGroups;
     app->par("packetName") = appDescription.appName;

@@ -1,23 +1,37 @@
 #include "algorithmModels.h"
 
 #include <cassert>
+#include <cmath>
+#include <exception>
+#include <limits>
 
 
 namespace TrafficEngineering {
 
 Graph::Graph(int vertex_number, const std::vector<Edge> edges) :
     _names(vertex_number),
-    _distances(vertex_number, std::vector<double>(vertex_number, INF)),
+    _distances(vertex_number, std::vector<double>(vertex_number, std::numeric_limits<double>::infinity())),
     _parent(vertex_number, std::vector<int>(vertex_number))
 {
     for (const auto &edge : edges) {
         if (_indexes.count(edge.from) == 0) {
-            _names[_indexes.size()] = edge.from;
-            _indexes[edge.from] = _indexes.size();
+            auto const vertex_id =_indexes.size();
+            _names[vertex_id] = edge.from;
+            _indexes[edge.from] = vertex_id;
         }
         if (_indexes.count(edge.to) == 0) {
-            _names[_indexes.size()] = edge.to;
-            _indexes[edge.to] = _indexes.size();
+            auto const vertex_id =_indexes.size();
+            _names[vertex_id] = edge.to;
+            _indexes[edge.to] = vertex_id;
+        }
+        if (std::isnan(edge.weight)) {
+            throw std::invalid_argument("edge weight can't be NaN");
+        }
+        if (std::isinf(edge.weight)) {
+            throw std::invalid_argument("edge weight can't be infinite");
+        }
+        if (edge.weight < 0) {
+            throw std::invalid_argument("edge weight can't be negative");
         }
         _distances[_indexes[edge.from]][_indexes[edge.to]] = edge.weight;
         _parent[_indexes[edge.from]][_indexes[edge.to]] = _indexes[edge.from];
@@ -40,20 +54,30 @@ Graph::Graph(int vertex_number, const std::vector<Edge> edges) :
 }
 
 double Graph::theShortestPathWeight(const std::string &from, const std::string &to) {
-    assert(_indexes.count(from) != 0);
-    assert(_indexes.count(to) != 0);
-    return _distances[_indexes[from]][_indexes[to]];
+    return _distances[checked_vertex_id(from)][checked_vertex_id(to)];
+}
+
+int Graph::checked_vertex_id(const std::string &name) const {
+    if (_indexes.count(name) == 0) {
+        throw std::invalid_argument("unknown vertex " + name);
+    }
+    return _indexes.at(name);
 }
 
 std::vector<Edge> Graph::theShortestPath(const std::string &from, const std::string &to) {
-    assert(_indexes.count(from) != 0);
-    assert(_indexes.count(to) != 0);
+    if (_distances[_indexes.at(from)][_indexes.at(to)] == std::numeric_limits<double>::infinity()) {
+        throw std::invalid_argument("no path between " + from + " and " + to);
+    }
+    return theShortestPathImpl(from, to);
+}
+
+std::vector<Edge> Graph::theShortestPathImpl(const std::string &from, const std::string &to) {
     std::string vertex = _names[_parent[_indexes[from]][_indexes[to]]];
     if (from == vertex) {
         return {{from, to, 0}};
     }
-    auto left = theShortestPath(from, vertex);
-    auto right = theShortestPath(vertex, to);
+    auto left = theShortestPathImpl(from, vertex);
+    auto right = theShortestPathImpl(vertex, to);
     left.insert(left.end(), right.begin(), right.end());
     return left;
 }

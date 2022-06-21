@@ -41,15 +41,15 @@ void Controller::handleMessage(cMessage *msg) {
     createUdpBasicApp(this, appDescription);
 
     std::ofstream out("results/tunnel_descriptions.log", std::ios::app);
-    out << appDescription.appOwnerName << ' ';
-    for (const auto &receiver : appDescription.appReceiverNames) {
+    out << appDescription.request.appOwnerName << ' ';
+    for (const auto &receiver : appDescription.request.appReceiverNames) {
         out << receiver << ' ';
     }
     out << '\n';
     out.close();
 
     Topology topology = makeTopologyFromCurrentNetwork();
-    Tunnel tunnel = optimization(topology, state.getTunnels(), appDescription);
+    Tunnel tunnel = optimization(topology, state.getTunnels(), appDescription.request);
     addMulticastGroup(this, tunnel, appDescription.destAddresses);
 
     state.addTunnel(tunnel);

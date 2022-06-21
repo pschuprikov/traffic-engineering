@@ -21,14 +21,14 @@ SimulationState::SimulationState(omnetpp::cModule *controller) :
 AppDescription SimulationState::getNextApp() {
     AppDescription appDescription;
     appDescription.destPort = 100;
-    appDescription.messageLength = static_cast<int>(_messageLength.doubleValue());
-    appDescription.sendInterval = _sendInterval.doubleValue();
+    appDescription.request.messageLength = static_cast<int>(_messageLength.doubleValue());
+    appDescription.request.sendInterval = _sendInterval.doubleValue();
     appDescription.startTime = 0.15;
     appDescription.stopTime = appDescription.startTime + _duration.doubleValue();
     appDescription.destAddresses = getNextMulticastGroup();
     appDescription.appName = getNextAppName();
-    appDescription.appOwnerName = getNextAppOwnerName();
-    appDescription.appReceiverNames = getNextAppReceiverNames(appDescription.appOwnerName);
+    appDescription.request.appOwnerName = getNextAppOwnerName();
+    appDescription.request.appReceiverNames = getNextAppReceiverNames(appDescription.request.appOwnerName);
     return appDescription;
 }
 

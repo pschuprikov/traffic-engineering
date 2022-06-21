@@ -28,21 +28,33 @@ std::string getGateName(omnetpp::cGate *gate) {
 } // namespace
 
 Topology makeTopology(omnetpp::cTopology &topology) {
+    EV_STATICCONTEXT;
     Topology result;
     for (int i = 0; i < topology.getNumNodes(); i++) {
         auto *module = topology.getNode(i)->getModule();
         for (int i = 0; i < module->gateCount(); i++) {
-            auto *gate = module->gateByOrdinal(i);
-            if (gate->getType() == omnetpp::cGate::INPUT) {
+            auto const localGate = module->gateByOrdinal(i);
+            if (localGate->getType() == omnetpp::cGate::INPUT) {
                 continue;
             }
+
+            omnetpp::cGate * remoteGate = localGate->getNextGate(); 
+            while (remoteGate && topology.getNodeFor(remoteGate->getOwnerModule()) == nullptr) {
+                remoteGate = remoteGate->getNextGate();
+            }
+            if (remoteGate == nullptr) {
+                throw std::logic_error(std::string("couldn't find a peer of ") + localGate->getName());
+            }
+
+            auto const remoteModule = remoteGate->getOwnerModule();
             Link link;
-            link.localNodeName = module->getName();
-            link.remoteNodeName = gate->getNextGate()->getOwnerModule()->getFullName();
-            link.localInterfaceName = getGateName(gate);
-            link.remoteInterfaceName = getGateName(gate->getNextGate());
-            link.datarate = gate->getTransmissionChannel()->par("datarate").doubleValue();
-            link.delay = gate->getTransmissionChannel()->par("delay").doubleValue();
+            link.localNodeName = module->getFullPath();
+            link.remoteNodeName = remoteModule->getFullPath();
+            link.localInterfaceName = getGateName(localGate);
+            link.remoteInterfaceName = getGateName(remoteGate);
+            link.datarate = localGate->getTransmissionChannel()->par("datarate").doubleValue();
+            link.delay = localGate->getTransmissionChannel()->par("delay").doubleValue();
+            EV_INFO << " adding link from " << link.localNodeName << " to " << link.remoteNodeName << std::endl;
             result.addLink(link);
         }
     }

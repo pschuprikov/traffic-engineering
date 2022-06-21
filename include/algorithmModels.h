@@ -21,10 +21,11 @@ public:
 
     double theShortestPathWeight(const std::string &from, const std::string &to);
 
-    // returns the unweighted path
     std::vector<Edge> theShortestPath(const std::string &from, const std::string &to);
 private:
-    static constexpr double INF = 1.0 * 1000 * 1000 * 1000;
+    std::vector<Edge> theShortestPathImpl(const std::string &from, const std::string &to);
+    int checked_vertex_id(const std::string &name) const;
+
 private:
     std::vector<std::string> _names;
     std::unordered_map<std::string, int> _indexes;
