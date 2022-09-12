@@ -1,4 +1,5 @@
 out/
+src/Makefile
 simulations/results/
 .DS_Store
 .idea
