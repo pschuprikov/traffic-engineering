@@ -1,5 +1,6 @@
 out/
 simulations/results/
 .DS_Store
-.idea/
+.idea
 trafficengineering
+.cache
