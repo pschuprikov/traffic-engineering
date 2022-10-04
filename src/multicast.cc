@@ -16,8 +16,8 @@
 namespace TrafficEngineering {
 
 namespace {
-
-inet::InterfaceEntry *getInterfaceFromModule(omnetpp::cModule *module, const std::string &interfaceName) {
+// to use INET versions < 4.3 rename NetworkInterface to InterfaceTable
+inet::NetworkInterface *getInterfaceFromModule(omnetpp::cModule *module, const std::string &interfaceName) {
     auto *interfaceTable = inet::L3AddressResolver().interfaceTableOf(module);
     return interfaceTable->findInterfaceByName(interfaceName.c_str());
 }

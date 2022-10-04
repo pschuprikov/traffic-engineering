@@ -6,3 +6,4 @@ simulations/results/
 trafficengineering
 .cache
 .settings
+*.so
