@@ -1,4 +1,4 @@
-INET_PROJ ?= $(shell pwd)/../inet
+INET_PROJ ?= $(HOME)/repos/omnetpp-samples/inet
 INET_INCLUDE ?= $(INET_PROJ)/src
 INET_LDPATH ?= $(INET_PROJ)/src
 INET_LDFLAGS ?= -lINET

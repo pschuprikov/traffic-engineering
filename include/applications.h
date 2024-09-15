@@ -9,6 +9,14 @@
 
 namespace TrafficEngineering {
 
+enum class EntityKind {
+
+};
+
+template <EntityKind K>
+struct Name { const std::string name; };
+
+
 struct AppDescription {
     std::string destAddresses;
     int destPort;

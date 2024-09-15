@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, NamedTuple
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -97,6 +97,11 @@ class TunnelDescription:
     def __init__(self, sender: str, receivers: List[str]):
         self.sender: str = sender
         self.receivers: List[str] = receivers
+
+
+class TunnelDescription(NamedTuple):
+    sender: str 
+    receivers: List[str]
 
 
 def get_tunnel_descriptions(filename: str) -> List[TunnelDescription]:

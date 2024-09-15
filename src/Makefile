@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for trafficengineering
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -KINET_PROJ=../../inet -DINET_IMPORT -I../include -I$$\(INET_PROJ\)/src -L$$\(INET_PROJ\)/src -lINET$$\(D\)
+#  opp_makemake -f --deep -KINET_PROJ=/home/pschuprikov/repos/usi-2022-spring-atomic-commit/inet4 -DINET_IMPORT -I../include -I$$\(INET_PROJ\)/src -L$$\(INET_PROJ\)/src -lINET$$\(D\)
 #
 
 # Name of target to be created (-o option)
@@ -53,7 +53,7 @@ MSGFILES =
 SMFILES =
 
 # Other makefile variables (-K)
-INET_PROJ=../../inet
+INET_PROJ=/home/pschuprikov/repos/usi-2022-spring-atomic-commit/inet4
 
 #------------------------------------------------------------------------------
 
