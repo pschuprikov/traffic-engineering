@@ -24,52 +24,61 @@ Tunnel treeToTunnel(const Topology &topology, const Tree &tree) {
 }
 
 AdjustmentResult dfs(const Node &node, const Tunnel &tunnel,
-                     const std::map<std::pair<std::string, std::string>, double> &sumTime) {
+                     const std::map<std::pair<std::string, std::string>, double> &maxTime) {
     AdjustmentResult result;
     result.minDelay = std::numeric_limits<double>::max();
     result.maxDelay = 0;
+    result.maxPeriod = 0;
     if (node.getInterfaceNumber() == 0) {
         result.minDelay = 0;
         result.maxDelay = 0;
+        result.maxPeriod = 0;
         return result;
     }
     for (const auto &link : node.getAllLinks()) {
         auto neighbour = tunnel.getNode(link.remoteNodeName);
-        auto neighbourResult = dfs(neighbour, tunnel, sumTime);
+        auto neighbourResult = dfs(neighbour, tunnel, maxTime);
         auto transferTime = tunnel.getLoadSize() / link.datarate;
-        auto sumTransferTime = sumTime.at({link.localNodeName, link.remoteNodeName});
-        result.minDelay = std::min(result.minDelay, neighbourResult.minDelay + link.delay + transferTime);
-        result.maxDelay = std::max(result.maxDelay, neighbourResult.maxDelay + link.delay + sumTransferTime);
+        auto sumTransferTime = maxTime.at({link.localNodeName, link.remoteNodeName});
+        result.minDelay = std::min(result.minDelay, neighbourResult.minDelay + transferTime + link.minDelay);
+        result.maxDelay = std::max(result.maxDelay, neighbourResult.maxDelay + sumTransferTime + link.minDelay + link.maxJitter);
+        result.maxPeriod = std::max(result.maxPeriod, sumTransferTime + std::max(transferTime, neighbourResult.maxPeriod + link.maxJitter));
     }
     return result;
 }
 
 } // namespace
 
-std::vector<TrafficEngineering::AdjustmentResult> TrafficEngineering::adjustment(const std::vector<Tunnel> &tunnels) {
-    std::map<std::pair<std::string, std::string>, double> sumTime;
+std::vector<AdjustmentResult> adjustment(std::vector<Tunnel> &tunnels) {
+    std::map<std::pair<std::string, std::string>, double> maxTime;
     for (const auto &tunnel : tunnels) {
         for (const auto &link : tunnel.getAllLinks()) {
             std::pair<std::string, std::string> key = {link.localNodeName, link.remoteNodeName};
-            sumTime[key] += tunnel.getLoadSize() / link.datarate;
+            if (maxTime.count(key) != 0) {
+                maxTime[key] += 96 / link.datarate;  // interpacket gap
+            }
+            maxTime[key] += tunnel.getLoadSize() / link.datarate;
         }
     }
 
-    std::vector<AdjustmentResult> result;
-    for (const auto &tunnel : tunnels) {
-        result.push_back(dfs(tunnel.getRoot(), tunnel, sumTime));
+    std::vector<AdjustmentResult> results;
+    for (auto &tunnel : tunnels) {
+        auto result = dfs(tunnel.getRoot(), tunnel, maxTime);
+        tunnel.setPeriodValue(std::max(result.maxPeriod, tunnel.getPeriod()));
+        results.push_back(result);
     }
-    return result;
+    return results;
 }
 
 TrafficEngineering::Tunnel TrafficEngineering::optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, const MulticastRequest &app) {
     std::map<std::pair<std::string, std::string>, double> weights;
     for (const auto &link : topology.getAllLinks()) {
-        weights[{link.localNodeName, link.remoteNodeName}] = 1.0 * app.messageLength / link.datarate + link.delay;
+        weights[{link.localNodeName, link.remoteNodeName}] = 1.0 * (app.messageLength + 54) / link.datarate + link.minDelay + link.maxJitter;
     }
     for (const auto &tunnel : tunnels) {
         for (const auto &link : tunnel.getAllLinks()) {
             weights[{link.localNodeName, link.remoteNodeName}] += tunnel.getLoadSize() / link.datarate;
+            weights[{link.localNodeName, link.remoteNodeName}] += 96 / link.datarate;  // interpacket gap
         }
     }
 
@@ -111,7 +120,6 @@ TrafficEngineering::Tunnel TrafficEngineering::optimization(const Topology &topo
 
     Tunnel tunnel = treeToTunnel(topology, tree);
     tunnel.setLoadSize(app.messageLength);
-    tunnel.setPeriod(app.sendInterval);
 
     return tunnel;
 }

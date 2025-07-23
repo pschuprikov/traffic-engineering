@@ -3,7 +3,7 @@
 
 namespace TrafficEngineering {
 
-void createUdpBasicApp(omnetpp::cModule *controller,
+omnetpp::cModule *createUdpBasicApp(omnetpp::cModule *controller,
                        const AppDescription &appDescription) {
 
     auto *messageSource = controller->getModuleByPath(appDescription.request.appOwnerName.c_str());
@@ -32,6 +32,8 @@ void createUdpBasicApp(omnetpp::cModule *controller,
     app->buildInside();
     app->scheduleStart(controller->getSimulation()->getSimTime());
     app->callInitialize();
+
+    return app;
 }
 
 } // namespace TrafficEngineering

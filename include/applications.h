@@ -27,7 +27,7 @@ struct AppDescription {
     std::string appName;
 };
 
-void createUdpBasicApp(omnetpp::cModule *controller,
-                       const AppDescription &appDescription);
+omnetpp::cModule *createUdpBasicApp(omnetpp::cModule *controller,
+                                    const AppDescription &appDescription);
 
 } // namespace TrafficEngineering

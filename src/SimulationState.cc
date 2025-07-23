@@ -2,6 +2,9 @@
 
 #include "tools.h"
 
+#include <fstream>
+#include <cstdio>
+
 
 namespace TrafficEngineering {
 
@@ -16,6 +19,37 @@ SimulationState::SimulationState(omnetpp::cModule *controller) :
     _duration(controller->par("duration"))
 {
     _appOwnerNames = getSourceFromCurrentNetwork();
+
+    std::remove(_eventsLogFilename.c_str());
+    std::remove(_tunnelDescriptionFilename.c_str());
+}
+
+void SimulationState::logTunnelDescription(const AppDescription &app) const {
+    std::ofstream out(_tunnelDescriptionFilename, std::ios::app);
+    out << app.appOwnerName << ' ';
+    for (const auto &receiver : app.appReceiverNames) {
+        out << receiver << ' ';
+    }
+    out << '\n';
+    out.close();
+}
+
+void SimulationState::logEvent(const EventDescription &event) const {
+    std::ofstream out(_tunnelDescriptionFilename, std::ios::app);
+    out << event.node << ' ';
+    out << event.packetName << ' ';
+    out << event.time << '\n';
+    out.close();
+}
+
+void SimulationState::logAdjustmentResult(const std::vector<AdjustmentResult> &result) const {
+    std::ofstream out(_adjustmentResultFilename);
+    for (const auto &element : result) {
+        out << element.minDelay << ' ';
+        out << element.maxDelay << ' ';
+        out << '\n';
+    }
+    out.close();
 }
 
 AppDescription SimulationState::getNextApp() {
@@ -32,7 +66,7 @@ AppDescription SimulationState::getNextApp() {
     return appDescription;
 }
 
-const std::vector<Tunnel> &SimulationState::getTunnels() const {
+std::vector<Tunnel> &SimulationState::getTunnels() {
     return _tunnels;
 }
 
@@ -71,7 +105,7 @@ const std::string &SimulationState::getNextAppOwnerName() {
 std::vector<std::string> SimulationState::getNextAppReceiverNames(const std::string &appOwnerName) {
     std::vector<std::string> result;
     std::vector<bool> used(_appOwnerNames.size());
-    int receiversNumber = 1 + (rand() % (_appOwnerNames.size() - 1));
+    int receiversNumber = 2 + (rand() % (_appOwnerNames.size() - 2));
     for (int i = 0; i < receiversNumber; i++) {
         int nodeId = rand() % _appOwnerNames.size();
         while (used[nodeId] || _appOwnerNames[nodeId] == appOwnerName) {

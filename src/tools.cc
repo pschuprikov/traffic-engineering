@@ -54,6 +54,17 @@ Topology makeTopology(omnetpp::cTopology &topology) {
             link.remoteInterfaceName = getGateName(remoteGate);
             link.datarate = localGate->getTransmissionChannel()->par("datarate").doubleValue();
             link.delay = localGate->getTransmissionChannel()->par("delay").doubleValue();
+
+            omnetpp::cChannel *channel = gate->getTransmissionChannel();
+            std::string type = channel->getNedTypeName();
+            if (type == "FatTreeNetwork.SwitchEthernet") {
+                link.minDelay = 0.000002;
+                link.maxJitter = 0.000001;
+            } else if (type == "FatTreeNetwork.ServerEthernet") {
+                link.minDelay = 0.000005;
+                link.maxJitter = 0.000005;
+            }
+
             EV_INFO << " adding link from " << link.localNodeName << " to " << link.remoteNodeName << std::endl;
             result.addLink(link);
         }
