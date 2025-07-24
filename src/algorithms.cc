@@ -70,7 +70,7 @@ std::vector<AdjustmentResult> adjustment(std::vector<Tunnel> &tunnels) {
     return results;
 }
 
-TrafficEngineering::Tunnel TrafficEngineering::optimization(const Topology &topology, const std::vector<Tunnel> &tunnels, const MulticastRequest &app) {
+TrafficEngineering::Tunnel optimization(const Topology &topology, std::vector<Tunnel> &tunnels, const MulticastRequest &app) {
     std::map<std::pair<std::string, std::string>, double> weights;
     for (const auto &link : topology.getAllLinks()) {
         weights[{link.localNodeName, link.remoteNodeName}] = 1.0 * (app.messageLength + 54) / link.datarate + link.minDelay + link.maxJitter;

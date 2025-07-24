@@ -26,8 +26,8 @@ SimulationState::SimulationState(omnetpp::cModule *controller) :
 
 void SimulationState::logTunnelDescription(const AppDescription &app) const {
     std::ofstream out(_tunnelDescriptionFilename, std::ios::app);
-    out << app.appOwnerName << ' ';
-    for (const auto &receiver : app.appReceiverNames) {
+    out << app.request.appOwnerName << ' ';
+    for (const auto &receiver : app.request.appReceiverNames) {
         out << receiver << ' ';
     }
     out << '\n';

@@ -55,7 +55,7 @@ Topology makeTopology(omnetpp::cTopology &topology) {
             link.datarate = localGate->getTransmissionChannel()->par("datarate").doubleValue();
             link.delay = localGate->getTransmissionChannel()->par("delay").doubleValue();
 
-            omnetpp::cChannel *channel = gate->getTransmissionChannel();
+            omnetpp::cChannel *channel = localGate->getTransmissionChannel();
             std::string type = channel->getNedTypeName();
             if (type == "FatTreeNetwork.SwitchEthernet") {
                 link.minDelay = 0.000002;

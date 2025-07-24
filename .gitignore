@@ -1,3 +1,6 @@
+compile_commands.json
+.direnv/
+.envrc
 out/
 src/Makefile
 simulations/results/
